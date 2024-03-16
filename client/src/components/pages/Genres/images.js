@@ -1,18 +1,25 @@
 import image1 from "../../../assets/images/genres/Action.png"
-import image2 from "../../../assets/images/genres/ADVENTURE.png"
+import image2 from "../../../assets/images/genres/Adventure.png"
 import image3 from "../../../assets/images/genres/Comedy.png"
 import image4 from "../../../assets/images/genres/Detective.png"
 import image5 from "../../../assets/images/genres/Drama.png"
 import image6 from "../../../assets/images/genres/Fantasy.png"
-import image7 from "../../../assets/images/genres/FIGHTING.png"
+import image7 from "../../../assets/images/genres/Fighting.png"
+import image17 from "../../../assets/images/genres/History.png"
 import image8 from "../../../assets/images/genres/Horror.png"
 import image9 from "../../../assets/images/genres/Manga.png"
-import image10 from "../../../assets/images/genres/MUSIC.png"
-import image11 from "../../../assets/images/genres/MYSTERY.png"
-import image12 from "../../../assets/images/genres/SCI-FI.png"
-import image13 from "../../../assets/images/genres/SLASHER.png"
+import image10 from "../../../assets/images/genres/Music.png"
+import image11 from "../../../assets/images/genres/Mystery.png"
+import image22 from "../../../assets/images/genres/Mystique.png"
+import image21 from "../../../assets/images/genres/Romance.png"
+import image20 from "../../../assets/images/genres/Samurai.png"
+import image12 from "../../../assets/images/genres/Sci-Fi.png"
+import image13 from "../../../assets/images/genres/Slasher.png"
+import image16 from "../../../assets/images/genres/Sport.png"
+import image19 from "../../../assets/images/genres/Superhero.png"
 import image14 from "../../../assets/images/genres/Thriller.png"
-import image15 from "../../../assets/images/genres/WESTERN.png"
+import image18 from "../../../assets/images/genres/Tragedy.png"
+import image15 from "../../../assets/images/genres/Western.png"
 
 export const IMAGES = [
     [
@@ -81,6 +88,38 @@ export const IMAGES = [
         {
             id: 15,
             src: image15,
+        },
+        {
+            id: 16,
+            src: image16,
+        }
+    ],
+    [
+        {
+            id: 17,
+            src: image17,
+        },
+        {
+            id: 18,
+            src: image18,
+        },
+        {
+            id: 19,
+            src: image19,
+        },
+        {
+            id: 20,
+            src: image20,
+        }
+    ],
+    [
+        {
+            id: 21,
+            src: image21,
+        },
+        {
+            id: 22,
+            src: image22,
         },
     ],
 ]
