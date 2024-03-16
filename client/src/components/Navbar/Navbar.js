@@ -1,0 +1,46 @@
+import { NavLink } from "react-router-dom"
+import "./Navbar.css"
+import MenuIcon from "./MenuIcon"
+import "../../assets/texts.css"
+
+const Navbar = () => {
+    return (
+        <nav className="navbar">
+            <NavLink to="/catalogs">
+                <div className="navbarLink">
+                    <MenuIcon name="catalogs" />
+                    <span className="menu-text">CATALOGS</span>
+                </div>
+            </NavLink>
+
+            <NavLink to="/faq">
+                <div className="navbarLink">
+                    <MenuIcon name="faq" />
+                    <span className="menu-text">FAQ</span>
+                </div>
+            </NavLink>
+
+            <NavLink to="/">
+                <div className="homeNavLink">
+                    <MenuIcon name="home" />
+                </div>
+            </NavLink>
+
+            <NavLink to="/forum">
+                <div className="navbarLink">
+                    <MenuIcon name="forum" />
+                    <span className="menu-text">FORUM</span>
+                </div>
+            </NavLink>
+
+            <NavLink to="/login">
+                <div className="navbarLink">
+                    <MenuIcon name="user" />
+                    <span className="menu-text">USER</span>
+                </div>
+            </NavLink>
+        </nav>
+    )
+}
+
+export default Navbar

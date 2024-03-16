@@ -1,0 +1,43 @@
+.navbar {
+    width: 100%;
+    height: 86px;
+    background-color: #DB4947;
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbarLink {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.navbarLink img {
+    width: 43px;
+}
+
+.navbarLink span {
+    color: #FFFFFF;
+    margin-left: 20px;
+}
+
+.homeNavLink {
+    display: flex;
+    justify-content: center;
+}
+
+.homeNavLink img {
+    width: 125px;
+    height: 125px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 27px;
+}
