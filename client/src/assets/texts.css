@@ -14,8 +14,9 @@
 }
 
 .bigger-heading {
-    font-family: Luckiest Guy;
+    font-family: Luckiest_Guy;
     font-size: 45px;
+    font-weight: 500;
 }
 
 .medium-heading {
@@ -28,7 +29,6 @@
 }
 
 .small-text {
-    font-family: Lexend;
     font-size: 12px;
     font-weight: 400;
 }
