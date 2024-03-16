@@ -8,7 +8,7 @@ import user from "../../assets/icons/User.svg"
 
 const MenuIcon = ({ name }) => {
     switch (name) {
-        case "catalogs":
+        case "genres":
             return <img src={catalogs} alt="menu-icon" />
         case "faq":
             return <img src={faq} alt="menu-icon" />
