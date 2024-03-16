@@ -2,6 +2,10 @@
     padding: 20px;
 }
 
+.row {
+    margin: 100px 0 150px 0;
+}
+
 .column img {
     width: 200px;
     margin: 10px;
