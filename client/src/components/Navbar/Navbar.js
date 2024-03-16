@@ -6,7 +6,7 @@ import "../../assets/texts.css"
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <NavLink to="/catalogs">
+            <NavLink to="/genres">
                 <div className="navbarLink">
                     <MenuIcon name="genres" />
                     <span className="menu-text">GENRES</span>
