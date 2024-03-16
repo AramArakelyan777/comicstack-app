@@ -1,0 +1,41 @@
+@font-face {
+    font-family: Luckiest_Guy;
+    src: url("./fonts/LuckiestGuy.ttf");
+}
+
+@font-face {
+    font-family: Comix;
+    src: url("./fonts/Comix_Loud.ttf");
+}
+
+@font-face {
+    font-family: OhCrud;
+    src: url("./fonts/OHCRBRG_.TTF");
+}
+
+.bigger-heading {
+    font-family: Luckiest Guy;
+    font-size: 45px;
+}
+
+.medium-heading {
+    color: #fff;
+    font-family: Luckiest Guy;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.small-text {
+    font-family: Lexend;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.menu-text {
+    font-family: Comix;
+    letter-spacing: 2px;
+    font-size: 16px;
+    -webkit-text-stroke: 0.4px;
+}
