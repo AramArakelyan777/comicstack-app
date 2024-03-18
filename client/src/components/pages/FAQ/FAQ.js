@@ -162,7 +162,7 @@ const FAQ = () => {
                         </h2>
                         <AccordionPanel textAlign="left">
                             To get back your suspended account, you should write an email to
-                            <code>support@comicstack.com</code> to explain why we should get back your account and that you
+                            {" "}<code>support@comicstack.com</code> to explain why we should get back your account and that you
                             guarantee that you will never violate our <code>Terms of Use</code> again.<br />
                             Do not forget to write your BAN code in the subject of the email(visit our support page for
                             details).
