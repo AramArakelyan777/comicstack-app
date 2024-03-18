@@ -10,10 +10,6 @@ body {
     font-family: Lexend !important;
 }
 
-.faq-heading {
-    margin: 30px 0 30px 0;
-}
-
 .accordion {
     max-width: 55%;
     margin: 0 auto;
@@ -21,16 +17,7 @@ body {
 }
 
 .FAQ {
-    margin: 50px 0 150px 0;
-}
-
-#accent {
-    font-family: Luckiest_Guy;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 35px;
+    margin-bottom: 150px;
 }
 
 #coffee {
