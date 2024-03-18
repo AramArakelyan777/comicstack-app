@@ -15,5 +15,54 @@ body {
 }
 
 .accordion {
-    margin-top: 50px;
+    max-width: 55%;
+    margin: 0 auto;
+    border-color: #DB4947;
+}
+
+.FAQ {
+    margin: 50px 0 150px 0;
+}
+
+#accent {
+    font-family: Luckiest_Guy;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 35px;
+}
+
+#coffee {
+    color: #98694f;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+code {
+    color: #DB4947;
+    cursor: pointer;
+}
+
+span {
+    font-weight: 600;
+}
+
+svg {
+    height: 3rem !important;
+    font-size: 1.7rem !important;
+}
+
+@media screen and (max-width: 800px) {
+    .accordion {
+        max-width: 85%;
+    }
+
+    span {
+        font-size: 14px;
+    }
+
+    svg {
+        font-size: 0rem !important;
+    }
 }
