@@ -7,7 +7,7 @@ const Genres = () => {
     return (
         <div className="genres">
             <h1 className="bigger-heading">GENRES</h1>
-            <div className="row">
+            <div>
                 {IMAGES.map((imageGroup) => (
                     <div key={imageGroup[0].id} className="column">
                         {imageGroup.map((image) => (
