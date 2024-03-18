@@ -1,0 +1,19 @@
+@font-face {
+    font-family: Lexend;
+    src: url("../../../assets/fonts/Lexend[wght].ttf");
+}
+
+body {
+    margin: 0 !important;
+    background-color: #010020 !important;
+    color: white !important;
+    font-family: Lexend !important;
+}
+
+.faq-heading {
+    margin: 30px 0 30px 0;
+}
+
+.accordion {
+    margin-top: 50px;
+}
