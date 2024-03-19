@@ -13,6 +13,19 @@ body {
     color: #FFFFFF;
 }
 
+* {
+	scrollbar-width: none;
+	scrollbar-color: transparent transparent;
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: transparent;
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
