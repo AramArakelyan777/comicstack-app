@@ -36,8 +36,47 @@
 
 .homeNavLink img {
     width: 125px;
-    height: 125px;
     cursor: pointer;
     position: absolute;
     bottom: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbarLink {
+        margin: 10px;
+    }
+
+    .homeNavLink img {
+        width: 100px;
+    }
+
+    .navbarLink img {
+        width: 30px;
+    }
+
+    .navbarLink span {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbarLink img {
+        width: 35px;
+    }
+
+    .navbarLink span {
+        display: none;
+    }
+
+    .homeNavLink img {
+        bottom: 60px;
+    }
 }
