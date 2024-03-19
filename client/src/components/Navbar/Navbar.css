@@ -42,16 +42,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .navbar {
-        justify-content: space-between;
-    }
-
-    .navbarLink {
-        margin: 10px;
-    }
-
     .homeNavLink img {
         width: 100px;
+        bottom: 40px;
     }
 
     .navbarLink img {
@@ -63,20 +56,25 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 640px) {
+    .homeNavLink img {
+        width: 85px;
+        bottom: 60px;
+    }
+
     .navbar {
         justify-content: space-between;
     }
 
-    .navbarLink img {
-        width: 35px;
+    .navbarLink {
+        margin: 10px;
     }
 
     .navbarLink span {
         display: none;
     }
 
-    .homeNavLink img {
-        bottom: 60px;
+    .navbarLink img {
+        width: 43px;
     }
 }
