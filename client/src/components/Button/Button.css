@@ -17,6 +17,7 @@
     padding: 15px;
     display: flex;
     align-items: center;
+    transition: background-color 350ms;
 }
 
 .button:hover {
