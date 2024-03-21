@@ -14,16 +14,3 @@
     box-shadow: 0 14px 28px rgba(9, 5, 87, 0.25), 0 10px 10px rgba(9, 5, 87, 0.22);
     scale: 1.05;
 }
-
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
