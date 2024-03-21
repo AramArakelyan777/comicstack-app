@@ -8,11 +8,6 @@
     src: url("./fonts/Comix_Loud.ttf");
 }
 
-@font-face {
-    font-family: OhCrud;
-    src: url("./fonts/OHCRBRG_.TTF");
-}
-
 .bigger-heading {
     font-family: Luckiest_Guy;
     font-size: 45px;
