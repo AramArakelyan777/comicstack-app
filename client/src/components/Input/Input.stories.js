@@ -8,6 +8,11 @@ export default {
 
 const Template = (args) => <Input {...args} />
 
+export const Regular = Template.bind({})
+Regular.args = {
+    variant: "regular",
+}
+
 export const Search = Template.bind({})
 Search.args = {
     variant: "search",

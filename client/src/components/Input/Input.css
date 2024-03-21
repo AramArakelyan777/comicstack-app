@@ -1,11 +1,24 @@
 .input {
-    width: 500px;
-    height: 40px;
     background-color: transparent;
     border: 1px solid #DB4947;
     border-radius: 10px;
     box-sizing: border-box;
-    padding: 10px;
     font-style: italic;
     transition: all 0.3s ease-in-out;
+}
+
+.regular {
+    width: 500px;
+    height: 40px;
+    padding: 10px;
+}
+
+.search {
+    height: 45px;
+    padding: 10px;
+}
+
+.small {
+    height: 30px;
+    padding: 7px;
 }
