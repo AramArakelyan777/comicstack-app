@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.button:hover {
+    background-color: transparent;
+}
+
 .ordinary {
     font-family: Lexend;
     font-weight: 700;

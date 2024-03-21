@@ -63,85 +63,85 @@ export const IMAGES = [
         {
             id: 8,
             src: image8,
-            text: "HISTORY",
+            text: "HORROR",
         },
     ],
     [
         {
             id: 9,
             src: image9,
-            text: "HORROR",
+            text: "MANGA",
         },
         {
             id: 10,
             src: image10,
-            text: "MANGA",
+            text: "MUSIC",
         },
         {
             id: 11,
             src: image11,
-            text: "MUSIC",
+            text: "MYSTERY",
         },
         {
             id: 12,
             src: image12,
-            text: "MYSTERY",
+            text: "SCI-FI",
         },
     ],
     [
         {
             id: 13,
             src: image13,
-            text: "MYSTIQUE",
+            text: "SLASHER",
         },
         {
             id: 14,
             src: image14,
-            text: "ROMANCE",
+            text: "THRILLER",
         },
         {
             id: 15,
             src: image15,
-            text: "SAMURAI",
+            text: "WESTERN",
         },
         {
             id: 16,
             src: image16,
             text: "SCI-FI",
-        }
+        },
     ],
     [
         {
             id: 17,
             src: image17,
-            text: "SLASHER",
+            text: "SPORT",
         },
         {
             id: 18,
             src: image18,
-            text: "SPORT",
+            text: "HISTORY",
         },
         {
             id: 19,
             src: image19,
-            text: "SUPERHERO",
+            text: "TRAGEDY",
         },
         {
             id: 20,
             src: image20,
-            text: "THRILLER",
-        }
+            text: "SAMURAI",
+        },
     ],
     [
         {
             id: 21,
             src: image21,
-            text: "TRAGEDY",
+            text: "ROMANCE",
         },
         {
             id: 22,
             src: image22,
-            text: "WESTERN",
+            text: "MYSTIQUE",
         },
     ],
 ]
