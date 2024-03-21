@@ -26,100 +26,122 @@ export const IMAGES = [
         {
             id: 1,
             src: image1,
+            text: "ACTION",
         },
         {
             id: 2,
             src: image2,
+            text: "ADVENTURE",
         },
         {
             id: 3,
             src: image3,
+            text: "COMEDY",
         },
         {
             id: 4,
             src: image4,
+            text: "DETECTIVE",
         },
     ],
     [
         {
             id: 5,
             src: image5,
+            text: "DRAMA",
         },
         {
             id: 6,
             src: image6,
+            text: "FANTASY",
         },
         {
             id: 7,
             src: image7,
+            text: "FIGHTING",
         },
         {
             id: 8,
             src: image8,
+            text: "HISTORY",
         },
     ],
     [
         {
             id: 9,
             src: image9,
+            text: "HORROR",
         },
         {
             id: 10,
             src: image10,
+            text: "MANGA",
         },
         {
             id: 11,
             src: image11,
+            text: "MUSIC",
         },
         {
             id: 12,
             src: image12,
+            text: "MYSTERY",
         },
     ],
     [
         {
             id: 13,
             src: image13,
+            text: "MYSTIQUE",
         },
         {
             id: 14,
             src: image14,
+            text: "ROMANCE",
         },
         {
             id: 15,
             src: image15,
+            text: "SAMURAI",
         },
         {
             id: 16,
             src: image16,
+            text: "SCI-FI",
         }
     ],
     [
         {
             id: 17,
             src: image17,
+            text: "SLASHER",
         },
         {
             id: 18,
             src: image18,
+            text: "SPORT",
         },
         {
             id: 19,
             src: image19,
+            text: "SUPERHERO",
         },
         {
             id: 20,
             src: image20,
+            text: "THRILLER",
         }
     ],
     [
         {
             id: 21,
             src: image21,
+            text: "TRAGEDY",
         },
         {
             id: 22,
             src: image22,
+            text: "WESTERN",
         },
     ],
 ]
