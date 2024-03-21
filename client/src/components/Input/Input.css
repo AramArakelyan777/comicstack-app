@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-style: italic;
     transition: all 0.3s ease-in-out;
+    color: white;
 }
 
 .input:focus {
