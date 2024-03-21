@@ -13,7 +13,7 @@ const Genres = () => {
                         {imageGroup.map((image) => (
                             <div className="container">
                                 <img key={image.id} src={image.src} alt="genre" />
-                                <div class="centered">{image.text}</div>
+                                <div className="centered">{image.text}</div>
                             </div>
                         ))}
                     </div>
