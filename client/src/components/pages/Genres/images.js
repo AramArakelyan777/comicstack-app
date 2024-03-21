@@ -107,24 +107,24 @@ export const IMAGES = [
         {
             id: 16,
             src: image16,
-            text: "SCI-FI",
+            text: "SPORT",
         },
     ],
     [
         {
             id: 17,
             src: image17,
-            text: "SPORT",
+            text: "HISTORY",
         },
         {
             id: 18,
             src: image18,
-            text: "HISTORY",
+            text: "TRAGEDY",
         },
         {
             id: 19,
             src: image19,
-            text: "TRAGEDY",
+            text: "SUPERHERO",
         },
         {
             id: 20,
