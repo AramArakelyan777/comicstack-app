@@ -21,6 +21,7 @@
 
 .button:hover {
     background-color: transparent;
+    color: #DB4947;
 }
 
 .ordinary {
