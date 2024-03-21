@@ -1,0 +1,31 @@
+@font-face {
+    font-family: OhCrud;
+    src: url("../../assets/fonts/OHCRBRG_.TTF");
+}
+
+@font-face {
+    font-family: Lexend;
+    src: url("../../assets/fonts/Lexend[wght].ttf");
+}
+
+.button {
+    background-color: #DB4947;
+    color: white;
+    height: 40px;
+    border: 1px solid #DB4947;
+    cursor: pointer;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.ordinary {
+    font-family: Lexend;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.tags {
+    font-family: OhCrud;
+    border-radius: 15px;
+}
