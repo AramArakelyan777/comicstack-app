@@ -61,6 +61,7 @@ const Login = () => {
                     <Input
                         type="text"
                         name="emailOrUsername"
+                        id="emailOrUsername"
                         {...formik.getFieldProps("emailOrUsername")}
                         variant="regular"
                     />
@@ -75,6 +76,7 @@ const Login = () => {
                     <Input
                         type="password"
                         name="password"
+                        id="password"
                         {...formik.getFieldProps("password")}
                         variant="regular"
                     />
@@ -86,6 +88,7 @@ const Login = () => {
                     type="submit"
                     disabled={!formik.isValid}
                     variant="ordinary"
+                    onClick={() => alert()}
                 >
                     LOG IN
                 </Button>
