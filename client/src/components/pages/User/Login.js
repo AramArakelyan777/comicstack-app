@@ -1,11 +1,10 @@
-import React from "react"
-import login from "../../../assets/images/authorization/Login.png"
-import "./Login.css"
-import "../../../assets/texts.css"
-import * as yup from "yup"
 import { useFormik } from "formik"
-import Input from "../../Input/Input"
+import React from "react"
+import * as yup from "yup"
+import login from "../../../assets/images/authorization/Login.png"
 import Button from "../../Button/Button"
+import Input from "../../Input/Input"
+import "./Login.css"
 
 const initialValues = {
     emailOrUsername: "",
@@ -69,6 +68,7 @@ const Login = () => {
                         id="emailOrUsername"
                         {...formik.getFieldProps("emailOrUsername")}
                         variant="regular"
+                        placeholder="Username/Mail in the multiverse 🦹‍♀️"
                     />
                     {formik.touched.emailOrUsername &&
                     formik.errors.emailOrUsername ? (
@@ -88,6 +88,7 @@ const Login = () => {
                         id="password"
                         {...formik.getFieldProps("password")}
                         variant="regular"
+                        placeholder="Guard the Batcave entrance 🗝️"
                     />
                     {formik.touched.password && formik.errors.password ? (
                         <div className="error small-text">
