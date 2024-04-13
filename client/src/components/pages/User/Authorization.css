@@ -40,3 +40,12 @@ button[disabled] {
 .coloredLink {
     color: #db4947
 }
+
+@media screen and (max-width: 540px){
+    .loginLinks{
+        max-width: 90%;
+    }
+    .mainLink{
+        margin: 1px;
+    }
+}
