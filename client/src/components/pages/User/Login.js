@@ -61,7 +61,7 @@ const Login = () => {
     })
 
     return (
-        <div>
+        <div className="login">
             <img className="loginImage" src={login} alt="login" />
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-control">

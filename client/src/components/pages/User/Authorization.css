@@ -1,3 +1,8 @@
+.login,
+.register {
+    margin-bottom: 150px;
+}
+
 .loginImage,
 .registerImage {
     width: 220px;
@@ -41,11 +46,12 @@ button[disabled] {
     color: #db4947
 }
 
-@media screen and (max-width: 540px){
-    .loginLinks{
+@media screen and (max-width: 540px) {
+    .loginLinks {
         max-width: 90%;
     }
-    .mainLink{
+
+    .mainLink {
         margin: 1px;
     }
 }

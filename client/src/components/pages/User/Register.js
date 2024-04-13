@@ -66,7 +66,7 @@ const Register = () => {
     })
 
     return (
-        <div>
+        <div className="register">
             <img className="registerImage" src={register} alt="register" />
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-control">
