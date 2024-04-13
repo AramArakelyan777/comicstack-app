@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Lexend;
+    src: url("../../assets/fonts/Lexend[wght].ttf");
+}
+
 .input {
     background-color: transparent;
     border: 1px solid #DB4947;
@@ -6,6 +11,7 @@
     font-style: italic;
     transition: all 0.3s ease-in-out;
     color: white;
+    font-family: Lexend;
 }
 
 .input:focus {

@@ -12,3 +12,12 @@ button[disabled] {
     background-color: #380000 !important;
     color: #666666 !important;
 }
+
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.error {
+    color: #db4947;
+}
