@@ -54,8 +54,12 @@ const Login = () => {
         <div>
             <img className="loginImage" src={login} alt="login" />
             <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="emailOrUsername">Email or Username</label>
+                <div className="form-control">
+                    <div>
+                        <label htmlFor="emailOrUsername">
+                            Email or Username
+                        </label>
+                    </div>
                     <br />
                     <Input
                         type="text"
@@ -66,12 +70,16 @@ const Login = () => {
                         placeholder="Username/Mail in the multiverse 🦹‍♀️"
                     />
                     {formik.touched.emailOrUsername &&
-                        formik.errors.emailOrUsername ? (
-                        <div>{formik.errors.emailOrUsername}</div>
+                    formik.errors.emailOrUsername ? (
+                        <div className="error small-text">
+                            {formik.errors.emailOrUsername}
+                        </div>
                     ) : null}
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className="form-control">
+                    <div>
+                        <label htmlFor="password">Password</label>
+                    </div>
                     <br />
                     <Input
                         type="password"
@@ -82,7 +90,9 @@ const Login = () => {
                         placeholder="Guard the Batcave entrance 🗝️"
                     />
                     {formik.touched.password && formik.errors.password ? (
-                        <div>{formik.errors.password}</div>
+                        <div className="error small-text">
+                            {formik.errors.password}
+                        </div>
                     ) : null}
                 </div>
                 <Button
