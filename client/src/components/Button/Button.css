@@ -14,9 +14,7 @@
     height: 40px;
     border: 1px solid #DB4947;
     cursor: pointer;
-    padding: 15px;
-    display: flex;
-    align-items: center;
+    padding: 0 15px 0 15px;
     transition: background-color 350ms;
 }
 
