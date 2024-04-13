@@ -12,16 +12,16 @@ const initialValues = {
 }
 
 const validationSchema = yup.object().shape({
-   emailOrUsername: yup
-  .string()
-  .email("Invalid email address")
-  .required("Required")
-  .test("is-valid", "Invalid username or email", (value) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    emailOrUsername: yup
+        .string()
+        .email("Invalid email address")
+        .required("Required")
+        .test("is-valid", "Invalid username or email", (value) => {
+            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+            const usernameRegex = /^[a-zA-Z0-9_]+$/
 
-    return emailRegex.test(value) || usernameRegex.test(value);
-  }),
+            return emailRegex.test(value) || usernameRegex.test(value)
+        }),
     password: yup
         .string()
         .matches(
@@ -57,10 +57,12 @@ const Login = () => {
             <form onSubmit={formik.handleSubmit}>
                 <div>
                     <label htmlFor="emailOrUsername">Email or Username</label>
+                    <br />
                     <Input
                         type="text"
                         name="emailOrUsername"
                         {...formik.getFieldProps("emailOrUsername")}
+                        variant="regular"
                     />
                     {formik.touched.emailOrUsername &&
                     formik.errors.emailOrUsername ? (
@@ -69,16 +71,24 @@ const Login = () => {
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
+                    <br />
                     <Input
                         type="password"
                         name="password"
                         {...formik.getFieldProps("password")}
+                        variant="regular"
                     />
                     {formik.touched.password && formik.errors.password ? (
                         <div>{formik.errors.password}</div>
                     ) : null}
                 </div>
-                <Button type="submit" disabled={!formik.isValid}>LOG IN</Button>
+                <Button
+                    type="submit"
+                    disabled={!formik.isValid}
+                    variant="ordinary"
+                >
+                    LOG IN
+                </Button>
             </form>
         </div>
     )
