@@ -15,6 +15,10 @@ const validationSchema = yup.object().shape({
     emailOrUsername: yup
         .string()
         .required("Required")
+        .matches(
+            /(?=.{3,50}$)/,
+            "Email or username must be between 3 and 50 characters"
+        )
         .test("is-valid", "Invalid username or email", (value) => {
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
             const usernameRegex = /^[a-zA-Z0-9_]+$/
@@ -105,12 +109,12 @@ const Login = () => {
             </form>
             <div className="links">
                 <div className="mainLink">
-                <span>Forgotten</span>
-                <span className="coloredLink"> password?</span>
+                    <span>Forgotten</span>
+                    <span className="coloredLink"> password?</span>
                 </div>
                 <div className="mainLink">
-                <span>Create</span>
-                <span className="coloredLink"> an account!</span>
+                    <span>Create</span>
+                    <span className="coloredLink"> an account!</span>
                 </div>
             </div>
         </div>
