@@ -19,3 +19,20 @@ button[disabled] {
     color: #db4947;
     margin-top: 5px;
 }
+
+.links{
+    display: flex;
+  justify-content: space-between;
+  width: 500px;
+  font-family: Lexend;
+  margin-top: 15px;
+  margin: 0 auto;
+}
+
+.mainLink{
+    cursor: pointer;
+}
+
+.coloredLink{
+    color:#db4947
+}

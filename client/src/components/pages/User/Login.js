@@ -103,6 +103,16 @@ const Login = () => {
                     LOG IN
                 </Button>
             </form>
+            <div className="links">
+                <div className="mainLink">
+                <span>Forgotten</span>
+                <span className="coloredLink"> password?</span>
+                </div>
+                <div className="mainLink">
+                <span>Create</span>
+                <span className="coloredLink"> an account!</span>
+                </div>
+            </div>
         </div>
     )
 }
