@@ -88,7 +88,6 @@ const Login = () => {
                     type="submit"
                     disabled={!formik.isValid}
                     variant="ordinary"
-                    onClick={() => alert()}
                 >
                     LOG IN
                 </Button>
