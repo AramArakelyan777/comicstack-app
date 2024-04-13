@@ -14,7 +14,6 @@ const initialValues = {
 const validationSchema = yup.object().shape({
     emailOrUsername: yup
         .string()
-        .email("Invalid email address")
         .required("Required")
         .test("is-valid", "Invalid username or email", (value) => {
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
@@ -55,12 +54,8 @@ const Login = () => {
         <div>
             <img className="loginImage" src={login} alt="login" />
             <form onSubmit={formik.handleSubmit}>
-                <div className="form-control">
-                    <div>
-                        <label htmlFor="emailOrUsername">
-                            Email or Username
-                        </label>
-                    </div>
+                <div>
+                    <label htmlFor="emailOrUsername">Email or Username</label>
                     <br />
                     <Input
                         type="text"
@@ -71,16 +66,12 @@ const Login = () => {
                         placeholder="Username/Mail in the multiverse 🦹‍♀️"
                     />
                     {formik.touched.emailOrUsername &&
-                    formik.errors.emailOrUsername ? (
-                        <div className="error small-text">
-                            {formik.errors.emailOrUsername}
-                        </div>
+                        formik.errors.emailOrUsername ? (
+                        <div>{formik.errors.emailOrUsername}</div>
                     ) : null}
                 </div>
-                <div className="form-control">
-                    <div>
-                        <label htmlFor="password">Password</label>
-                    </div>
+                <div>
+                    <label htmlFor="password">Password</label>
                     <br />
                     <Input
                         type="password"
@@ -91,9 +82,7 @@ const Login = () => {
                         placeholder="Guard the Batcave entrance 🗝️"
                     />
                     {formik.touched.password && formik.errors.password ? (
-                        <div className="error small-text">
-                            {formik.errors.password}
-                        </div>
+                        <div>{formik.errors.password}</div>
                     ) : null}
                 </div>
                 <Button

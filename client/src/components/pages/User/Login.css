@@ -4,8 +4,6 @@
     margin: 30px;
 }
 
-
-
 button:disabled,
 button[disabled] {
     border: 1px solid #380000 !important;
@@ -13,11 +11,11 @@ button[disabled] {
     color: #666666 !important;
 }
 
-
 .form-control {
     margin-bottom: 20px;
 }
 
 .error {
     color: #db4947;
+    margin-top: 5px;
 }
