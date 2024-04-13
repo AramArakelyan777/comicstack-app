@@ -80,6 +80,7 @@ const Register = () => {
                         id="email"
                         {...formik.getFieldProps("email")}
                         variant="regular"
+                        placeholder="Unleash your email heroically! 🦸‍♀️📮"
                     />
                     {formik.touched.email && formik.errors.email ? (
                         <div className="error small-text">
@@ -98,6 +99,7 @@ const Register = () => {
                         id="username"
                         {...formik.getFieldProps("username")}
                         variant="regular"
+                        placeholder="Craft your username like a hero! 🛡️🧙‍♂️"
                     />
                     {formik.touched.username && formik.errors.username ? (
                         <div className="error small-text">
@@ -116,6 +118,7 @@ const Register = () => {
                         id="password"
                         {...formik.getFieldProps("password")}
                         variant="regular"
+                        placeholder="Craft a mighty password! 🔐"
                     />
                     {formik.touched.password && formik.errors.password ? (
                         <div className="error small-text">
@@ -136,6 +139,7 @@ const Register = () => {
                         id="confirmPassword"
                         {...formik.getFieldProps("confirmPassword")}
                         variant="regular"
+                        placeholder="Confirm your epic password! 🔒"
                     />
                     {formik.touched.confirmPassword &&
                     formik.errors.confirmPassword ? (
