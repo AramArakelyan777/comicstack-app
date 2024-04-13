@@ -1,6 +1,7 @@
 import React from "react"
 import login from "../../../assets/images/authorization/Login.png"
 import "./Login.css"
+import "../../../assets/texts.css"
 import * as yup from "yup"
 import { useFormik } from "formik"
 import Input from "../../Input/Input"
@@ -55,8 +56,12 @@ const Login = () => {
         <div>
             <img className="loginImage" src={login} alt="login" />
             <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="emailOrUsername">Email or Username</label>
+                <div className="form-control">
+                    <div>
+                        <label htmlFor="emailOrUsername">
+                            Email or Username
+                        </label>
+                    </div>
                     <br />
                     <Input
                         type="text"
@@ -67,11 +72,15 @@ const Login = () => {
                     />
                     {formik.touched.emailOrUsername &&
                     formik.errors.emailOrUsername ? (
-                        <div>{formik.errors.emailOrUsername}</div>
+                        <div className="error small-text">
+                            {formik.errors.emailOrUsername}
+                        </div>
                     ) : null}
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className="form-control">
+                    <div>
+                        <label htmlFor="password">Password</label>
+                    </div>
                     <br />
                     <Input
                         type="password"
@@ -81,7 +90,9 @@ const Login = () => {
                         variant="regular"
                     />
                     {formik.touched.password && formik.errors.password ? (
-                        <div>{formik.errors.password}</div>
+                        <div className="error small-text">
+                            {formik.errors.password}
+                        </div>
                     ) : null}
                 </div>
                 <Button
