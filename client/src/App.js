@@ -7,6 +7,7 @@ import HomePage from "./components/pages/HomePage/HomePage"
 import Navbar from "./components/Navbar/Navbar"
 import NotFound from "./components/Navbar/NotFound"
 import Login from "./components/pages/User/Login"
+import Register from "./components/pages/User/Register"
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
             <Navbar />
         </div>

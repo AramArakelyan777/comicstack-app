@@ -4,7 +4,8 @@ import * as yup from "yup"
 import login from "../../../assets/images/authorization/Login.png"
 import Button from "../../Button/Button"
 import Input from "../../Input/Input"
-import "./Login.css"
+import "./Authorization.css"
+import { useNavigate } from "react-router-dom"
 
 const initialValues = {
     emailOrUsername: "",
@@ -46,6 +47,11 @@ const onSubmit = (values, onSubmitProps) => {
 }
 
 const Login = () => {
+    const navigate = useNavigate()
+    const navigateToRegister = () => {
+        navigate("/register")
+    }
+
     const formik = useFormik({
         initialValues,
         validationSchema,
@@ -107,12 +113,12 @@ const Login = () => {
                     LOG IN
                 </Button>
             </form>
-            <div className="links">
+            <div className="loginLinks">
                 <div className="mainLink">
                     <span>Forgotten</span>
                     <span className="coloredLink"> password?</span>
                 </div>
-                <div className="mainLink">
+                <div className="mainLink" onClick={() => navigateToRegister()}>
                     <span>Create</span>
                     <span className="coloredLink"> an account!</span>
                 </div>
