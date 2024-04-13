@@ -14,8 +14,9 @@
     height: 40px;
     border: 1px solid #DB4947;
     cursor: pointer;
-    padding: 0 15px 0 15px;
+    padding: 0 20px 0 20px;
     transition: background-color 350ms;
+    font-size: 14px;
 }
 
 .button:hover {
