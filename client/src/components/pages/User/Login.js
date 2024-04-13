@@ -12,20 +12,16 @@ const initialValues = {
 }
 
 const validationSchema = yup.object().shape({
-    emailOrUsername: yup
-        .string()
-        .email("Invalid email address")
-        .required("Required")
-        .test("is-valid", "Invalid username or email", (value) => {
-            const emailRegex = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-            const usernameRegex = /^[a-zA-Z0-9_]+$/
+   emailOrUsername: yup
+  .string()
+  .email("Invalid email address")
+  .required("Required")
+  .test("is-valid", "Invalid username or email", (value) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
 
-            let isValidEmail = emailRegex.test(value)
-            let isValidPhone = usernameRegex.test(value)
-
-            if (!isValidEmail && !isValidPhone) return false
-            return true
-        }),
+    return emailRegex.test(value) || usernameRegex.test(value);
+  }),
     password: yup
         .string()
         .matches(
