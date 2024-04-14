@@ -62,6 +62,7 @@ function Footer() {
                         </Button>
                     </form>
                     <p>Please help us keep ComicStack free!</p>
+                    <Button variant="donate">Buy us lots of coffee ☕</Button>
                 </div>
                 <div className="info"></div>
             </div>
