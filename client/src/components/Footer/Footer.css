@@ -1,0 +1,19 @@
+.footer {
+    background-color: black;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+}
+
+.darkLogo {
+    width: 163px;
+    max-width: 100%;
+}
+
+.footer-content {
+    display: flex;
+}
+
+#subscribeEmail {
+    margin-top: 10px;
+}
