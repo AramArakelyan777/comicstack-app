@@ -37,7 +37,7 @@ function Footer() {
         <div className="footer">
             <img className="darkLogo" src={logo} alt="logo" />
             <div className="footer-content">
-                <div>
+                <div className="subscibe">
                     <p>Subscribe to get our newsletter!</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div>

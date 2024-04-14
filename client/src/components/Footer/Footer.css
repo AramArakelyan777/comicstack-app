@@ -12,6 +12,7 @@
 
 .footer-content {
     display: flex;
+    justify-content: center;
 }
 
 #subscribeEmail {
@@ -21,16 +22,25 @@
 .coloredText {
     color: #db4947;
 }
+.subscibe, .info{
+    margin: 50px;
+}
 
 .location,
 .contact {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .location svg,
 .contact svg {
     margin-right: 7px;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
 }
 
 .socials svg {
