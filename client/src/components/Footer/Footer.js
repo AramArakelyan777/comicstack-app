@@ -50,7 +50,7 @@ function Footer() {
                                 placeholder="Be Part of the Action! 📧"
                             />
                             {formik.touched.subscribeEmail &&
-                            formik.errors.subscribeEmail ? (
+                                formik.errors.subscribeEmail ? (
                                 <div className="error small-text">
                                     {formik.errors.subscribeEmail}
                                 </div>
@@ -96,7 +96,7 @@ function Footer() {
                 <p>Terms of Use</p>
                 <p>Advertise With Us</p>
             </div>
-            <p className="footer-text small-text">
+            <p className="footer-text">
                 2023 ComicStack ©. All Rights Reserved Disclaimer: This site
                 does not store any files on its server. All contents are
                 provided by non-affiliated third parties.
