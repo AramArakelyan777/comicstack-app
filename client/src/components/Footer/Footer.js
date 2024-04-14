@@ -43,7 +43,7 @@ function Footer() {
                                 id="subscribeEmail"
                                 {...formik.getFieldProps("subscribeEmail")}
                                 variant="small"
-                                placeholder=""
+                                placeholder="Be Part of the Action! 📧"
                             />
                             {formik.touched.subscribeEmail &&
                             formik.errors.subscribeEmail ? (

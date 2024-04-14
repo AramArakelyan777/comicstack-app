@@ -21,7 +21,7 @@ Tags.args = {
 }
 
 export const Donate = Template.bind({})
-Tags.args = {
+Donate.args = {
     variant: "donate",
-    children: "Buy us lots of coffee"
+    children: "Buy us lots of coffee ☕"
 }

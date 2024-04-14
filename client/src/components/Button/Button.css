@@ -34,3 +34,17 @@
     font-family: OhCrud;
     border-radius: 15px;
 }
+
+.donate {
+    background-color: #98694f;
+    border: #98694f solid 1px;
+    border-radius: 10px;
+    transition: background-color 350ms;
+    font-family: Lexend;
+}
+
+.donate:hover {
+    background-color: transparent;
+    color: #98694f;
+    cursor: pointer;
+}
