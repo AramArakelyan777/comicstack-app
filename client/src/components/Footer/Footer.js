@@ -34,7 +34,7 @@ function Footer() {
     })
 
     return (
-        <div className="footer">
+        <footer className="footer">
             <img className="darkLogo" src={logo} alt="logo" />
             <div className="footer-content">
                 <div className="subscibe">
@@ -89,7 +89,19 @@ function Footer() {
                     </div>
                 </div>
             </div>
-        </div>
+            <div className="policies">
+                <p>Privacy Policy</p>
+                <p>User Agreement</p>
+                <p>Cookie Statement</p>
+                <p>Terms of Use</p>
+                <p>Advertise With Us</p>
+            </div>
+            <p className="footer-text small-text">
+                2023 ComicStack ©. All Rights Reserved Disclaimer: This site
+                does not store any files on its server. All contents are
+                provided by non-affiliated third parties.
+            </p>
+        </footer>
     )
 }
 
