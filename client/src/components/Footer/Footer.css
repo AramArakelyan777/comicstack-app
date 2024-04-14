@@ -22,7 +22,9 @@
 .coloredText {
     color: #db4947;
 }
-.subscibe, .info{
+
+.subscibe,
+.info {
     margin: 50px;
 }
 

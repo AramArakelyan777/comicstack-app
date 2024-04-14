@@ -50,7 +50,7 @@ function Footer() {
                                 placeholder="Be Part of the Action! 📧"
                             />
                             {formik.touched.subscribeEmail &&
-                                formik.errors.subscribeEmail ? (
+                            formik.errors.subscribeEmail ? (
                                 <div className="error small-text">
                                     {formik.errors.subscribeEmail}
                                 </div>
@@ -73,7 +73,9 @@ function Footer() {
                         <CiLocationOn size={25} />
                         <span>Location</span>
                     </div>
-                    <span className="coloredText">Q. Hrazdan Mikroshrjan 104</span>
+                    <span className="coloredText">
+                        Q. Hrazdan Mikroshrjan 104
+                    </span>
                     <div className="contact">
                         <IoIosMail size={25} />
                         <span>Contact Us</span>
