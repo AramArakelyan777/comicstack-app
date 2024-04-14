@@ -19,3 +19,9 @@ Tags.args = {
     variant: "tags",
     children: "TAG"
 }
+
+export const Donate = Template.bind({})
+Tags.args = {
+    variant: "donate",
+    children: "Buy us lots of coffee"
+}
