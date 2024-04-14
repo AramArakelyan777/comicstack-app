@@ -17,3 +17,28 @@
 #subscribeEmail {
     margin-top: 10px;
 }
+
+.coloredText {
+    color: #db4947;
+}
+
+.location,
+.contact {
+    display: flex;
+    align-items: center;
+}
+
+.location svg,
+.contact svg {
+    margin-right: 7px;
+}
+
+.socials svg {
+    cursor: pointer;
+    transition: color 200ms;
+    margin: 15px;
+}
+
+.socials svg:hover {
+    color: #db4947;
+}
