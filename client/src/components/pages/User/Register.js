@@ -5,6 +5,7 @@ import register from "../../../assets/images/authorization/Register.png"
 import Button from "../../Button/Button"
 import Input from "../../Input/Input"
 import "./Authorization.css"
+import "../../../assets/texts.css"
 import { useNavigate } from "react-router-dom"
 
 const initialValues = {
