@@ -50,7 +50,7 @@ function Footer() {
                                 placeholder="Be Part of the Action! 📧"
                             />
                             {formik.touched.subscribeEmail &&
-                                formik.errors.subscribeEmail ? (
+                            formik.errors.subscribeEmail ? (
                                 <div className="error small-text">
                                     {formik.errors.subscribeEmail}
                                 </div>
@@ -74,13 +74,15 @@ function Footer() {
                         <span>Location</span>
                     </div>
                     <span className="coloredText">
-                        Q. Hrazdan Mikroshrjan 104
+                        Azatutyan Avenue, Yerevan
                     </span>
                     <div className="contact">
                         <IoIosMail size={25} />
                         <span>Contact Us</span>
                     </div>
-                    <span className="coloredText">info@comicstack.com</span>
+                    <span className="coloredText">
+                        info.comicstack@gmail.com
+                    </span>
                     <div className="socials">
                         <FaGithub size={20} />
                         <FaFacebook size={20} />

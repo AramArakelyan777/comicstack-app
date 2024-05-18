@@ -1,6 +1,7 @@
 import React from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
+import Button from "../../Button/Button"
 
 const validationSchema = yup.object().shape({
     comment: yup
@@ -39,18 +40,22 @@ function CommentForm({
                     name="comment"
                     style={{ resize: "vertical", width: "300px" }}
                 />
+
                 {formik.touched.comment && formik.errors.comment ? (
                     <div>{formik.errors.comment}</div>
                 ) : error ? (
                     <div>{error}</div>
                 ) : null}
+
                 <br />
-                <button
+
+                <Button
+                    variant="ordinary"
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
                     {loading ? "Loading..." : "Post"}
-                </button>
+                </Button>
             </form>
         </div>
     )

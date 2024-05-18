@@ -14,19 +14,59 @@ body {
 }
 
 * {
-	scrollbar-width: none;
-	scrollbar-color: transparent transparent;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
 }
 
 ::-webkit-scrollbar {
-	width: 0px;
+    width: 0px;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+button {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+textarea {
+    color: white;
+    resize: vertical;
+    width: 500px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #DB4947;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+select {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #DB4947;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+option {
+    background-color: #010020;
+}
+
+hr {
+    border-color: #DB4947;
+}
+
+p {
+    word-break: break-all;
 }

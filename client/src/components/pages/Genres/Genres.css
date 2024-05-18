@@ -23,7 +23,7 @@
     transform: translateY(-7px) scale(1.05);
 }
 
-.genre-container:hover .centered {
+.genre-container:hover .centered-text-genre {
     transform: translate(-50%, -50%) scale(1.05) translateY(-7px);
 }
 

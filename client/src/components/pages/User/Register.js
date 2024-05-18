@@ -21,15 +21,14 @@ const validationSchema = yup.object().shape({
     email: yup
         .string()
         .required("Required")
-        .matches(/(?=.{6,50}$)/, "Email must be between 6 and 50 characters")
+        .min(6, "Email must be at least 6 characters")
+        .max(50, "Email must be 50 characters or less")
         .email("Invalid email address"),
     username: yup
         .string()
         .required("Required")
-        .matches(
-            /(?=.{3,50}$)/,
-            "Username must be between 3 and 50 characters"
-        ),
+        .min(3, "Username must be at least 3 characters")
+        .max(30, "Username must be 30 characters or less"),
     password: yup
         .string()
         .matches(
@@ -50,7 +49,7 @@ const validationSchema = yup.object().shape({
 })
 
 const Register = () => {
-    const store = useContext(AuthorizationContext)
+    const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
     const onSubmit = async (values, onSubmitProps) => {

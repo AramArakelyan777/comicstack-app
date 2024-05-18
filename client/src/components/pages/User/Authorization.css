@@ -10,13 +10,6 @@
     margin: 30px;
 }
 
-button:disabled,
-button[disabled] {
-    border: 1px solid #380000 !important;
-    background-color: #380000 !important;
-    color: #666666 !important;
-}
-
 .form-control {
     margin-bottom: 20px;
 }

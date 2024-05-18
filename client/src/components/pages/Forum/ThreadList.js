@@ -8,6 +8,7 @@ import Support from "../../../assets/forumIcons/Support.png"
 import Suggestion from "../../../assets/forumIcons/Suggestion.png"
 import ThreadForm from "./ThreadForm"
 import { handleRequestError } from "../../../context/ThreadContext"
+import Button from "../../Button/Button"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -101,21 +102,23 @@ export const ThreadList = () => {
                 </div>
             ))}
             <div>
-                <button
+                <Button
+                    variant="ordinary"
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={page === 1}
                 >
                     Previous
-                </button>
+                </Button>
                 <span>{page}</span>
-                <button
+                <Button
+                    variant="ordinary"
                     onClick={() =>
                         setPage((prev) => Math.min(prev + 1, pageCount))
                     }
                     disabled={page === pageCount}
                 >
                     Next
-                </button>
+                </Button>
             </div>
             <ThreadForm
                 loading={formLoading}

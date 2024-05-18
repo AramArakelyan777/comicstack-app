@@ -1,6 +1,8 @@
 import React from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
+import Input from "../../Input/Input"
+import Button from "../../Button/Button"
 
 const validationSchema = yup.object().shape({
     title: yup
@@ -42,7 +44,8 @@ function ThreadForm({
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <input
+                <Input
+                    variant="regular"
                     type="text"
                     name="title"
                     {...formik.getFieldProps("title")}
@@ -55,7 +58,6 @@ function ThreadForm({
                 <textarea
                     name="description"
                     {...formik.getFieldProps("description")}
-                    style={{ resize: "vertical", width: "500px" }}
                 />
                 {formik.touched.description && formik.errors.description ? (
                     <div>{formik.errors.description}</div>
@@ -79,12 +81,14 @@ function ThreadForm({
 
                 {error ? <div>{error}</div> : null}
 
-                <button
+                <Button
+                    variant="ordinary"
+                    style={{marginTop: "20px"}}
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : "Post"}
-                </button>
+                    {loading ? "Loading..." : "Add a thread"}
+                </Button>
             </form>
         </div>
     )

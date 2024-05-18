@@ -75,7 +75,7 @@ function Thread() {
 
     return (
         <div>
-            <div style={{ border: "1px solid" }}>
+            <div>
                 {isEditing ? (
                     <div>
                         <ThreadForm
