@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { AuthorizationContext } from "../../../index"
+import Button from "../../Button/Button"
 
 function User() {
     const { store } = useContext(AuthorizationContext)
@@ -10,17 +11,19 @@ function User() {
     return (
         <div>
             {store.isAuth ? (
-                <p>{`User ${store.user.email} is authorized`}</p>
+                <p>{`Hello,  ${store.user.username}!`}</p>
             ) : (
                 <p>Please authorize</p>
             )}
 
             {store.isAuth && !store.user.isActivated ? (
-                <p>Click on activation link in email</p>
+                <p>Please click on activation link in email</p>
             ) : null}
 
             {store.isAuth ? (
-                <button onClick={() => store.logout()}>Log out</button>
+                <Button variant="ordinary" onClick={() => store.logout()}>
+                    LOG OUT
+                </Button>
             ) : null}
         </div>
     )

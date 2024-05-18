@@ -1,5 +1,5 @@
+import React, { useContext } from "react"
 import { useFormik } from "formik"
-import React from "react"
 import * as yup from "yup"
 import register from "../../../assets/images/authorization/Register.png"
 import Button from "../../Button/Button"
@@ -7,6 +7,8 @@ import Input from "../../Input/Input"
 import "./Authorization.css"
 import "../../../assets/texts.css"
 import { useNavigate } from "react-router-dom"
+import AuthorizationContext from "../../../index"
+import { observer } from "mobx-react-lite"
 
 const initialValues = {
     email: "",
@@ -47,12 +49,15 @@ const validationSchema = yup.object().shape({
         .oneOf([yup.ref("password"), null], "Passwords must match"),
 })
 
-const onSubmit = (values, onSubmitProps) => {
-    console.log("Form values", values)
-    onSubmitProps.resetForm()
-}
-
 const Register = () => {
+    const store = useContext(AuthorizationContext)
+
+    const onSubmit = async (values, onSubmitProps) => {
+        await store.registration(values.username, values.email, values.password)
+
+        onSubmitProps.resetForm()
+    }
+
     const navigate = useNavigate()
     const navigateToLogin = () => {
         navigate("/login")
@@ -70,6 +75,10 @@ const Register = () => {
         <div className="register">
             <img className="registerImage" src={register} alt="register" />
             <form onSubmit={formik.handleSubmit}>
+                {store.error ? (
+                    <div className="error small-text">{store.error}</div>
+                ) : null}
+
                 <div className="form-control">
                     <div>
                         <label htmlFor="email">Email</label>
@@ -167,4 +176,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default observer(Register)
