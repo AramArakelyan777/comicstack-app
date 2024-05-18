@@ -43,6 +43,15 @@ async function getComic(req, res) {
 		const genresResult = await pool.query(genresQuery, [req.params.comic_id])
 		const genres = genresResult.rows
 
+		const tagsQuery = `
+            SELECT t.tag_id, t.tag_name
+            FROM "comic_tags" ct
+            JOIN "tags" t ON ct.tag_id = t.tag_id
+            WHERE ct.comic_id = $1;
+        `
+		const tagsResult = await pool.query(tagsQuery, [req.params.comic_id])
+		const tags = tagsResult.rows
+
 		const commentsQuery = `
             SELECT c.comment_id, c.messages, c.parent_id, c.user_id, c.created_at
             FROM "cs_comments" c
@@ -86,6 +95,7 @@ async function getComic(req, res) {
 
 		comic.comments = comments
 		comic.genres = genres
+		comic.tags = tags
 
 		await updateThreadCommentCount(req.params.thread_id)
 
