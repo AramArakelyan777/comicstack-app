@@ -30,6 +30,19 @@ async function getComic(req, res) {
 		const comicResult = await pool.query(comicQuery, [req.params.comic_id])
 		const comic = comicResult.rows[0]
 
+		if (!comic) {
+			return res.status(404).send({ error: "Comic not found" })
+		}
+
+		const genresQuery = `
+            SELECT g.genre_id, g.genre_name
+            FROM "comic_genres" cg
+            JOIN "genres" g ON cg.genre_id = g.genre_id
+            WHERE cg.comic_id = $1;
+        `
+		const genresResult = await pool.query(genresQuery, [req.params.comic_id])
+		const genres = genresResult.rows
+
 		const commentsQuery = `
             SELECT c.comment_id, c.messages, c.parent_id, c.user_id, c.created_at
             FROM "cs_comments" c
@@ -57,7 +70,6 @@ async function getComic(req, res) {
 			)
 			comment.like_count = parseInt(likeCountResult.rows[0].count)
 
-			// Check if the current user has liked this comment
 			const likeQuery = `
             SELECT c.user_id, l.comment_id
             FROM likes l
@@ -71,7 +83,9 @@ async function getComic(req, res) {
 			])
 			comment.liked_by_me = likeResult.rows.length > 0
 		}
+
 		comic.comments = comments
+		comic.genres = genres
 
 		await updateThreadCommentCount(req.params.thread_id)
 
