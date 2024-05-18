@@ -7,7 +7,7 @@ import Input from "../../Input/Input"
 import "./Authorization.css"
 import "../../../assets/texts.css"
 import { useNavigate } from "react-router-dom"
-import AuthorizationContext from "../../../index"
+import { AuthorizationContext } from "../../../index"
 import { observer } from "mobx-react-lite"
 
 const initialValues = {
