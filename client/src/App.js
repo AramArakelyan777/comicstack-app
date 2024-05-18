@@ -3,16 +3,16 @@ import { Route, Routes } from "react-router-dom"
 import "./App.css"
 import FAQ from "./components/pages/FAQ/FAQ"
 import Genres from "./components/pages/Genres/Genres"
-import Forum from "./components/pages/Forum/Forum"
 import HomePage from "./components/pages/HomePage/HomePage"
 import Navbar from "./components/Navbar/Navbar"
 import NotFound from "./components/Navbar/NotFound"
 import Login from "./components/pages/User/Login"
 import Register from "./components/pages/User/Register"
-import Comics from "./components/Comics/Comics"
-import Thread from "./components/Forum/Thread"
-import { ComicsList } from "./components/Comics/ComicsList"
-import { ThreadList } from "./components/Forum/ThreadList"
+import User from "./components/pages/User/User"
+import Comics from "./components/pages/Comics/Comics"
+import Thread from "./components/pages/Forum/Thread"
+import { ComicsList } from "./components/pages/Comics/ComicsList"
+import { ThreadList } from "./components/pages/Forum/ThreadList"
 import ComicsContextProvider from "./context/ComicsContext"
 import ThreadContextProvider from "./context/ThreadContext"
 import { observer } from "mobx-react-lite"
@@ -25,9 +25,9 @@ function App() {
                 <Route path="/genres" element={<Genres />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/" element={<HomePage />} />
-                <Route path="/forum" element={<Forum />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/user" element={<User />} />
                 <Route path="/comics" element={<ComicsList />} />
                 <Route
                     path="/comics/:comic_id"

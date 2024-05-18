@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { createThread, getThreads } from "../../services/threads"
+import { createThread, getThreads } from "../../../services/threads"
 import { NavLink, useNavigate } from "react-router-dom"
-import { useAsyncFn } from "../../hooks/useAsync"
-import Chat from "../../assets/forumIcons/Chat.png"
-import Bug from "../../assets/forumIcons/Bug.png"
-import Support from "../../assets/forumIcons/Support.png"
-import Suggestion from "../../assets/forumIcons/Suggestion.png"
+import { useAsyncFn } from "../../../hooks/useAsync"
+import Chat from "../../../assets/forumIcons/Chat.png"
+import Bug from "../../../assets/forumIcons/Bug.png"
+import Support from "../../../assets/forumIcons/Support.png"
+import Suggestion from "../../../assets/forumIcons/Suggestion.png"
 import ThreadForm from "./ThreadForm"
-import { handleRequestError } from "../../context/ThreadContext"
+import { handleRequestError } from "../../../context/ThreadContext"
 
 export const ThreadList = () => {
     const navigate = useNavigate()

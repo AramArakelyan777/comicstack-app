@@ -1,9 +1,9 @@
 import React from "react"
-import { useComics, handleRequestError } from "../../context/ComicsContext"
+import { useComics, handleRequestError } from "../../../context/ComicsContext"
 import CommentsList from "./ComicsCommentsList"
 import CommentForm from "../Comments/CommentForm"
-import { useAsyncFn } from "../../hooks/useAsync"
-import { createComment } from "../../services/comicComments"
+import { useAsyncFn } from "../../../hooks/useAsync"
+import { createComment } from "../../../services/comicComments"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()

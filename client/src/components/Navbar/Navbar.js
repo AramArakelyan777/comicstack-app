@@ -27,7 +27,7 @@ const Navbar = () => {
                     </div>
                 </NavLink>
 
-                <NavLink to="/forum">
+                <NavLink to="/threads">
                     <div className="navbarLink">
                         <MenuIcon name="forum" />
                         <span className="menu-text">FORUM</span>
