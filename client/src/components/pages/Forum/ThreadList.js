@@ -10,6 +10,7 @@ import ThreadForm from "./ThreadForm"
 import { handleRequestError } from "../../../context/ThreadContext"
 import Button from "../../Button/Button"
 import "./Thread.css"
+import "../../../assets/texts.css"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -87,7 +88,9 @@ export const ThreadList = () => {
                             alt="thread-icon"
                         />
                         <h2>{thread.title}</h2>
-                        <p>{thread.comment_count} messages</p>
+                        <span className="small-text">
+                            {thread.comment_count} messages
+                        </span>
                     </NavLink>
                 </div>
             ))}
