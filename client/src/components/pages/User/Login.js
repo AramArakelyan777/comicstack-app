@@ -19,10 +19,8 @@ const validationSchema = yup.object().shape({
     emailOrUsername: yup
         .string()
         .required("Required")
-        .matches(
-            /(?=.{3,50}$)/,
-            "Email or username must be between 3 and 50 characters"
-        )
+        .min(3, "Email/username must be at least 3 characters")
+        .max(50, "Email/username must be 50 characters or less")
         .test("is-valid", "Invalid username or email", (value) => {
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
             const usernameRegex = /^[a-zA-Z0-9_]+$/

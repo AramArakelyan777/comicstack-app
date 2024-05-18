@@ -12,6 +12,15 @@ import {
 } from "../../../services/threadComments"
 import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
 import "../Comments/Comments.css"
+import Button from "../../Button/Button"
+import { IconContext } from "react-icons/lib"
+import { FaReply } from "react-icons/fa6"
+import { MdCancel } from "react-icons/md"
+import { BiSolidEditAlt } from "react-icons/bi"
+import { MdOutlineDelete } from "react-icons/md"
+import { MdOutlineAutoDelete } from "react-icons/md"
+import { MdFavorite } from "react-icons/md"
+import { MdFavoriteBorder } from "react-icons/md"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -129,32 +138,21 @@ function Comment({
 
     return (
         <React.Fragment>
-            <div
-                style={{
-                    border: "1px solid gray",
-                    borderRadius: "10px",
-                    width: "500px",
-                    margin: "auto",
-                    padding: "10px",
-                    marginTop: "30px",
-                }}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <img
-                        className="user-avatar"
-                        src={user?.avatar_url || unknownAvatar}
-                        alt="avatar"
-                    />
-                    <span>{user?.username} | </span>
+            <div className="comment-container">
+                <div className="comment-container-top-section">
+                    <div className="comment-user-info">
+                        <img
+                            className="user-avatar"
+                            src={user?.avatar_url || unknownAvatar}
+                            alt="avatar"
+                        />
+                        <span>{user?.username}</span>
+                    </div>
                     <span>{dateFormatter.format(Date.parse(created_at))}</span>
                 </div>
+
                 <hr />
+
                 {isEditing ? (
                     <CommentForm
                         autoFocus
@@ -164,36 +162,70 @@ function Comment({
                         error={updateCommentFn.error}
                     />
                 ) : (
-                    <div style={{ padding: "10px" }}>{messages}</div>
+                    <p>{messages}</p>
                 )}
-                <div>
-                    {likedByMe ? (
-                        <button onClick={onUnlikeComment}>Unlike</button>
-                    ) : (
-                        <button onClick={onLikeComment}>Like</button>
-                    )}
-                    <p>{likeCount}</p>
-                    {likeCommentFn.error ? (
-                        <div>{likeCommentFn.error}</div>
-                    ) : null}
-                    {unlikeCommentFn.error ? (
-                        <div>{unlikeCommentFn.error}</div>
-                    ) : null}
-                    <button
-                        onClick={() => setIsReplying((prevState) => !prevState)}
-                    >
-                        {isReplying ? "Cancel Reply" : "Reply"}
-                    </button>
-                    <button onClick={() => onEditClick()}>
-                        {isEditing ? "Cancel Edit" : "Edit"}
-                    </button>
-                    <button
-                        disabled={deleteCommentFn.loading}
-                        onClick={() => onCommentDelete()}
-                    >
-                        {deleteCommentFn.loading ? "Deleting..." : "Delete"}
-                    </button>
-                </div>
+
+                <IconContext.Provider
+                    value={{
+                        size: 20,
+                        color: "#DB4947",
+                        style: { cursor: "pointer" },
+                    }}
+                >
+                    <div className="comment-container-operations">
+                        <div className="comment-like">
+                            {likedByMe ? (
+                                <MdFavorite onClick={onUnlikeComment} />
+                            ) : (
+                                <MdFavoriteBorder onClick={onLikeComment} />
+                            )}
+                            <span style={{ marginLeft: "5px" }}>
+                                {likeCount}
+                            </span>
+                        </div>
+
+                        {likeCommentFn.error ? (
+                            <div>{likeCommentFn.error}</div>
+                        ) : null}
+
+                        {unlikeCommentFn.error ? (
+                            <div>{unlikeCommentFn.error}</div>
+                        ) : null}
+
+                        {isReplying ? (
+                            <MdCancel
+                                onClick={() =>
+                                    setIsReplying((prevState) => !prevState)
+                                }
+                            />
+                        ) : (
+                            <FaReply
+                                onClick={() =>
+                                    setIsReplying((prevState) => !prevState)
+                                }
+                            />
+                        )}
+
+                        {isEditing ? (
+                            <MdCancel onClick={onEditClick} />
+                        ) : (
+                            <BiSolidEditAlt onClick={onEditClick} />
+                        )}
+
+                        {deleteCommentFn.loading ? (
+                            <MdOutlineAutoDelete
+                                disabled={deleteCommentFn.loading}
+                                onClick={onCommentDelete}
+                            />
+                        ) : (
+                            <MdOutlineDelete
+                                disabled={deleteCommentFn.loading}
+                                onClick={onCommentDelete}
+                            />
+                        )}
+                    </div>
+                </IconContext.Provider>
+
                 {deleteCommentFn.error ? (
                     <div>{deleteCommentFn.error}</div>
                 ) : null}
@@ -225,12 +257,13 @@ function Comment({
                             <CommentsList comments={childComments} />
                         </div>
                     </div>
-                    <button
+                    <Button
+                        variant="ordinary"
                         className={`btn ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
                         Show Replies
-                    </button>
+                    </Button>
                 </React.Fragment>
             ) : null}
         </React.Fragment>

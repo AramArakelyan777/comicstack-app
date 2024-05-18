@@ -24,6 +24,14 @@
     color: #DB4947;
 }
 
+.button:disabled,
+.button[disabled] {
+    border: 1px solid #380000 !important;
+    background-color: #380000 !important;
+    color: #666666 !important;
+    cursor: auto;
+}
+
 .ordinary {
     font-family: Lexend;
     font-weight: 700;
