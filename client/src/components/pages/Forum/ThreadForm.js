@@ -3,6 +3,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import Input from "../../Input/Input"
 import Button from "../../Button/Button"
+import "./Thread.css"
 
 const validationSchema = yup.object().shape({
     title: yup
@@ -42,13 +43,14 @@ function ThreadForm({
     })
 
     return (
-        <div>
+        <div className="thread-form-container">
             <form onSubmit={formik.handleSubmit}>
                 <Input
                     variant="regular"
                     type="text"
                     name="title"
                     {...formik.getFieldProps("title")}
+                    placeholder="Craft a heroic title 🖋️"
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <div>{formik.errors.title}</div>
@@ -58,6 +60,7 @@ function ThreadForm({
                 <textarea
                     name="description"
                     {...formik.getFieldProps("description")}
+                    placeholder="Enter a description"
                 />
                 {formik.touched.description && formik.errors.description ? (
                     <div>{formik.errors.description}</div>
@@ -83,11 +86,11 @@ function ThreadForm({
 
                 <Button
                     variant="ordinary"
-                    style={{marginTop: "20px"}}
+                    style={{ marginTop: "20px" }}
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : "Add a thread"}
+                    {loading ? "Loading..." : "Post a thread"}
                 </Button>
             </form>
         </div>

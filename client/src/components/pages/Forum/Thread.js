@@ -7,6 +7,12 @@ import CommentForm from "../Comments/CommentForm"
 import CommentsList from "./ThreadCommentsList"
 import ThreadForm from "./ThreadForm"
 import { useNavigate } from "react-router-dom"
+import { IconContext } from "react-icons/lib"
+import { MdCancel } from "react-icons/md"
+import { BiSolidEditAlt } from "react-icons/bi"
+import { MdOutlineDelete } from "react-icons/md"
+import { MdOutlineAutoDelete } from "react-icons/md"
+import "./Thread.css"
 
 function Thread() {
     const navigate = useNavigate()
@@ -75,7 +81,13 @@ function Thread() {
 
     return (
         <div>
-            <div>
+            <IconContext.Provider
+                value={{
+                    size: 20,
+                    color: "#DB4947",
+                    style: { cursor: "pointer" },
+                }}
+            >
                 {isEditing ? (
                     <div>
                         <ThreadForm
@@ -86,24 +98,40 @@ function Thread() {
                             initialDescription={editMessage}
                             initialThreadType={thread.thread_type}
                         />
-                        <button onClick={onEditClick}>
-                            {isEditing ? "Cancel Edit" : "Edit"}
-                        </button>
+                        {isEditing ? (
+                            <MdCancel onClick={onEditClick} />
+                        ) : (
+                            <BiSolidEditAlt onClick={onEditClick} />
+                        )}
                     </div>
                 ) : (
                     <div>
                         <h1>{thread.title}</h1>
                         <p>{thread.description}</p>
-                        <button onClick={onEditClick}>
-                            {isEditing ? "Cancel Edit" : "Edit"}
-                        </button>
-                        <button onClick={onThreadDelete}>
-                            {deleteLoading ? "Deleting..." : "Delete"}
-                        </button>
+
+                        <div className="thread-operations">
+                            {isEditing ? (
+                                <MdCancel onClick={onEditClick} />
+                            ) : (
+                                <BiSolidEditAlt onClick={onEditClick} />
+                            )}
+
+                            {deleteLoading ? (
+                                <MdOutlineAutoDelete
+                                    disabled={deleteLoading}
+                                    onClick={onThreadDelete}
+                                />
+                            ) : (
+                                <MdOutlineDelete
+                                    disabled={deleteLoading}
+                                    onClick={onThreadDelete}
+                                />
+                            )}
+                        </div>
                     </div>
                 )}
                 {deleteError ? <div>{deleteError}</div> : null}
-            </div>
+            </IconContext.Provider>
             <div>
                 <h3>Comments</h3>
                 <div>

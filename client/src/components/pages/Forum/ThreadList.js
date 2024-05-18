@@ -9,6 +9,7 @@ import Suggestion from "../../../assets/forumIcons/Suggestion.png"
 import ThreadForm from "./ThreadForm"
 import { handleRequestError } from "../../../context/ThreadContext"
 import Button from "../../Button/Button"
+import "./Thread.css"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -72,16 +73,7 @@ export const ThreadList = () => {
     return (
         <React.Fragment>
             {threads.map((thread) => (
-                <div
-                    key={thread.thread_id}
-                    style={{
-                        width: "500px",
-                        border: "1px solid white",
-                        borderRadius: "10px",
-                        margin: "auto",
-                        marginBottom: "30px",
-                    }}
-                >
+                <div className="thread-list-container" key={thread.thread_id}>
                     <NavLink
                         style={{
                             textDecoration: "none",
@@ -94,14 +86,12 @@ export const ThreadList = () => {
                             src={checkThreadType(thread.thread_type)}
                             alt="thread-icon"
                         />
-                        <div>
-                            <h1>{thread.title}</h1>
-                            <p>{thread.comment_count} messages</p>
-                        </div>
+                        <h2>{thread.title}</h2>
+                        <p>{thread.comment_count} messages</p>
                     </NavLink>
                 </div>
             ))}
-            <div>
+            <div className="thread-pagination-buttons">
                 <Button
                     variant="ordinary"
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -109,7 +99,7 @@ export const ThreadList = () => {
                 >
                     Previous
                 </Button>
-                <span>{page}</span>
+                <span className="thread-paginaton-page-number">{page}</span>
                 <Button
                     variant="ordinary"
                     onClick={() =>

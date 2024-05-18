@@ -60,6 +60,11 @@
     justify-content: space-between;
 }
 
+.thread-operations {
+    width: 100px;
+    margin: auto;
+}
+
 .comment-container-operations {
     display: flex;
     align-items: center;
