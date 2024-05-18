@@ -51,14 +51,16 @@ const validationSchema = yup.object().shape({
 
 const Register = () => {
     const store = useContext(AuthorizationContext)
+    const navigate = useNavigate()
 
     const onSubmit = async (values, onSubmitProps) => {
         await store.registration(values.username, values.email, values.password)
 
         onSubmitProps.resetForm()
+
+        navigate("/user")
     }
 
-    const navigate = useNavigate()
     const navigateToLogin = () => {
         navigate("/login")
     }

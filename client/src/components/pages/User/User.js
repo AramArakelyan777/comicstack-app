@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from "react"
 import { AuthorizationContext } from "../../../index"
 import Button from "../../Button/Button"
+import { useNavigate } from "react-router-dom"
 
 function User() {
     const { store } = useContext(AuthorizationContext)
+    const navigate = useNavigate()
+
     useEffect(() => {
         if (localStorage.getItem("token")) store.chechAuth()
     }, [store])
@@ -21,7 +24,13 @@ function User() {
             ) : null}
 
             {store.isAuth ? (
-                <Button variant="ordinary" onClick={() => store.logout()}>
+                <Button
+                    variant="ordinary"
+                    onClick={() => {
+                        store.logout()
+                        navigate("/")
+                    }}
+                >
                     LOG OUT
                 </Button>
             ) : null}

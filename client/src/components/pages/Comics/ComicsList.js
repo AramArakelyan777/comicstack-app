@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import { getComics } from "../../services/comics"
-import { useAsync } from "../../hooks/useAsync"
+import { getComics } from "../../../services/comics"
+import { useAsync } from "../../../hooks/useAsync"
 
 export const ComicsList = () => {
     const { loading, error, value: comics } = useAsync(getComics)

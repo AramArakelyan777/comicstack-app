@@ -1,16 +1,17 @@
 import React, { useState } from "react"
-import { useThread, handleRequestError } from "../../context/ThreadContext"
+import { useThread, handleRequestError } from "../../../context/ThreadContext"
 import CommentsList from "./ThreadCommentsList"
 import CommentForm from "../Comments/CommentForm"
-import { useAsyncFn } from "../../hooks/useAsync"
+import { useAsyncFn } from "../../../hooks/useAsync"
 import {
     createComment,
     deleteComment,
     updateComment,
     likeComment,
     unlikeComment,
-} from "../../services/threadComments"
-import unknownAvatar from "../../assets/forumIcons/Avatar.png"
+} from "../../../services/threadComments"
+import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
+import "../Comments/Comments.css"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",

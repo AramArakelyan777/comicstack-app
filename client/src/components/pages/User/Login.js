@@ -46,20 +46,20 @@ const validationSchema = yup.object().shape({
 
 const Login = () => {
     const { store } = useContext(AuthorizationContext)
+    const navigate = useNavigate()
 
     const onSubmit = async (values, onSubmitProps) => {
         await store.login(
             values.emailOrUsername,
-
             values.emailOrUsername,
-
             values.password
         )
 
         onSubmitProps.resetForm()
+
+        navigate("/user")
     }
 
-    const navigate = useNavigate()
     const navigateToRegister = () => {
         navigate("/register")
     }
@@ -75,11 +75,11 @@ const Login = () => {
     return (
         <div className="login">
             <img className="loginImage" src={login} alt="login" />
-            <form onSubmit={formik.handleSubmit}>
-                {store.error ? (
-                    <div className="error small-text">{store.error}</div>
-                ) : null}
+            {store.error ? (
+                <div className="error small-text">{store.error}</div>
+            ) : null}
 
+            <form onSubmit={formik.handleSubmit}>
                 <div className="form-control">
                     <div>
                         <label htmlFor="emailOrUsername">
