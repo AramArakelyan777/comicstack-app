@@ -1,0 +1,28 @@
+.thread-form-container {
+    margin-top: 70px;
+}
+
+.thread-list-container {
+    padding: 15px;
+    box-sizing: border-box;
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.thread-operations {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.thread-pagination-buttons {
+    margin-top: 50px;
+}
+
+.thread-paginaton-page-number {
+    margin: 20px;
+}

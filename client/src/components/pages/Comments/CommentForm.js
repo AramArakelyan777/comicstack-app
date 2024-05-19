@@ -39,6 +39,7 @@ function CommentForm({
                     {...formik.getFieldProps("comment")}
                     name="comment"
                     style={{ resize: "vertical", width: "300px" }}
+                    placeholder="Enter a comment"
                 />
 
                 {formik.touched.comment && formik.errors.comment ? (
