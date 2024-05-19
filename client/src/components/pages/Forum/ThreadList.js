@@ -11,6 +11,7 @@ import { handleRequestError } from "../../../context/ThreadContext"
 import Button from "../../Button/Button"
 import "./Thread.css"
 import "../../../assets/texts.css"
+import Footer from "../../Footer/Footer"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -73,51 +74,60 @@ export const ThreadList = () => {
 
     return (
         <React.Fragment>
-            {threads.map((thread) => (
-                <div className="thread-list-container" key={thread.thread_id}>
-                    <NavLink
-                        style={{
-                            textDecoration: "none",
-                            color: "white",
-                        }}
-                        to={`/threads/${thread.thread_id}`}
+            <div style={{ padding: "7px", marginBottom: "50px" }}>
+                {threads.map((thread) => (
+                    <div
+                        className="thread-list-container"
+                        key={thread.thread_id}
                     >
                         <img
-                            style={{ width: "50px" }}
+                            className="thread-container-image"
                             src={checkThreadType(thread.thread_type)}
                             alt="thread-icon"
                         />
-                        <h2>{thread.title}</h2>
-                        <span className="small-text">
+                        <NavLink
+                            style={{ textDecoration: "none", color: "white" }}
+                            to={`/threads/${thread.thread_id}`}
+                        >
+                            <br />
+                            <span
+                                className="medium-heading"
+                                style={{ wordBreak: "break-word" }}
+                            >
+                                {thread.title}
+                            </span>
+                        </NavLink>
+                        <p className="small-text">
                             {thread.comment_count} messages
-                        </span>
-                    </NavLink>
+                        </p>
+                    </div>
+                ))}
+                <div className="thread-pagination-buttons">
+                    <Button
+                        variant="ordinary"
+                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={page === 1}
+                    >
+                        {"<<"}
+                    </Button>
+                    <span className="thread-paginaton-page-number">{page}</span>
+                    <Button
+                        variant="ordinary"
+                        onClick={() =>
+                            setPage((prev) => Math.min(prev + 1, pageCount))
+                        }
+                        disabled={page === pageCount}
+                    >
+                        {">>"}
+                    </Button>
                 </div>
-            ))}
-            <div className="thread-pagination-buttons">
-                <Button
-                    variant="ordinary"
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                    disabled={page === 1}
-                >
-                    Previous
-                </Button>
-                <span className="thread-paginaton-page-number">{page}</span>
-                <Button
-                    variant="ordinary"
-                    onClick={() =>
-                        setPage((prev) => Math.min(prev + 1, pageCount))
-                    }
-                    disabled={page === pageCount}
-                >
-                    Next
-                </Button>
+                <ThreadForm
+                    loading={formLoading}
+                    error={formError}
+                    handleSubmit={onThreadCreate}
+                />
             </div>
-            <ThreadForm
-                loading={formLoading}
-                error={formError}
-                handleSubmit={onThreadCreate}
-            />
+            <Footer />
         </React.Fragment>
     )
 }

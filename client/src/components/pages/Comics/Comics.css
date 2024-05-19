@@ -1,0 +1,13 @@
+.comics-container {
+    padding: 10px;
+    margin-bottom: 200px;
+}
+
+.comics-container-image {
+    width: 300px;
+}
+
+.comics-description {
+    width: 80%;
+    margin: auto;
+}

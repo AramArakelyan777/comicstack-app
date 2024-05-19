@@ -10,14 +10,18 @@ export const ComicsList = () => {
     if (error) return <h1>{error}</h1>
     if (!comics) return null
 
-    return comics.map((comic) => (
-        <h1 key={comic.comic_id}>
-            <NavLink
-                style={{ textDecoration: "none", color: "red" }}
-                to={`/comics/${comic.comic_id}`}
-            >
-                {comic.title}
-            </NavLink>
-        </h1>
-    ))
+    return (
+        <div style={{ marginBottom: "200px" }}>
+            {comics.map((comic) => (
+                <h1 key={comic.comic_id}>
+                    <NavLink
+                        style={{ textDecoration: "none", color: "red" }}
+                        to={`/comics/${comic.comic_id}`}
+                    >
+                        {comic.title}
+                    </NavLink>
+                </h1>
+            ))}
+        </div>
+    )
 }

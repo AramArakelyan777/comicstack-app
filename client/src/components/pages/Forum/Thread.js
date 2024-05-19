@@ -80,7 +80,7 @@ function Thread() {
     }
 
     return (
-        <div>
+        <div className="thread-container">
             <IconContext.Provider
                 value={{
                     size: 20,
@@ -106,8 +106,10 @@ function Thread() {
                     </div>
                 ) : (
                     <div>
-                        <h1>{thread.title}</h1>
-                        <p>{thread.description}</p>
+                        <p className="bigger-heading thread-title">{thread.title}</p>
+                        <p className="thread-description-text">
+                            {thread.description}
+                        </p>
 
                         <div className="thread-operations">
                             {isEditing ? (

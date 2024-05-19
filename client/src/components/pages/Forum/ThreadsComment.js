@@ -259,7 +259,7 @@ function Comment({
                     </div>
                     <Button
                         variant="ordinary"
-                        className={`btn ${!areChildrenHidden ? "hide" : ""}`}
+                        className={`${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
                         Show Replies
