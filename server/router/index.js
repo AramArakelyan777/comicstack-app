@@ -2,6 +2,7 @@ const Router = require("express").Router
 const userController = require("../controllers/user-controller")
 const commentController = require("../service/c_comment-service")
 const threadController = require("../service/t_comment-service")
+const filterController = require('../controllers/filter-controller');
 const router = new Router()
 const { body } = require("express-validator")
 const roleMiddleware = require("../middlewares/role-middleware")
@@ -99,5 +100,10 @@ router.post(
     roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
     commentController.unlikeComment
 )
+
+// New filter routes
+router.get('/comics/genre/:genre_id', filterController.filterComicsByGenre);
+router.get('/comics/tag/:tag_id', filterController.filterComicsByTag);
+
 
 module.exports = router
