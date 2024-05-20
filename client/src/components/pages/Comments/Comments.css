@@ -36,16 +36,18 @@
 .user-avatar {
     width: 30px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 7px;
 }
 
 .comment-container {
-    border: 1px solid #DB4947;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: auto;
-    padding: 7px;
-    margin-top: 30px;
+    /* border: 1px solid #DB4947; */
+    /* border-radius: 10px; */
+    /* max-width: 400px; */
+    /* margin: auto; */
+    padding: 10px;
+    margin-top: 50px;
+    text-align: left;
+    margin-left: 100px;
 }
 
 .comment-user-info,
@@ -54,19 +56,41 @@
     align-items: center;
 }
 
+.comment-date {
+    margin-left: 20px;
+}
+
 .comment-container-top-section {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.thread-operations {
-    width: 100px;
-    margin: auto;
 }
 
 .comment-container-operations {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+}
+
+.comment-container-operations svg,
+.comment-message {
+    margin-left: 20px;
+}
+
+.thread-message {
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 700px) {
+    .comment-container {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .comment-container-top-section {
+        display: block;
+    }
+
+    .comment-date {
+        margin-left: 40px;
+    }
 }

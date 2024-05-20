@@ -23,7 +23,7 @@ function Thread() {
         createLocalComment,
     } = useThread()
     const [thread, setThread] = useState(initialThread)
-    console.log(initialThread)
+
     const {
         loading: updateLoading,
         error: updateError,

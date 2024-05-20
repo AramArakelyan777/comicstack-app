@@ -12,7 +12,6 @@ import {
 } from "../../../services/threadComments"
 import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
 import "../Comments/Comments.css"
-import Button from "../../Button/Button"
 import { IconContext } from "react-icons/lib"
 import { FaReply } from "react-icons/fa6"
 import { MdCancel } from "react-icons/md"
@@ -146,12 +145,14 @@ function Comment({
                             src={user?.avatar_url || unknownAvatar}
                             alt="avatar"
                         />
-                        <span>{user?.username}</span>
+                        <span className="comment-top-section-username">
+                            {user?.username}
+                        </span>
                     </div>
-                    <span>{dateFormatter.format(Date.parse(created_at))}</span>
+                    <span className="small-text comment-date">
+                        {dateFormatter.format(Date.parse(created_at))}
+                    </span>
                 </div>
-
-                <hr />
 
                 {isEditing ? (
                     <CommentForm
@@ -162,7 +163,7 @@ function Comment({
                         error={updateCommentFn.error}
                     />
                 ) : (
-                    <p>{messages}</p>
+                    <p className="comment-message">{messages}</p>
                 )}
 
                 <IconContext.Provider
@@ -257,13 +258,12 @@ function Comment({
                             <CommentsList comments={childComments} />
                         </div>
                     </div>
-                    <Button
-                        variant="ordinary"
-                        className={`${!areChildrenHidden ? "hide" : ""}`}
+                    <button
+                        className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
                         Show Replies
-                    </Button>
+                    </button>
                 </React.Fragment>
             ) : null}
         </React.Fragment>
