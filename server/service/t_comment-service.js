@@ -170,7 +170,7 @@ async function getAllThreadsWithComments(req, res) {
 async function getThreadWithComments(req, res) {
     try {
         const threadQuery = `
-            SELECT thread_id, title, description, user_id, created_at, comment_count
+            SELECT thread_id, title, description, user_id, created_at, comment_count, thread_type
             FROM "threads"
             WHERE thread_id = $1;
         `

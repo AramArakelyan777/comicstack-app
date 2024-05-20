@@ -27,6 +27,7 @@ function ThreadForm({
     initialDescription = "",
     initialThreadType = "",
 }) {
+    console.log("InitialDescription", initialDescription)
     const formik = useFormik({
         initialValues: {
             title: initialTitle,

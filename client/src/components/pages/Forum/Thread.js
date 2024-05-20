@@ -23,7 +23,7 @@ function Thread() {
         createLocalComment,
     } = useThread()
     const [thread, setThread] = useState(initialThread)
-
+    console.log(initialThread)
     const {
         loading: updateLoading,
         error: updateError,
@@ -37,7 +37,11 @@ function Thread() {
     } = useAsyncFn(deleteThread)
 
     const [isEditing, setIsEditing] = useState(false)
-    const [editMessage, setEditMessage] = useState(thread.description)
+    const [editedTitle, setEditedTitle] = useState(initialThread.title)
+    const [editMessage, setEditMessage] = useState(initialThread.description)
+    const [editedThreadType, setEditedThreadType] = useState(
+        initialThread.thread_type
+    )
 
     const {
         loading,
@@ -53,9 +57,13 @@ function Thread() {
 
     const onEditClick = () => {
         if (isEditing) {
-            setEditMessage(editMessage)
-        } else {
+            setEditedTitle(thread.title)
             setEditMessage(thread.description)
+            setEditedThreadType(thread.thread_type)
+        } else {
+            setEditedTitle(initialThread.title)
+            setEditMessage(initialThread.description)
+            setEditedThreadType(initialThread.thread_type)
         }
         setIsEditing(!isEditing)
     }
@@ -94,9 +102,9 @@ function Thread() {
                             handleSubmit={(values) => onThreadUpdate(values)}
                             loading={updateLoading}
                             error={updateError}
-                            initialTitle={thread.title}
+                            initialTitle={editedTitle}
                             initialDescription={editMessage}
-                            initialThreadType={thread.thread_type}
+                            initialThreadType={editedThreadType}
                         />
                         {isEditing ? (
                             <MdCancel onClick={onEditClick} />
@@ -106,7 +114,9 @@ function Thread() {
                     </div>
                 ) : (
                     <div>
-                        <p className="bigger-heading thread-title">{thread.title}</p>
+                        <p className="bigger-heading thread-title">
+                            {thread.title}
+                        </p>
                         <p className="thread-description-text">
                             {thread.description}
                         </p>
