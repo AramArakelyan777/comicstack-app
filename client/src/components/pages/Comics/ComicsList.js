@@ -1,10 +1,21 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import { getComicsByGenres } from "../../../services/filtering"
 import { getComics } from "../../../services/comics"
 import { useAsync } from "../../../hooks/useAsync"
 
 export const ComicsList = () => {
-    const { loading, error, value: comics } = useAsync(getComics)
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const genreId = params.get("genre")
+
+    const {
+        loading,
+        error,
+        value: comics,
+    } = useAsync(() => {
+        return genreId ? getComicsByGenres(genreId) : getComics()
+    }, [genreId])
 
     if (loading) return <h1>Loading...</h1>
     if (error) return <h1>{error}</h1>
