@@ -20,6 +20,8 @@
 .comics-link {
     display: inline-block;
     margin: 10px;
+    text-decoration: none;
+    color: white;
 }
 
 .comics-link-image {

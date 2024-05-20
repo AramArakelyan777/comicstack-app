@@ -14,7 +14,6 @@ export const ComicsList = () => {
         <div className="comics-link-container">
             {comics.map((comic) => (
                 <NavLink
-                    style={{ textDecoration: "none", color: "white" }}
                     to={`/comics/${comic.comic_id}`}
                     key={comic.comic_id}
                     className="comics-link"
