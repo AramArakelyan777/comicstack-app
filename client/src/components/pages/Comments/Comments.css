@@ -34,16 +34,13 @@
 }
 
 .user-avatar {
-    width: 30px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 7px;
 }
 
 .comment-container {
-    /* border: 1px solid #DB4947; */
-    /* border-radius: 10px; */
-    /* max-width: 400px; */
-    /* margin: auto; */
     padding: 10px;
     margin-top: 50px;
     text-align: left;
