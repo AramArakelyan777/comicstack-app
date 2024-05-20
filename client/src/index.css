@@ -69,5 +69,17 @@ hr {
 }
 
 p {
+    word-wrap: break-word;
+}
+
+span {
     word-break: break-all;
+}
+
+@media screen and (max-width: 650px) {
+
+    textarea,
+    select {
+        max-width: 90%;
+    }
 }
