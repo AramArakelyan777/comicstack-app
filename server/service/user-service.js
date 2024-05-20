@@ -217,6 +217,19 @@ class UserService {
             throw new Error(error.message)
         }
     }
+
+    async updateProfilePicture (userId, imageUrl) {
+        const query = 'UPDATE users SET avatar_url = $1 WHERE user_id = $2';
+        const values = [imageUrl, userId];
+        await pool.query(query, values);
+      };
+      
+      async getUserById (userId) {
+        const query = 'SELECT * FROM users WHERE user_id = $1';
+        const values = [userId];
+        const { rows } = await pool.query(query, values);
+        return rows[0];
+      };
 }
 
 module.exports = new UserService()
