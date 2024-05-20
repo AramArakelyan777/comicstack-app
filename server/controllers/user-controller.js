@@ -18,7 +18,7 @@ const generateFileName = (bytes = 32) =>
 
 const processImage = async (buffer) => {
 	const image = await Jimp.read(buffer)
-	image.resize(300, 300).quality(90) // Resize to 300x300 and set JPEG quality to 60%
+	image.cover(300, 300).quality(60) // Resize to 300x300 and set JPEG quality to 60%
 	return await image.getBufferAsync(Jimp.MIME_JPEG)
 }
 
@@ -130,7 +130,7 @@ class UserController {
 				}
 				await s3Client.send(new DeleteObjectCommand(deleteParams))
 			}
-			
+
 			const fileName =
 				generateFileName() + path.extname(file.originalname)
 			const fileBuffer = await processImage(file.buffer)
@@ -176,7 +176,7 @@ class UserController {
 					.json({ message: "No profile picture to delete" })
 			}
 
-			const key = user.avatar_url.split("/").pop().split("?")[0];
+			const key = user.avatar_url.split("/").pop().split("?")[0]
 
 			const deleteParams = {
 				Bucket: bucketName,
