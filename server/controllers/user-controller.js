@@ -114,13 +114,23 @@ class UserController {
 
 	async uploadProfilePicture(req, res, next) {
 		try {
-			const userId = req.params.id
+			const { userId } = req.cookies
 			const file = req.file
+
+			const user = await userService.getUserById(userId)
 
 			if (!file) {
 				return res.status(400).json({ message: "No file uploaded" })
 			}
-
+			if (user && user.avatar_url) {
+				const oldKey = user.avatar_url.split("/").pop().split("?")[0]
+				const deleteParams = {
+					Bucket: bucketName,
+					Key: `profile_pictures/${oldKey}`,
+				}
+				await s3Client.send(new DeleteObjectCommand(deleteParams))
+			}
+			
 			const fileName =
 				generateFileName() + path.extname(file.originalname)
 			const fileBuffer = await processImage(file.buffer)
@@ -133,7 +143,7 @@ class UserController {
 			}
 
 			const data = await s3Client.send(new PutObjectCommand(uploadParams))
-			console.log("S3 upload response:", data)
+			// console.log("S3 upload response:", data)
 
 			const imageUrl = await getSignedUrl(
 				s3Client,
@@ -157,7 +167,7 @@ class UserController {
 
 	async deleteProfilePicture(req, res, next) {
 		try {
-			const userId = req.params.id
+			const { userId } = req.cookies
 			const user = await userService.getUserById(userId)
 
 			if (!user.avatar_url) {
@@ -166,13 +176,12 @@ class UserController {
 					.json({ message: "No profile picture to delete" })
 			}
 
-			const key = user.avatar_url.split("/").pop()
+			const key = user.avatar_url.split("/").pop().split("?")[0];
 
 			const deleteParams = {
 				Bucket: bucketName,
 				Key: `profile_pictures/${key}`,
 			}
-
 			await s3Client.send(new DeleteObjectCommand(deleteParams))
 			await userService.updateProfilePicture(userId, null)
 
