@@ -180,7 +180,7 @@ function Comment({
                             ) : (
                                 <MdFavoriteBorder onClick={onLikeComment} />
                             )}
-                            <span style={{ marginLeft: "5px" }}>
+                            <span className="comment-like-count">
                                 {likeCount}
                             </span>
                         </div>

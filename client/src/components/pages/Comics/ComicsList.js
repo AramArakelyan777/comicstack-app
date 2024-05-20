@@ -11,16 +11,20 @@ export const ComicsList = () => {
     if (!comics) return null
 
     return (
-        <div style={{ marginBottom: "200px" }}>
+        <div className="comics-link-container">
             {comics.map((comic) => (
-                <h1 key={comic.comic_id}>
-                    <NavLink
-                        style={{ textDecoration: "none", color: "red" }}
-                        to={`/comics/${comic.comic_id}`}
-                    >
-                        {comic.title}
-                    </NavLink>
-                </h1>
+                <NavLink
+                    to={`/comics/${comic.comic_id}`}
+                    key={comic.comic_id}
+                    className="comics-link"
+                >
+                    <img
+                        src={comic.cover_image_url}
+                        alt="comics-cover"
+                        className="comics-link-image"
+                    />
+                    <p>{comic.title}</p>
+                </NavLink>
             ))}
         </div>
     )
