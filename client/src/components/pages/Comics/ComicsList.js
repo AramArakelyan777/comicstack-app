@@ -1,6 +1,6 @@
 import React from "react"
 import { NavLink, useLocation } from "react-router-dom"
-import { getComicsByGenres } from "../../../services/filtering"
+import { getComicsByGenres, getComicsByTags } from "../../../services/filtering"
 import { getComics } from "../../../services/comics"
 import { useAsync } from "../../../hooks/useAsync"
 
@@ -8,18 +8,23 @@ export const ComicsList = () => {
     const location = useLocation()
     const params = new URLSearchParams(location.search)
     const genreId = params.get("genre")
+    const tagId = params.get("tag")
 
     const {
         loading,
         error,
         value: comics,
     } = useAsync(() => {
-        return genreId ? getComicsByGenres(genreId) : getComics()
-    }, [genreId])
+        return genreId
+            ? getComicsByGenres(genreId)
+            : tagId
+              ? getComicsByTags(tagId)
+              : getComics()
+    }, [genreId, tagId])
 
     if (loading) return <h1>Loading...</h1>
     if (error) return <h1>{error}</h1>
-    if (comics?.length === 0) return <p>No results</p>
+    if (!comics?.length) return <p>No results</p>
     if (!comics) return null
 
     return (
