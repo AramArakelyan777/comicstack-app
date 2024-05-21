@@ -99,9 +99,10 @@ function Footer() {
                 <p>Advertise With Us</p>
             </div>
             <p className="footer-text">
-                2023 ComicStack ©. All Rights Reserved Disclaimer: This site
-                does not store any files on its server. All contents are
-                provided by non-affiliated third parties.
+                {`${new Date().getFullYear()}`} ComicStack ©. All Rights
+                Reserved Disclaimer: This site does not store any files on its
+                server. All contents are provided by non-affiliated third
+                parties.
             </p>
         </footer>
     )
