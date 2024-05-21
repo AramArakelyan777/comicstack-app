@@ -156,13 +156,9 @@ class UserService {
 
 			// Validate refresh token
 			const userData = tokenService.validateRefreshToken(refreshToken)
-			if (!userData) {
-				throw ApiError.UnauthorizedError("Invalid refresh token")
-			}
-
 			// Check if token exists in database
 			const tokenFromDb = await tokenService.findToken(refreshToken)
-			if (!tokenFromDb) {
+			if (!userData || !tokenFromDb) {
 				throw ApiError.UnauthorizedError("Invalid refresh token")
 			}
 
@@ -242,6 +238,12 @@ class UserService {
 		const query = "SELECT * FROM users WHERE user_id = $1"
 		const values = [userId]
 		const { rows } = await pool.query(query, values)
+		return rows[0]
+	}
+
+	async getUsers() {
+		const query = "SELECT * FROM users"
+		const { rows } = await pool.query(query)
 		return rows[0]
 	}
 }

@@ -21,6 +21,7 @@ router.post("/logout", userController.logout)
 router.get("/activate/:link", userController.activate)
 router.get("/refresh", userController.refresh)
 router.post("/block/:id", roleMiddleware(["ADMIN"]), userController.blockUser)
+router.get('/users', authMiddleware, userController.getUsers);
 
 router.post('/user/profile-picture', uploadMiddleware.single('profilePicture'), userController.uploadProfilePicture);
 router.delete('/user/profile-picture',  userController.deleteProfilePicture);
