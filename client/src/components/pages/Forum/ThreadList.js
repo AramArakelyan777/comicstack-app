@@ -12,6 +12,7 @@ import Button from "../../Button/Button"
 import "./Thread.css"
 import "../../../assets/texts.css"
 import Footer from "../../Footer/Footer"
+import { MdCancel } from "react-icons/md"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -21,6 +22,7 @@ export const ThreadList = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [pageCount, setPageCount] = useState(0)
+    const [showThreadForm, setShowThreadForm] = useState(false)
 
     useEffect(() => {
         const fetchThreads = async () => {
@@ -121,11 +123,34 @@ export const ThreadList = () => {
                         {">>"}
                     </Button>
                 </div>
-                <ThreadForm
-                    loading={formLoading}
-                    error={formError}
-                    handleSubmit={onThreadCreate}
-                />
+                {!showThreadForm ? (
+                    <Button
+                        variant="ordinary"
+                        onClick={() => setShowThreadForm(true)}
+                        style={{ marginTop: 20 }}
+                    >
+                        Add a thread
+                    </Button>
+                ) : (
+                    <React.Fragment>
+                        <MdCancel
+                            size={30}
+                            color="#DB4947"
+                            onClick={() => setShowThreadForm(false)}
+                            style={{ cursor: "pointer", marginTop: 20 }}
+                        />
+                        <br />
+                    </React.Fragment>
+                )}
+                {showThreadForm ? (
+                    <div>
+                        <ThreadForm
+                            loading={formLoading}
+                            error={formError}
+                            handleSubmit={onThreadCreate}
+                        />
+                    </div>
+                ) : null}
             </div>
             <Footer />
         </React.Fragment>

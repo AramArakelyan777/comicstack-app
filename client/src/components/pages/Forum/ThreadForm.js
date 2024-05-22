@@ -86,11 +86,11 @@ function ThreadForm({
 
                 <Button
                     variant="ordinary"
-                    style={{ marginTop: "20px" }}
+                    style={{ marginTop: "15px" }}
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : "Post a thread"}
+                    {loading ? "Loading..." : "Post"}
                 </Button>
             </form>
         </div>
