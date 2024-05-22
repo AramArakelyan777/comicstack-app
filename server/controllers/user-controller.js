@@ -161,7 +161,7 @@ class UserController {
 					Bucket: bucketName,
 					Key: `profile_pictures/${fileName}`,
 				}),
-				{ expiresIn: 60 * 60 } // URL valid for 1 hour
+				{ expiresIn: 6 * 24 * 60 * 60 } // URL valid for 6 days
 			)
 
 			await userService.updateProfilePicture(userId, imageUrl)
