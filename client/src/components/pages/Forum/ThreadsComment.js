@@ -258,12 +258,12 @@ function Comment({
                             <CommentsList comments={childComments} />
                         </div>
                     </div>
-                    <button
+                    <p
                         className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
-                        Show Replies
-                    </button>
+                        Show replies ▼
+                    </p>
                 </React.Fragment>
             ) : null}
         </React.Fragment>

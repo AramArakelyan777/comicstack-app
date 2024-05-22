@@ -44,7 +44,8 @@
     padding: 10px;
     margin-top: 50px;
     text-align: left;
-    margin-left: 100px;
+    border: 1px solid rgba(219, 73, 71, 0.2);
+    border-radius: 10px;
 }
 
 .comment-user-info,
@@ -81,8 +82,19 @@
     margin-right: 2px;
 }
 
+.showReplies {
+    color: #DB4947;
+    cursor: pointer;
+    text-align: left;
+    margin-left: 35px;
+}
+
 @media screen and (max-width: 700px) {
     .comment-container {
+        margin-left: 0;
+    }
+
+    button {
         margin-left: 0;
     }
 }
