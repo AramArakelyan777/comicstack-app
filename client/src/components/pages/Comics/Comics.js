@@ -29,6 +29,7 @@ function Comics() {
             />
             <p className="bigger-heading">{comic.title}</p>
             <p className="comics-description">{comic.description}</p>
+            <p>{comic.average_rating}</p>
             <div>
                 <h3>Comments</h3>
                 <div>

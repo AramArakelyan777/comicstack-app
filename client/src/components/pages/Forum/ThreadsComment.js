@@ -195,21 +195,19 @@ function Comment({
                             <div>{unlikeCommentFn.error}</div>
                         ) : null}
 
-                        {depth < MAX_DEPTH ? (
-                            isReplying ? (
-                                <MdCancel
-                                    onClick={() =>
-                                        setIsReplying((prevState) => !prevState)
-                                    }
-                                />
-                            ) : (
-                                <FaReply
-                                    onClick={() =>
-                                        setIsReplying((prevState) => !prevState)
-                                    }
-                                />
-                            )
-                        ) : null}
+                        {isReplying ? (
+                            <MdCancel
+                                onClick={() =>
+                                    setIsReplying((prevState) => !prevState)
+                                }
+                            />
+                        ) : (
+                            <FaReply
+                                onClick={() =>
+                                    setIsReplying((prevState) => !prevState)
+                                }
+                            />
+                        )}
 
                         {isEditing ? (
                             <MdCancel onClick={onEditClick} />
@@ -247,24 +245,36 @@ function Comment({
                     />
                 </div>
             ) : null}
-            {depth < MAX_DEPTH && childComments && childComments.length > 0 ? (
+
+            {childComments && childComments.length > 0 && (
                 <React.Fragment>
-                    <div
-                        className={`nested-comments-stack ${
-                            areChildrenHidden ? "hide" : ""
-                        }`}
-                    >
-                        <button
-                            className="collapse-line"
-                            onClick={() => setAreChildrenHidden(true)}
-                        />
-                        <div className="nested-comments">
+                    {depth < MAX_DEPTH ? (
+                        <div
+                            className={`nested-comments-stack ${
+                                areChildrenHidden ? "hide" : ""
+                            }`}
+                        >
+                            <button
+                                className="collapse-line"
+                                onClick={() => setAreChildrenHidden(true)}
+                            />
+                            <div className="nested-comments">
+                                <CommentsList
+                                    comments={childComments}
+                                    depth={depth + 1}
+                                />
+                            </div>
+                        </div>
+                    ) : (
+                        <div
+                            className={`flat-comments ${areChildrenHidden ? "hide" : ""}`}
+                        >
                             <CommentsList
                                 comments={childComments}
-                                depth={depth + 1}
+                                depth={depth}
                             />
                         </div>
-                    </div>
+                    )}
                     <p
                         className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
@@ -272,7 +282,7 @@ function Comment({
                         Show replies ▼
                     </p>
                 </React.Fragment>
-            ) : null}
+            )}
         </React.Fragment>
     )
 }
