@@ -25,7 +25,8 @@ const HomePage = () => {
                         {tagName.tag}
                     </Button>
                 ))}
-                <br />
+                <h2 className="medium-heading">Top this month</h2>
+                <h2 className="medium-heading">See also</h2>
                 <Button variant="ordinary" onClick={() => navigate("/comics")}>
                     See all comics
                 </Button>

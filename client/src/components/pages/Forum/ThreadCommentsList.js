@@ -1,12 +1,10 @@
 import React from "react"
 import Comment from "./ThreadsComment"
 
-function CommentsList({ comments }) {
+function CommentsList({ comments, depth }) {
     if (comments) {
         return comments.map((comment) => (
-            <div key={comment?.comment_id}>
-                <Comment {...comment} />
-            </div>
+            <Comment key={comment?.comment_id} {...comment} depth={depth} />
         ))
     }
     return null

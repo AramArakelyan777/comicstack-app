@@ -33,7 +33,9 @@ function Comment({
     created_at,
     like_count,
     liked_by_me,
+    depth = 0,
 }) {
+    const MAX_DEPTH = 3
     const {
         comic,
         getReplies,
@@ -249,21 +251,35 @@ function Comment({
                 </div>
             ) : null}
 
-            {childComments && childComments?.length > 0 ? (
+            {childComments && childComments.length > 0 && (
                 <React.Fragment>
-                    <div
-                        className={`nested-comments-stack ${
-                            areChildrenHidden ? "hide" : ""
-                        }`}
-                    >
-                        <button
-                            className="collapse-line"
-                            onClick={() => setAreChildrenHidden(true)}
-                        />
-                        <div className="nested-comments">
-                            <CommentsList comments={childComments} />
+                    {depth < MAX_DEPTH ? (
+                        <div
+                            className={`nested-comments-stack ${
+                                areChildrenHidden ? "hide" : ""
+                            }`}
+                        >
+                            <button
+                                className="collapse-line"
+                                onClick={() => setAreChildrenHidden(true)}
+                            />
+                            <div className="nested-comments">
+                                <CommentsList
+                                    comments={childComments}
+                                    depth={depth + 1}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div
+                            className={`flat-comments ${areChildrenHidden ? "hide" : ""}`}
+                        >
+                            <CommentsList
+                                comments={childComments}
+                                depth={depth}
+                            />
+                        </div>
+                    )}
                     <p
                         className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
@@ -271,7 +287,7 @@ function Comment({
                         Show replies ▼
                     </p>
                 </React.Fragment>
-            ) : null}
+            )}
         </React.Fragment>
     )
 }
