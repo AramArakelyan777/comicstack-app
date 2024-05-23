@@ -3,6 +3,8 @@ const userController = require("../controllers/user-controller")
 const commentController = require("../service/c_comment-service")
 const threadController = require("../service/t_comment-service")
 const filterController = require("../controllers/filter-controller")
+const comicController = require("../controllers/comic-controller")
+const ratingController = require('../controllers/rating-controller');
 const router = new Router()
 const { body } = require("express-validator")
 const roleMiddleware = require("../middlewares/role-middleware")
@@ -65,6 +67,22 @@ router.post(
 	commentController.unlikeComment
 )
 
+router.post(
+    "/rating/:comicId",
+    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+    ratingController.addRating
+);
+
+router.get("/rating/:comicId", ratingController.getRating);
+
+router.delete(
+    "/rating/:userId/:comicId",
+    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+    ratingController.deleteRating
+);
+
+router.get("/rating/average/:comicId", ratingController.getAverageRating);
+
 //Threads
 router.get("/threads", threadController.getAllThreadsWithComments)
 router.get("/threads/:thread_id", threadController.getThreadWithComments)
@@ -114,6 +132,13 @@ router.post(
 	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
 	commentController.unlikeComment
 )
+
+// router.post(
+// 	"/comics/upload",
+// 	uploadMiddleware.single("file"),
+// 	comicController.uploadComicPage
+// )
+// router.get("/comics/:comicId/pages", comicController.getComicPages)
 
 // New filter routes
 router.get("/comics/genre/:genre_id", filterController.filterComicsByGenre)

@@ -91,7 +91,20 @@ async function getComic(req, res) {
 				req.cookies.userId,
 			])
 			comment.liked_by_me = likeResult.rows.length > 0
+			
 		}
+		const averageRatingQuery = `
+		SELECT AVG(rating) AS average_rating
+		FROM "ratings"
+		WHERE comic_id = $1;
+	`;
+	const averageRatingResult = await pool.query(averageRatingQuery, [req.params.comic_id]);
+	const averageRating = averageRatingResult.rows[0].average_rating;
+
+	comic.average_rating = averageRating ? parseFloat(averageRating).toFixed(1) : null;
+	comic.comments = comments;
+	comic.genres = genres;
+	comic.tags = tags;
 
 		comic.comments = comments
 		comic.genres = genres
