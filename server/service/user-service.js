@@ -235,11 +235,33 @@ class UserService {
 	}
 
 	async getUserById(userId) {
-		const query = "SELECT * FROM users WHERE user_id = $1"
-		const values = [userId]
-		const { rows } = await pool.query(query, values)
-		return rows[0]
-	}
+        try {
+            const userQuery = `
+                SELECT user_id, username, email, current_roles, avatar_url, is_activated, created_at
+                FROM users
+                WHERE user_id = $1;
+            `;
+            const userResult = await pool.query(userQuery, [userId]);
+            const user = userResult.rows[0];
+
+            if (!user) {
+                throw new Error("User not found");
+            }
+
+            const statusesQuery = `
+                SELECT s.comic_id, s.status
+                FROM statuses s
+                WHERE s.user_id = $1;
+            `;
+            const statusesResult = await pool.query(statusesQuery, [userId]);
+            user.statuses = statusesResult.rows;
+
+            return user;
+        } catch (error) {
+            console.error("Error fetching user by ID:", error);
+            throw error;
+        }
+    }
 
 	async getUsers() {
 		const query = "SELECT * FROM users"

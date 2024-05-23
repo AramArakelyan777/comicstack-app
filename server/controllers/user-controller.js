@@ -105,12 +105,29 @@ class UserController {
 	
 	async getUsers(req, res, next) {
 		try {
-			const users = await userService.getAllUsers()
+			const users = await userService.getUsers()
 			return res.json(users)
 		} catch (e) {
 			next(e)
 		}
 	}
+
+	async getUser(req, res, next) {
+        try {
+            const { userId } = req.cookies;
+
+            if (!userId) {
+                return res.status(401).json({ error: "Not Authorized" });
+            }
+
+            const userService = require('../service/user-service');
+            const user = await userService.getUserById(userId);
+
+            return res.json(user);
+        } catch (e) {
+            next(e);
+        }
+    }
 
 	async blockUser(req, res, next) {
 		try {

@@ -5,6 +5,7 @@ const threadController = require("../service/t_comment-service")
 const filterController = require("../controllers/filter-controller")
 const comicController = require("../controllers/comic-controller")
 const ratingController = require('../controllers/rating-controller');
+const statusController = require('../controllers/status-controller');
 const router = new Router()
 const { body } = require("express-validator")
 const roleMiddleware = require("../middlewares/role-middleware")
@@ -24,6 +25,8 @@ router.get("/activate/:link", userController.activate)
 router.get("/refresh", userController.refresh)
 router.post("/block/:id", roleMiddleware(["ADMIN"]), userController.blockUser)
 router.get("/users", authMiddleware, userController.getUsers)
+router.get("/user", userController.getUser)
+
 
 router.post(
 	"/user/profile-picture",
@@ -132,6 +135,21 @@ router.post(
 	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
 	commentController.unlikeComment
 )
+
+// Status
+router.post(
+    "/status/:comicId",
+    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+    statusController.addStatus
+);
+
+router.get("/status/:comicId", statusController.getStatus);
+
+router.delete(
+    "/status/:comicId",
+    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+    statusController.deleteStatus
+);
 
 // router.post(
 // 	"/comics/upload",
