@@ -33,7 +33,9 @@ function Comment({
     created_at,
     like_count,
     liked_by_me,
+    depth = 0,
 }) {
+    const MAX_DEPTH = 3
     const {
         comic,
         getReplies,
@@ -197,19 +199,21 @@ function Comment({
                             <div>{unlikeCommentFn.error}</div>
                         ) : null}
 
-                        {isReplying ? (
-                            <MdCancel
-                                onClick={() =>
-                                    setIsReplying((prevState) => !prevState)
-                                }
-                            />
-                        ) : (
-                            <FaReply
-                                onClick={() =>
-                                    setIsReplying((prevState) => !prevState)
-                                }
-                            />
-                        )}
+                        {depth < MAX_DEPTH ? (
+                            isReplying ? (
+                                <MdCancel
+                                    onClick={() =>
+                                        setIsReplying((prevState) => !prevState)
+                                    }
+                                />
+                            ) : (
+                                <FaReply
+                                    onClick={() =>
+                                        setIsReplying((prevState) => !prevState)
+                                    }
+                                />
+                            )
+                        ) : null}
 
                         {isEditing ? (
                             <MdCancel onClick={onEditClick} />
@@ -249,7 +253,7 @@ function Comment({
                 </div>
             ) : null}
 
-            {childComments && childComments?.length > 0 ? (
+            {depth < MAX_DEPTH && childComments && childComments.length > 0 ? (
                 <React.Fragment>
                     <div
                         className={`nested-comments-stack ${
@@ -261,7 +265,10 @@ function Comment({
                             onClick={() => setAreChildrenHidden(true)}
                         />
                         <div className="nested-comments">
-                            <CommentsList comments={childComments} />
+                            <CommentsList
+                                comments={childComments}
+                                depth={depth + 1}
+                            />
                         </div>
                     </div>
                     <p
