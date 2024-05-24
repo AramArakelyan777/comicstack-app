@@ -31,7 +31,7 @@ export default class Store {
     async login(username, email, password) {
         try {
             const response = await AuthService.login(username, email, password)
-            localStorage.setItem("token", response.data.accessToken)
+            localStorage.setItem("bearer", response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
             this.error = ""
@@ -47,7 +47,7 @@ export default class Store {
                 email,
                 password
             )
-            localStorage.setItem("token", response.data.accessToken)
+            localStorage.setItem("bearer", response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
             this.error = ""
@@ -59,7 +59,7 @@ export default class Store {
     async logout() {
         try {
             await AuthService.logout()
-            localStorage.removeItem("token")
+            localStorage.removeItem("bearer")
             this.setAuth(false)
             this.setUser({})
             this.error = ""
@@ -77,7 +77,7 @@ export default class Store {
                     withCredentials: true,
                 }
             )
-            localStorage.setItem("token", response.data.accessToken)
+            localStorage.setItem("bearer", response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (e) {
