@@ -9,7 +9,7 @@ import { rateAComics } from "../../../services/rating"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
-    console.log(comic)
+
     const {
         loading,
         error,
@@ -43,8 +43,10 @@ function Comics() {
             />
             <p className="bigger-heading">{comic?.title}</p>
             <p className="comics-description">{comic?.description}</p>
-            
-            <p>{comic?.average_rating || 0}</p>
+
+            <p>
+                {comic?.average_rating || 0}({comic?.total_votes})
+            </p>
             {rateLoading ? (
                 "Loading..."
             ) : (

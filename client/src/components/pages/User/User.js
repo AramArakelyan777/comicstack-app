@@ -8,7 +8,7 @@ function User() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (localStorage.getItem("token")) store.chechAuth()
+        if (localStorage.getItem("bearer")) store.chechAuth()
     }, [store])
 
     return (

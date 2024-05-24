@@ -6,7 +6,7 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+    config.headers.Authorization = `Bearer ${localStorage.getItem("bearer")}`
     return config
 })
 
@@ -29,7 +29,7 @@ $api.interceptors.response.use(
                         withCredentials: true,
                     }
                 )
-                localStorage.setItem("token", response.data.accessToken)
+                localStorage.setItem("bearer", response.data.accessToken)
                 return $api.request(originalRequest)
             } catch (e) {
                 console.log("Not Authorized", e)
