@@ -10,7 +10,9 @@ export function rateAComics({ rating, comic_id }) {
 }
 
 export function getARating({ comic_id }) {
-    return makeRequest(`rating/${comic_id}`)
+    return makeRequest(`rating/${comic_id}`).catch((error) => {
+        throw error
+    })
 }
 
 export function deleteARating({ user_id, comic_id }) {
