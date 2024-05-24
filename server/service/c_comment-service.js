@@ -40,7 +40,9 @@ async function getComic(req, res) {
             JOIN "genres" g ON cg.genre_id = g.genre_id
             WHERE cg.comic_id = $1;
         `
-		const genresResult = await pool.query(genresQuery, [req.params.comic_id])
+		const genresResult = await pool.query(genresQuery, [
+			req.params.comic_id,
+		])
 		const genres = genresResult.rows
 
 		const tagsQuery = `
@@ -91,20 +93,45 @@ async function getComic(req, res) {
 				req.cookies.userId,
 			])
 			comment.liked_by_me = likeResult.rows.length > 0
-			
 		}
+		// Calculate rating counts and total votes
+		const ratingsQuery = `
+            SELECT rating, COUNT(*) AS count
+            FROM ratings
+            WHERE comic_id = $1
+            GROUP BY rating;
+        `
+		const ratingsResult = await pool.query(ratingsQuery, [
+			req.params.comic_id,
+		])
+		const ratingCounts = ratingsResult.rows
+
+		const totalVotesQuery = `
+            SELECT COUNT(*) AS total_votes, SUM(rating) AS sum_ratings
+            FROM ratings
+            WHERE comic_id = $1;
+        `
+		const totalVotesResult = await pool.query(totalVotesQuery, [
+			req.params.comic_id,
+		])
+		const { total_votes, sum_ratings } = totalVotesResult.rows[0]
+
 		const averageRatingQuery = `
 		SELECT AVG(rating) AS average_rating
 		FROM "ratings"
 		WHERE comic_id = $1;
-	`;
-	const averageRatingResult = await pool.query(averageRatingQuery, [req.params.comic_id]);
-	const averageRating = averageRatingResult.rows[0].average_rating;
+	`
 
-	comic.average_rating = averageRating ? parseFloat(averageRating).toFixed(1) : null;
-	comic.comments = comments;
-	comic.genres = genres;
-	comic.tags = tags;
+		const averageRatingResult = await pool.query(averageRatingQuery, [
+			req.params.comic_id,
+		])
+		const averageRating = averageRatingResult.rows[0].average_rating
+		comic.average_rating = averageRating
+			? parseFloat(averageRating).toFixed(1)
+			: null
+		
+			comic.rating_counts = ratingCounts
+		comic.total_votes = parseInt(total_votes)
 
 		comic.comments = comments
 		comic.genres = genres
