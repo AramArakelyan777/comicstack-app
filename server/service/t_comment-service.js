@@ -100,24 +100,30 @@ async function getAllThreadsWithComments(req, res) {
     const page = parseInt(req.query.page) || 1 // Default to page 1 if not provided
     const limit = parseInt(req.query.limit) || 10 // Default to 10 items per page if not provided
     const offset = (page - 1) * limit
+    const search = req.query.search || ''; // Get search query from request
 
     try {
         // Fetch total count of threads for pagination
-        const countQuery = 'SELECT COUNT(*) FROM "threads"'
-        const countResult = await pool.query(countQuery)
-        const totalCount = parseInt(countResult.rows[0].count)
-        const totalPages = Math.ceil(totalCount / limit)
+        // Fetch total count of threads for pagination with search
+        const countQuery = `
+            SELECT COUNT(*) FROM "threads"
+            WHERE title ILIKE $1 OR description ILIKE $1;
+        `;
+        const countResult = await pool.query(countQuery, [`%${search}%`]);
+        const totalCount = parseInt(countResult.rows[0].count);
+        const totalPages = Math.ceil(totalCount / limit);
 
-        // Fetch the paginated threads
+        // Fetch the paginated threads with search
         const query = `
             SELECT thread_id, title, description, user_id, created_at, comment_count, thread_type 
-            FROM "threads" 
-            ORDER BY comment_count DESC 
-            LIMIT $1 OFFSET $2;
-        `
-        const values = [limit, offset]
-        const result = await pool.query(query, values)
-        const threads = result.rows
+            FROM "threads"
+            WHERE title ILIKE $1 OR description ILIKE $1
+            ORDER BY comment_count DESC
+            LIMIT $2 OFFSET $3;
+        `;
+        const values = [`%${search}%`, limit, offset];
+        const result = await pool.query(query, values);
+        const threads = result.rows;
 
         for (let thread of threads) {
             const commentsQuery = `
