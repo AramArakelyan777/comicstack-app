@@ -4,8 +4,9 @@ import CommentsList from "./ComicsCommentsList"
 import CommentForm from "../Comments/CommentForm"
 import { useAsyncFn } from "../../../hooks/useAsync"
 import { createComment } from "../../../services/comicComments"
-import "./Comics.css"
 import { rateAComics } from "../../../services/rating"
+import "./Comics.css"
+import { STARS } from "./rate-stars"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
@@ -29,7 +30,7 @@ function Comics() {
     }
 
     const handleRateClick = (rating) => {
-        rateAComicsFn({ rating, comic_id: comic?.comic_id }).catch(
+        return rateAComicsFn({ rating, comic_id: comic?.comic_id }).catch(
             handleRequestError
         )
     }
@@ -44,18 +45,29 @@ function Comics() {
             <p className="bigger-heading">{comic?.title}</p>
             <p className="comics-description">{comic?.description}</p>
 
-            <p>
-                {comic?.average_rating || 0}({comic?.total_votes})
+            <p className="medium-heading">
+                {comic?.average_rating || 0} ({comic?.total_votes || 0})
             </p>
             {rateLoading ? (
                 "Loading..."
             ) : (
-                <div>
-                    <button onClick={() => handleRateClick(1)}>1</button>
-                    <button onClick={() => handleRateClick(2)}>2</button>
-                    <button onClick={() => handleRateClick(3)}>3</button>
-                    <button onClick={() => handleRateClick(4)}>4</button>
-                    <button onClick={() => handleRateClick(5)}>5</button>
+                <div className="rating-stars">
+                    {STARS.map((rate) => (
+                        <svg
+                            key={rate.id}
+                            width="30"
+                            height="30"
+                            fill="none"
+                            viewBox="0 0 17 17"
+                            xmlns="http://www.w3.org/2000/svg"
+                            onClick={() => handleRateClick(rate.id)}
+                        >
+                            <path
+                                d="M17 8.5C17 3.80587 13.1941 0 8.5 0C3.80588 0 4.76837e-07 3.80587 4.76837e-07 8.5C4.76837e-07 13.1941 3.80588 17 8.5 17C13.1941 17 17 13.1941 17 8.5ZM4.06158 11.5642L5.70067 8.5L4.06229 5.43575L7.48283 6.04704L9.89046 3.54167L10.3658 6.98417L13.493 8.5L10.3658 10.0158L9.89046 13.4583L7.48213 10.953L4.06158 11.5642Z"
+                                fill={rate.color}
+                            />
+                        </svg>
+                    ))}
                 </div>
             )}
             {rateError ? <div>{rateError}</div> : null}
