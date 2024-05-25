@@ -200,6 +200,42 @@ async function getTopComics(req, res) {
     }
 }
 
+async function getPopularComics(req, res) {
+    try {
+        const query = `
+            SELECT c.comic_id, c.title, c.cover_image_url, c.date, COUNT(cs.comment_id) as comment_count
+            FROM comics c
+            LEFT JOIN cs_comments cs ON c.comic_id = cs.comic_id
+            GROUP BY c.comic_id
+            ORDER BY comment_count DESC
+            LIMIT 6;
+        `
+
+        const result = await pool.query(query)
+        const popularComics = result.rows
+
+        for (let comic of popularComics) {
+            const averageRatingQuery = `
+                SELECT AVG(rating) AS average_rating
+                FROM "ratings"
+                WHERE comic_id = $1;
+            `
+            const averageRatingResult = await pool.query(averageRatingQuery, [
+                comic.comic_id,
+            ])
+            const averageRating = averageRatingResult.rows[0].average_rating
+            comic.average_rating = averageRating
+                ? parseFloat(averageRating).toFixed(1)
+                : null
+        }
+
+        res.json(popularComics)
+    } catch (error) {
+        console.error("Error fetching popular comics:", error)
+        res.status(500).send({ error: "Internal server error" })
+    }
+}
+
 // Function to create a comment
 async function createComment(req, res) {
     const { message, parent_id } = req.body
@@ -391,6 +427,7 @@ module.exports = {
     getAllComics,
     getComic,
     getTopComics,
+    getPopularComics,
     createComment,
     updateComment,
     deleteComment,

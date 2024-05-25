@@ -8,6 +8,7 @@ import { rateAComics, getARating } from "../../../services/rating"
 import { STARS } from "./rate-stars"
 import moment from "moment"
 import "./Comics.css"
+import Button from "../../Button/Button"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
@@ -94,6 +95,9 @@ function Comics() {
                                 (index < comic?.tags.length - 1 ? ", " : "")
                         )}
                     </p>
+                    <Button variant="ordinary" style={{ marginTop: 20 }}>
+                        START READING
+                    </Button>
                 </div>
             </div>
             <p className="medium-heading" style={{ marginTop: 70 }}>

@@ -37,6 +37,7 @@ router.delete("/user/profile-picture", userController.deleteProfilePicture)
 router.get("/comics", commentController.getAllComics)
 router.get("/comics/:comic_id", commentController.getComic)
 router.get("/top-comics", commentController.getTopComics)
+router.get("/popular-comics", commentController.getPopularComics)
 
 // Comments
 router.post(
