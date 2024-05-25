@@ -84,6 +84,12 @@
     width: 300px;
 }
 
+.comics-list-item-average-rating {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
 @media screen and (max-width: 700px) {
     .comics-item-header {
         display: block;

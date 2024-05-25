@@ -11,7 +11,7 @@ import moment from "moment"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
-    console.log(comic)
+
     const {
         loading,
         error,

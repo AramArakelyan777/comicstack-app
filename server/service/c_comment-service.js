@@ -10,10 +10,27 @@ filter.addWords(...words)
 async function getAllComics(req, res) {
     try {
         const query = `
-            SELECT comic_id, title, description, cover_image_url, date, current_status, created_at FROM "comics";
+            SELECT comic_id, title, description, cover_image_url, date, current_status FROM "comics";
         `
         const result = await pool.query(query)
-        res.json(result.rows)
+        const comics = result.rows
+
+        for (let comic of comics) {
+            const averageRatingQuery = `
+                SELECT AVG(rating) AS average_rating
+                FROM "ratings"
+                WHERE comic_id = $1;
+            `
+            const averageRatingResult = await pool.query(averageRatingQuery, [
+                comic.comic_id,
+            ])
+            const averageRating = averageRatingResult.rows[0].average_rating
+            comic.average_rating = averageRating
+                ? parseFloat(averageRating).toFixed(1)
+                : null
+        }
+
+        res.json(comics)
     } catch (error) {
         console.error("Error fetching comics:", error)
         res.status(500).send({ error: "Internal server error" })
