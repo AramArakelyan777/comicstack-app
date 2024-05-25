@@ -52,3 +52,22 @@
     margin: 5px;
     cursor: pointer;
 }
+
+.rating_counts {
+    width: 500px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comics-rating-progress-bar {
+    width: 75%;
+}
