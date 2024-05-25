@@ -71,7 +71,22 @@
 
 .comics-rating-progress-bar {
     width: 75%;
+    border: 1px rgba(255, 255, 255, 0.238) solid;
+    height: 8px;
+    border-radius: 4px;
+    background-color: transparent;
 }
+
+.comics-rating-progress-bar::-webkit-progress-value {
+    background-color: #db4947 !important;
+    border-radius: 4px;
+}
+
+.comics-rating-progress-bar::-moz-progress-bar {
+    background-color: #db4947 !important;
+    border-radius: 4px;
+}
+
 
 .comics-item-header {
     width: 650px;
