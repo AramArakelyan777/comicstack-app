@@ -4,28 +4,37 @@ const ApiError = require("../exceptions/api-error")
 class RatingController {
     async addRating(req, res, next) {
         try {
-            const { comicId } = req.params;
-            const { userId } = req.cookies; // Assuming you get userId from cookies
-            const { rating } = req.body;
+            const { comicId } = req.params
+            const { userId } = req.cookies
+            const { rating } = req.body
 
             // Check if the user has already rated this comic
             const existingRatingQuery = `
                 SELECT * FROM ratings
                 WHERE user_id = $1 AND comic_id = $2;
-            `;
-            const existingRatingResult = await pool.query(existingRatingQuery, [userId, comicId]);
+            `
+            const existingRatingResult = await pool.query(existingRatingQuery, [
+                userId,
+                comicId,
+            ])
 
             if (existingRatingResult.rows.length > 0) {
-                const existingRating = existingRatingResult.rows[0].rating;
+                const existingRating = existingRatingResult.rows[0].rating
                 if (existingRating === rating) {
                     // If the new rating is the same as the existing one, delete the rating
                     const deleteRatingQuery = `
                         DELETE FROM ratings
                         WHERE user_id = $1 AND comic_id = $2
                         RETURNING *;
-                    `;
-                    const deleteRatingResult = await pool.query(deleteRatingQuery, [userId, comicId]);
-                    return res.json({ message: "Rating deleted", rating: deleteRatingResult.rows[0] });
+                    `
+                    const deleteRatingResult = await pool.query(
+                        deleteRatingQuery,
+                        [userId, comicId]
+                    )
+                    return res.json({
+                        message: "Rating deleted",
+                        rating: deleteRatingResult.rows[0],
+                    })
                 } else {
                     // Update existing rating
                     const updateRatingQuery = `
@@ -33,9 +42,12 @@ class RatingController {
                         SET rating = $1
                         WHERE user_id = $2 AND comic_id = $3
                         RETURNING *;
-                    `;
-                    const updatedRatingResult = await pool.query(updateRatingQuery, [rating, userId, comicId]);
-                    return res.json(updatedRatingResult.rows[0]);
+                    `
+                    const updatedRatingResult = await pool.query(
+                        updateRatingQuery,
+                        [rating, userId, comicId]
+                    )
+                    return res.json(updatedRatingResult.rows[0])
                 }
             } else {
                 // Insert new rating
@@ -43,12 +55,16 @@ class RatingController {
                     INSERT INTO ratings (user_id, comic_id, rating)
                     VALUES ($1, $2, $3)
                     RETURNING *;
-                `;
-                const newRatingResult = await pool.query(insertRatingQuery, [userId, comicId, rating]);
-                return res.json(newRatingResult.rows[0]);
+                `
+                const newRatingResult = await pool.query(insertRatingQuery, [
+                    userId,
+                    comicId,
+                    rating,
+                ])
+                return res.json(newRatingResult.rows[0])
             }
         } catch (error) {
-            next(error);
+            next(error)
         }
     }
 
@@ -67,7 +83,7 @@ class RatingController {
             ])
 
             if (ratingResult.rows.length === 0) {
-                return res.status(404).send({ error: "Rating not found" })
+                return res.status(200).json({ rating: 0 })
             }
 
             res.json(ratingResult.rows[0])

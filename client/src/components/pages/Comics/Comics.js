@@ -31,6 +31,8 @@ function Comics() {
                 .then((rating) => {
                     if (rating) {
                         setSelectedRating(rating?.rating)
+                    } else {
+                        setSelectedRating(0)
                     }
                 })
                 .catch((error) => {
