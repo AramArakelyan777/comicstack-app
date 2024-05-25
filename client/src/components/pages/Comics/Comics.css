@@ -53,13 +53,14 @@
     cursor: pointer;
 }
 
-.rating_counts {
+.rating-counts {
     width: 500px;
     padding: 10px 15px;
     box-sizing: border-box;
     border: 1px solid white;
     border-radius: 10px;
     margin: auto;
+    margin-top: 30px;
 }
 
 .rating-row {
@@ -70,4 +71,39 @@
 
 .comics-rating-progress-bar {
     width: 75%;
+}
+
+.comics-item-header {
+    width: 650px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.comics-item-info {
+    width: 300px;
+}
+
+@media screen and (max-width: 700px) {
+    .comics-item-header {
+        display: block;
+        width: 100%;
+    }
+
+    .comics-item-info {
+        margin: auto;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .rating-counts {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .comics-rating-votes {
+        display: none;
+    }
 }

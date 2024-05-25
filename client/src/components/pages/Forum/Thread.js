@@ -145,7 +145,9 @@ function Thread() {
                 {deleteError ? <div>{deleteError}</div> : null}
             </IconContext.Provider>
             <div>
-                <h3>Comments</h3>
+                <h3 className="medium-heading" style={{ marginTop: 70 }}>
+                    Comments
+                </h3>
                 <div>
                     <CommentForm
                         loading={loading}

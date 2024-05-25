@@ -7,10 +7,11 @@ import { createComment } from "../../../services/comicComments"
 import { rateAComics, getARating } from "../../../services/rating"
 import "./Comics.css"
 import { STARS } from "./rate-stars"
+import moment from "moment"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
-
+    console.log(comic)
     const {
         loading,
         error,
@@ -57,15 +58,45 @@ function Comics() {
 
     return (
         <div className="comics-container">
-            <img
-                className="comics-container-image"
-                src={comic?.cover_image_url}
-                alt="comics_cover"
-            />
-            <p className="bigger-heading">{comic?.title}</p>
+            <div className="comics-item-header">
+                <img
+                    className="comics-container-image"
+                    src={comic?.cover_image_url}
+                    alt="comics_cover"
+                />
+                <div className="comics-item-info">
+                    <p className="medium-heading">{comic?.title}</p>
+                    <p>
+                        <b>Author</b>: {comic?.author}
+                    </p>
+                    <p>
+                        <b>Release date:</b>{" "}
+                        {moment(comic?.date).format("DD-MM-YYYY")}
+                    </p>
+                    <p>
+                        <b>Genres:</b>{" "}
+                        {comic?.genres?.map(
+                            (genre, index) =>
+                                genre?.genre_name +
+                                (index < comic?.genres.length - 1 ? ", " : "")
+                        )}
+                    </p>
+                    <p>
+                        <b>Tags:</b>{" "}
+                        {comic?.tags?.map(
+                            (tag, index) =>
+                                tag?.tag_name +
+                                (index < comic?.tags.length - 1 ? ", " : "")
+                        )}
+                    </p>
+                </div>
+            </div>
+            <p className="medium-heading" style={{ marginTop: 70 }}>
+                Description
+            </p>
             <p className="comics-description">{comic?.description}</p>
 
-            <p className="medium-heading">
+            <p className="medium-heading" style={{ marginTop: 70 }}>
                 {comic?.average_rating || 0} ({comic?.total_votes || 0})
             </p>
             {rateLoading ? (
@@ -96,7 +127,7 @@ function Comics() {
             )}
             {rateError ? <div>{rateError}</div> : null}
 
-            <div className="rating_counts">
+            <div className="rating-counts">
                 {STARS.map((star, index) => {
                     const ratingCount = comic?.rating_counts?.find(
                         (r) => r.rating === star.id
@@ -127,14 +158,18 @@ function Comics() {
                                 value={ratingCount?.count || 0}
                                 max={totalSum}
                             />
-                            <span className="rating-count">{count} votes</span>
+                            <span className="rating-count">
+                                {count} <span className="comics-rating-votes">votes</span>
+                            </span>
                         </div>
                     )
                 })}
             </div>
 
             <div>
-                <h3>Comments</h3>
+                <h3 className="medium-heading" style={{ marginTop: 70 }}>
+                    Comments
+                </h3>
                 <div>
                     <CommentForm
                         loading={loading}
