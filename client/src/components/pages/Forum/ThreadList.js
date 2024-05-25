@@ -129,7 +129,7 @@ export const ThreadList = () => {
                         onClick={() => setShowThreadForm(true)}
                         style={{ marginTop: 20 }}
                     >
-                        Add a thread
+                        ADD A THREAD
                     </Button>
                 ) : (
                     <React.Fragment>

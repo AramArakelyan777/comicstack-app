@@ -56,7 +56,7 @@ function CommentForm({
                     disabled={!formik.isValid && formik.isSubmitting}
                     style={{ marginTop: 7 }}
                 >
-                    {loading ? "Loading..." : "Post"}
+                    {loading ? "L..." : "POST"}
                 </Button>
             </form>
         </div>

@@ -135,7 +135,7 @@ const HomePage = () => {
                     {popularError ? <div>{popularError}</div> : null}
                 </div>
                 <Button variant="ordinary" onClick={() => navigate("/comics")} style={{margin: "35px 0"}}>
-                    See all comics
+                    SEE ALL
                 </Button>
             </div>
             <Footer />
