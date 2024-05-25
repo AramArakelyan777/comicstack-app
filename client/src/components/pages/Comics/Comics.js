@@ -96,7 +96,10 @@ function Comics() {
             </p>
             <p className="comics-description">{comic?.description}</p>
 
-            <p className="medium-heading" style={{ marginTop: 70 }}>
+            <p
+                className="medium-heading"
+                style={{ marginTop: 70, marginBottom: 7 }}
+            >
                 {comic?.average_rating || 0} ({comic?.total_votes || 0})
             </p>
             {rateLoading ? (
@@ -159,7 +162,10 @@ function Comics() {
                                 max={totalSum}
                             />
                             <span className="rating-count">
-                                {count} <span className="comics-rating-votes">votes</span>
+                                {count}{" "}
+                                <span className="comics-rating-votes">
+                                    votes
+                                </span>
                             </span>
                         </div>
                     )
