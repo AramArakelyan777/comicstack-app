@@ -82,11 +82,14 @@
     border-radius: 4px;
 }
 
+.comics-rating-progress-bar::-webkit-progress-bar {
+    background-color: transparent;
+}
+
 .comics-rating-progress-bar::-moz-progress-bar {
     background-color: #db4947 !important;
     border-radius: 4px;
 }
-
 
 .comics-item-header {
     width: 650px;
