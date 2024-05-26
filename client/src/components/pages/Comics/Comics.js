@@ -131,7 +131,7 @@ function Comics() {
                         )}
                     </p>
                     <p>
-                        <b>Status:</b> {selectedStatus || statusError}
+                        <b>Status:</b> {comic?.current_status || ""}
                     </p>
                     <div className="comics-status-buttons-container">
                         {statusLoading
@@ -148,6 +148,7 @@ function Comics() {
                                       {button.text}
                                   </Button>
                               ))}
+                        {statusError ? <div>{statusError}</div> : null}
                     </div>
                 </div>
             </div>
