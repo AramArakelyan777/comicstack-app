@@ -156,7 +156,7 @@ function Comics() {
                             <React.Fragment>
                                 <MdFavorite
                                     className={`icon ${selectedStatus === "favourite" ? "selected" : ""}`}
-                                    data-tooltip="Favourite"
+                                    data-tooltip={t("comicsStatusFavorite")}
                                     size={30}
                                     onClick={() =>
                                         handleStatusClick("favourite")
@@ -164,7 +164,7 @@ function Comics() {
                                 />
                                 <LuCalendarClock
                                     className={`icon ${selectedStatus === "in plans" ? "selected" : ""}`}
-                                    data-tooltip="In Plans"
+                                    data-tooltip={t("comicsStatusInPlans")}
                                     size={30}
                                     onClick={() => {
                                         handleStatusClick("in plans")
@@ -172,13 +172,13 @@ function Comics() {
                                 />
                                 <FaBookOpenReader
                                     className={`icon ${selectedStatus === "reading" ? "selected" : ""}`}
-                                    data-tooltip="Reading"
+                                    data-tooltip={t("comicsStatusReading")}
                                     size={30}
                                     onClick={() => handleStatusClick("reading")}
                                 />
                                 <LuBookOpenCheck
                                     className={`icon ${selectedStatus === "read" ? "selected" : ""}`}
-                                    data-tooltip="Read"
+                                    data-tooltip={t("comicsStatusRead")}
                                     size={30}
                                     onClick={() => handleStatusClick("read")}
                                 />

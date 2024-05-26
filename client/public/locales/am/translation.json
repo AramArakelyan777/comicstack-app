@@ -52,5 +52,9 @@
     "comicsDate": "Թողարկման ամսաթիվ",
     "comicsGenres": "Ժանրեր",
     "comicsTags": "Տեգեր",
-    "comicsStatus": "Կարգավիճակ"
+    "comicsStatus": "Կարգավիճակ",
+    "comicsStatusFavorite": "Հավանում եմ",
+    "comicsStatusInPlans": "Պլանավորում եմ կարդալ",
+    "comicsStatusReading": "Կարդում եմ",
+    "comicsStatusRead": "Կարդացել եմ"
 }

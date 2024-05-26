@@ -52,5 +52,9 @@
     "comicsDate": "Release date",
     "comicsGenres": "Genres",
     "comicsTags": "Tags",
-    "comicsStatus": "Status"
+    "comicsStatus": "Status",
+    "comicsStatusFavorite": "Favourite",
+    "comicsStatusInPlans": "In plans",
+    "comicsStatusReading": "Reading",
+    "comicsStatusRead": "Read"
 }
