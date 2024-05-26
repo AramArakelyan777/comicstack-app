@@ -88,7 +88,7 @@ export const ThreadList = () => {
                 <div className="thread-list-search-div">
                     <Input
                         variant="search"
-                        placeholder="Search threads..."
+                        placeholder="Enter other dimensions 🌌"
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                         style={{ borderRadius: "10px 0 0 10px" }}
@@ -105,6 +105,34 @@ export const ThreadList = () => {
                         <FaSearch size={20} />
                     </Button>
                 </div>
+                {!showThreadForm ? (
+                    <Button
+                        variant="ordinary"
+                        onClick={() => setShowThreadForm(true)}
+                        style={{ marginTop: 20, marginBottom:20 }}
+                    >
+                        ADD A THREAD
+                    </Button>
+                ) : (
+                    <React.Fragment>
+                        <MdCancel
+                            size={30}
+                            color="#DB4947"
+                            onClick={() => setShowThreadForm(false)}
+                            style={{ cursor: "pointer", marginTop: 20 }}
+                        />
+                        <br />
+                    </React.Fragment>
+                )}
+                {showThreadForm ? (
+                    <div style={{marginBottom:20}}>
+                        <ThreadForm
+                            loading={formLoading}
+                            error={formError}
+                            handleSubmit={onThreadCreate}
+                        />
+                    </div>
+                ) : null}
                 {threads.map((thread) => (
                     <div
                         className="thread-list-container"
@@ -151,34 +179,6 @@ export const ThreadList = () => {
                         {">>"}
                     </Button>
                 </div>
-                {!showThreadForm ? (
-                    <Button
-                        variant="ordinary"
-                        onClick={() => setShowThreadForm(true)}
-                        style={{ marginTop: 20 }}
-                    >
-                        ADD A THREAD
-                    </Button>
-                ) : (
-                    <React.Fragment>
-                        <MdCancel
-                            size={30}
-                            color="#DB4947"
-                            onClick={() => setShowThreadForm(false)}
-                            style={{ cursor: "pointer", marginTop: 20 }}
-                        />
-                        <br />
-                    </React.Fragment>
-                )}
-                {showThreadForm ? (
-                    <div>
-                        <ThreadForm
-                            loading={formLoading}
-                            error={formError}
-                            handleSubmit={onThreadCreate}
-                        />
-                    </div>
-                ) : null}
             </div>
             <Footer />
         </React.Fragment>
