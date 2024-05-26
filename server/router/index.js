@@ -36,6 +36,8 @@ router.delete("/user/profile-picture", userController.deleteProfilePicture)
 //Comics
 router.get("/comics", commentController.getAllComics)
 router.get("/comics/:comic_id", commentController.getComic)
+router.get("/top-comics", commentController.getTopComics)
+router.get("/popular-comics", commentController.getPopularComics)
 
 // Comments
 router.post(
@@ -142,7 +144,7 @@ router.post(
 router.get("/status/:comicId", statusController.getStatus)
 
 router.delete(
-    "/status/:comicId",
+    "/status/:userId/:comicId",
     roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
     statusController.deleteStatus
 )

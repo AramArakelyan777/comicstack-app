@@ -90,7 +90,7 @@ function ThreadForm({
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : "Post"}
+                    {loading ? "Loading..." : "POST"}
                 </Button>
             </form>
         </div>

@@ -34,8 +34,8 @@ export const ComicsList = () => {
                     <div className="comics-link" key={comic?.comic_id}>
                         <NavLink to={`/comics/${comic?.comic_id}`}>
                             <img
-                                src={comic.cover_image_url}
-                                alt="comics-cover"
+                                src={comic?.cover_image_url}
+                                alt={comic?.title}
                                 className="comics-link-image"
                             />
                             <p style={{ marginBottom: 0 }}>{comic?.title}</p>

@@ -81,9 +81,9 @@ class StatusController {
 				comicId,
 			])
 
-			if (statusResult.rows.length === 0) {
-				return res.status(404).send({ error: "Status not found" })
-			}
+            if (statusResult.rows.length === 0) {
+                return res.status(200).send({ status: "N/A" });
+            }
 
 			res.json(statusResult.rows[0])
 		} catch (error) {
