@@ -9,6 +9,7 @@ import "../../../assets/texts.css"
 import { useNavigate } from "react-router-dom"
 import { AuthorizationContext } from "../../../index"
 import { observer } from "mobx-react-lite"
+import { useTranslation } from "react-i18next"
 
 const initialValues = {
     email: "",
@@ -49,6 +50,8 @@ const validationSchema = yup.object().shape({
 })
 
 const Register = () => {
+    const { t } = useTranslation()
+
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
@@ -82,7 +85,7 @@ const Register = () => {
 
                 <div className="form-control">
                     <div>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">{t("registerEmail")}</label>
                     </div>
                     <br />
                     <Input
@@ -91,7 +94,7 @@ const Register = () => {
                         id="email"
                         {...formik.getFieldProps("email")}
                         variant="regular"
-                        placeholder="Unleash your email heroically! 🦸‍♀️📮"
+                        placeholder={`${t("registerEmailPlaceholder")} 🦸‍♀️📮`}
                     />
                     {formik.touched.email && formik.errors.email ? (
                         <div className="error small-text">
@@ -101,7 +104,9 @@ const Register = () => {
                 </div>
                 <div className="form-control">
                     <div>
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">
+                            {t("registerUsername")}
+                        </label>
                     </div>
                     <br />
                     <Input
@@ -110,7 +115,7 @@ const Register = () => {
                         id="username"
                         {...formik.getFieldProps("username")}
                         variant="regular"
-                        placeholder="Craft your username like a hero! 🛡️🧙‍♂️"
+                        placeholder={`${t("registerUsernamePlaceholder")} 🛡️🧙‍♂️`}
                     />
                     {formik.touched.username && formik.errors.username ? (
                         <div className="error small-text">
@@ -120,7 +125,9 @@ const Register = () => {
                 </div>
                 <div className="form-control">
                     <div>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">
+                            {t("registerPassword")}
+                        </label>
                     </div>
                     <br />
                     <Input
@@ -129,7 +136,7 @@ const Register = () => {
                         id="password"
                         {...formik.getFieldProps("password")}
                         variant="regular"
-                        placeholder="Craft a mighty password! 🔐"
+                        placeholder={`${t("registerPasswordPlaceholder")} 🔐`}
                     />
                     {formik.touched.password && formik.errors.password ? (
                         <div className="error small-text">
@@ -140,7 +147,7 @@ const Register = () => {
                 <div className="form-control">
                     <div>
                         <label htmlFor="confirmPassword">
-                            Confirm Password
+                            {t("registerConfirmPassword")}
                         </label>
                     </div>
                     <br />
@@ -150,7 +157,7 @@ const Register = () => {
                         id="confirmPassword"
                         {...formik.getFieldProps("confirmPassword")}
                         variant="regular"
-                        placeholder="Confirm your epic password! 🔒"
+                        placeholder={`${t("registerConfirmPasswordPlaceholder")} 🔐`}
                     />
                     {formik.touched.confirmPassword &&
                     formik.errors.confirmPassword ? (
@@ -164,13 +171,14 @@ const Register = () => {
                     disabled={!formik.isValid}
                     variant="ordinary"
                 >
-                    REGISTER
+                    
+                    {t("registerButton")}
                 </Button>
             </form>
             <div className="registerLinks">
                 <div className="mainLink" onClick={() => navigateToLogin()}>
-                    <span>Already have</span>
-                    <span className="coloredLink"> an account?</span>
+                    <span>{t("registerLinkAlreadyHave")}</span>
+                    <span className="coloredLink"> {t("registerLinkAccount")}</span>
                 </div>
             </div>
         </div>

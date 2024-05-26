@@ -7,9 +7,16 @@ import { TAGS } from "./tags"
 import { getTopComics, getPopularComics } from "../../../services/comics"
 import { handleRequestError } from "../../../context/ComicsContext"
 import { useAsyncFn } from "../../../hooks/useAsync"
+import { useTranslation } from "react-i18next"
 
 const HomePage = () => {
     const navigate = useNavigate()
+
+    const { t, i18n } = useTranslation()
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng)
+    }
 
     const {
         loading: topLoading,
@@ -38,6 +45,20 @@ const HomePage = () => {
     return (
         <React.Fragment>
             <div className="homepage-container">
+                <Button
+                    variant="ordinary"
+                    onClick={() => changeLanguage("en")}
+                    style={{ margin: 7 }}
+                >
+                    English
+                </Button>
+                <Button
+                    variant="ordinary"
+                    onClick={() => changeLanguage("am")}
+                    style={{ margin: 7 }}
+                >
+                    Armenian
+                </Button>
                 {TAGS.map((tagName) => (
                     <Button
                         variant="tags"
@@ -48,7 +69,7 @@ const HomePage = () => {
                         {tagName.tag}
                     </Button>
                 ))}
-                <h2 className="medium-heading">Top this month</h2>
+                <h2 className="medium-heading">{t("homePageTopThisMonth")}</h2>
                 <div className="top-comics-container">
                     {topLoading
                         ? "Loading..."
@@ -91,7 +112,7 @@ const HomePage = () => {
                           ))}
                     {topError ? <div>{topError}</div> : null}
                 </div>
-                <h2 className="medium-heading">Popular</h2>
+                <h2 className="medium-heading">{t("homePagePopular")}</h2>
                 <div className="top-comics-container">
                     {popularLoading
                         ? "Loading..."
@@ -134,8 +155,12 @@ const HomePage = () => {
                           ))}
                     {popularError ? <div>{popularError}</div> : null}
                 </div>
-                <Button variant="ordinary" onClick={() => navigate("/comics")} style={{margin: "35px 0"}}>
-                    SEE ALL
+                <Button
+                    variant="ordinary"
+                    onClick={() => navigate("/comics")}
+                    style={{ margin: "35px 0" }}
+                >
+                    {t("homePageSeeAll")}
                 </Button>
             </div>
             <Footer />

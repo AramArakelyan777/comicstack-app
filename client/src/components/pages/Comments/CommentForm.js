@@ -2,6 +2,7 @@ import React from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import Button from "../../Button/Button"
+import { useTranslation } from "react-i18next"
 
 const validationSchema = yup.object().shape({
     comment: yup
@@ -18,6 +19,8 @@ function CommentForm({
     autoFocus = false,
     initialMessage = "",
 }) {
+    const { t } = useTranslation()
+
     const formik = useFormik({
         initialValues: {
             comment: initialMessage,
@@ -39,7 +42,7 @@ function CommentForm({
                     {...formik.getFieldProps("comment")}
                     name="comment"
                     style={{ resize: "vertical", width: "300px" }}
-                    placeholder="Enter a comment"
+                    placeholder={`${t("commentFormPlaceholder")}`}
                 />
 
                 {formik.touched.comment && formik.errors.comment ? (
@@ -56,7 +59,7 @@ function CommentForm({
                     disabled={!formik.isValid && formik.isSubmitting}
                     style={{ marginTop: 7 }}
                 >
-                    {loading ? "Loading..." : "POST"}
+                    {loading ? "Loading..." : t("commentFormPostButton")}
                 </Button>
             </form>
         </div>

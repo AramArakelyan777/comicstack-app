@@ -10,16 +10,16 @@ import {
 import React from "react"
 import "../../../assets/texts.css"
 import "./FAQ.css"
+import { useTranslation } from "react-i18next"
 
 const FAQ = () => {
+    const { t } = useTranslation()
+
     return (
         <ChakraProvider>
             <div className="FAQ">
-                <h1 className="bigger-heading">FAQ</h1>
-                <p className="medium-heading">
-                    Looking for answers? Here you can find them to the most
-                    frequently asked questions.
-                </p>
+                <h1 className="bigger-heading">{t("faqHeading")}</h1>
+                <p className="medium-heading">{t("faqSubheading")}</p>
                 <Accordion allowToggle className="accordion">
                     <AccordionItem className="accordion-item">
                         <h2>

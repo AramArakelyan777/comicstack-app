@@ -13,9 +13,12 @@ import { BiSolidEditAlt } from "react-icons/bi"
 import { MdOutlineDelete } from "react-icons/md"
 import { MdOutlineAutoDelete } from "react-icons/md"
 import "./Thread.css"
+import { useTranslation } from "react-i18next"
 
 function Thread() {
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
 
     const {
         thread: initialThread,
@@ -146,7 +149,7 @@ function Thread() {
             </IconContext.Provider>
             <div>
                 <h3 className="medium-heading" style={{ marginTop: 70 }}>
-                    Comments
+                    {t("forumThreadCommentHeading")}
                 </h3>
                 <div>
                     <CommentForm

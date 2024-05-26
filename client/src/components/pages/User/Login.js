@@ -9,6 +9,7 @@ import "../../../assets/texts.css"
 import { useNavigate } from "react-router-dom"
 import { AuthorizationContext } from "../../../index"
 import { observer } from "mobx-react-lite"
+import { useTranslation } from "react-i18next"
 
 const initialValues = {
     emailOrUsername: "",
@@ -43,6 +44,8 @@ const validationSchema = yup.object().shape({
 })
 
 const Login = () => {
+    const { t } = useTranslation()
+
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
@@ -81,7 +84,7 @@ const Login = () => {
                 <div className="form-control">
                     <div>
                         <label htmlFor="emailOrUsername">
-                            Email or Username
+                            {t("loginEmailOrUsername")}
                         </label>
                     </div>
                     <br />
@@ -91,7 +94,7 @@ const Login = () => {
                         id="emailOrUsername"
                         {...formik.getFieldProps("emailOrUsername")}
                         variant="regular"
-                        placeholder="Username/Mail in the multiverse 🦹‍♀️"
+                        placeholder={`${t("loginEmailOrUsernamePlaceholder")} 🦹‍♀️`}
                     />
                     {formik.touched.emailOrUsername &&
                     formik.errors.emailOrUsername ? (
@@ -102,7 +105,7 @@ const Login = () => {
                 </div>
                 <div className="form-control">
                     <div>
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">{t("loginPassword")}</label>
                     </div>
                     <br />
                     <Input
@@ -111,7 +114,7 @@ const Login = () => {
                         id="password"
                         {...formik.getFieldProps("password")}
                         variant="regular"
-                        placeholder="Guard the Batcave entrance 🗝️"
+                        placeholder={`${t("loginPasswordPlaceholder")} 🗝️`}
                     />
                     {formik.touched.password && formik.errors.password ? (
                         <div className="error small-text">
@@ -124,17 +127,23 @@ const Login = () => {
                     disabled={!formik.isValid}
                     variant="ordinary"
                 >
-                    LOG IN
+                    {t("loginButton")}
                 </Button>
             </form>
             <div className="loginLinks">
                 <div className="mainLink">
-                    <span>Forgotten</span>
-                    <span className="coloredLink"> password?</span>
+                    <span>{t("loginLinkForgotten")}</span>
+                    <span className="coloredLink">
+                        {" "}
+                        {t("loginLinkPassword")}
+                    </span>
                 </div>
                 <div className="mainLink" onClick={() => navigateToRegister()}>
-                    <span>Create</span>
-                    <span className="coloredLink"> an account!</span>
+                    <span>{t("loginLinkCreate")}</span>
+                    <span className="coloredLink">
+                        {" "}
+                        {t("loginLinkAccount")}
+                    </span>
                 </div>
             </div>
         </div>

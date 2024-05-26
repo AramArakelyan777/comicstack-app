@@ -20,6 +20,7 @@ import { MdOutlineDelete } from "react-icons/md"
 import { MdOutlineAutoDelete } from "react-icons/md"
 import { MdFavorite } from "react-icons/md"
 import { MdFavoriteBorder } from "react-icons/md"
+import { useTranslation } from "react-i18next"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -35,6 +36,8 @@ function Comment({
     liked_by_me,
     depth = 0,
 }) {
+    const { t } = useTranslation()
+
     const MAX_DEPTH = 3
     const {
         comic,
@@ -284,7 +287,7 @@ function Comment({
                         className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
-                        Show replies ▼
+                        {t("comicsCommentsShowReplies")} ▼
                     </p>
                 </React.Fragment>
             )}

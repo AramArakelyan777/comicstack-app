@@ -20,6 +20,7 @@ import { MdOutlineDelete } from "react-icons/md"
 import { MdOutlineAutoDelete } from "react-icons/md"
 import { MdFavorite } from "react-icons/md"
 import { MdFavoriteBorder } from "react-icons/md"
+import { useTranslation } from "react-i18next"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -43,6 +44,8 @@ function Comment({
         updateLocalComment,
         deleteLocalComment,
     } = useThread()
+
+    const { t } = useTranslation()
 
     const childComments = getReplies(comment_id)
 
@@ -279,7 +282,7 @@ function Comment({
                         className={`showReplies ${!areChildrenHidden ? "hide" : ""}`}
                         onClick={() => setAreChildrenHidden(false)}
                     >
-                        Show replies ▼
+                        {t("forumThreadCommentsShowReplies")} ▼
                     </p>
                 </React.Fragment>
             )}

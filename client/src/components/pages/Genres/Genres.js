@@ -4,9 +4,12 @@ import "../../../assets/texts.css"
 import { IMAGES } from "./images"
 import "./Genres.css"
 import Footer from "../../Footer/Footer"
+import { useTranslation } from "react-i18next"
 
 const Genres = () => {
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
 
     const handleGenreClick = (genreId) => {
         navigate(`/comics?genre=${genreId}`)
@@ -15,7 +18,7 @@ const Genres = () => {
     return (
         <React.Fragment>
             <div className="genres">
-                <h1 className="bigger-heading">GENRES</h1>
+                <h1 className="bigger-heading">{t("genresHeading")}</h1>
                 {IMAGES.map((imageGroup) => (
                     <div key={imageGroup[0].id} className="genre-column">
                         {imageGroup.map((image) => (

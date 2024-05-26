@@ -16,8 +16,11 @@ import { MdFavorite } from "react-icons/md"
 import { LuCalendarClock } from "react-icons/lu"
 import { FaBookOpenReader } from "react-icons/fa6"
 import { LuBookOpenCheck } from "react-icons/lu"
+import { useTranslation } from "react-i18next"
 
 function Comics() {
+    const { t } = useTranslation()
+
     const { comic, rootComments, createLocalComment } = useComics()
 
     const {
@@ -114,20 +117,20 @@ function Comics() {
                     />
                     <br />
                     <Button variant="ordinary" style={{ marginTop: 10 }}>
-                        START READING
+                        {t("comicsStartReadingButton")}
                     </Button>
                 </div>
                 <div className="comics-item-info">
                     <p className="medium-heading">{comic?.title}</p>
                     <p>
-                        <b>Author</b>: {comic?.author}
+                        <b>{t("comicsAuthor")}:</b> {comic?.author}
                     </p>
                     <p>
-                        <b>Release date:</b>{" "}
+                        <b>{t("comicsDate")}:</b>{" "}
                         {moment(comic?.date).format("DD-MM-YYYY")}
                     </p>
                     <p>
-                        <b>Genres:</b>{" "}
+                        <b>{t("comicsGenres")}:</b>{" "}
                         {comic?.genres?.map(
                             (genre, index) =>
                                 genre?.genre_name +
@@ -135,7 +138,7 @@ function Comics() {
                         )}
                     </p>
                     <p>
-                        <b>Tags:</b>{" "}
+                        <b>{t("comicsTags")}:</b>{" "}
                         {comic?.tags?.map(
                             (tag, index) =>
                                 tag?.tag_name +
@@ -143,7 +146,8 @@ function Comics() {
                         )}
                     </p>
                     <p>
-                        <b>Status:</b> {comic?.current_status || ""}
+                        <b>{t("comicsStatus")}:</b>{" "}
+                        {comic?.current_status || ""}
                     </p>
                     <div className="comics-status-icons-container">
                         {statusLoading ? (
@@ -185,7 +189,7 @@ function Comics() {
                 </div>
             </div>
             <p className="medium-heading" style={{ marginTop: 70 }}>
-                Description
+                {t("comicsDescription")}
             </p>
             <p className="comics-description">{comic?.description}</p>
 
@@ -259,7 +263,7 @@ function Comics() {
                             <span className="rating-count">
                                 {count}{" "}
                                 <span className="comics-rating-votes">
-                                    votes
+                                    {t("comicsRatingVotes")}
                                 </span>
                             </span>
                         </div>
@@ -269,7 +273,7 @@ function Comics() {
 
             <div>
                 <h3 className="medium-heading" style={{ marginTop: 70 }}>
-                    Comments
+                    {t("comicsComments")}
                 </h3>
                 <div>
                     <CommentForm

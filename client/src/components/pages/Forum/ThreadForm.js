@@ -4,6 +4,7 @@ import * as yup from "yup"
 import Input from "../../Input/Input"
 import Button from "../../Button/Button"
 import "./Thread.css"
+import { useTranslation } from "react-i18next"
 
 const validationSchema = yup.object().shape({
     title: yup
@@ -27,6 +28,8 @@ function ThreadForm({
     initialDescription = "",
     initialThreadType = "",
 }) {
+    const { t } = useTranslation()
+
     const formik = useFormik({
         initialValues: {
             title: initialTitle,
@@ -50,7 +53,7 @@ function ThreadForm({
                     type="text"
                     name="title"
                     {...formik.getFieldProps("title")}
-                    placeholder="Craft a heroic title 🖋️"
+                    placeholder={`${t("forumThreadFormTitle")} 🖋️`}
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <div>{formik.errors.title}</div>
@@ -60,7 +63,7 @@ function ThreadForm({
                 <textarea
                     name="description"
                     {...formik.getFieldProps("description")}
-                    placeholder="Enter a description"
+                    placeholder={t("forumThreadFormDescription")}
                 />
                 {formik.touched.description && formik.errors.description ? (
                     <div>{formik.errors.description}</div>
@@ -71,11 +74,15 @@ function ThreadForm({
                     name="thread_type"
                     {...formik.getFieldProps("thread_type")}
                 >
-                    <option>Choose a type</option>
-                    <option value="chat">Chat</option>
-                    <option value="bug">Bug</option>
-                    <option value="suggestion">Suggestion</option>
-                    <option value="support">Support</option>
+                    <option>{t("forumThreadFormThreadType")}</option>
+                    <option value="chat">{t("forumThreadFormTypeChat")}</option>
+                    <option value="bug">{t("forumThreadFormTypeBug")}</option>
+                    <option value="suggestion">
+                        {t("forumThreadFormTypeSuggestion")}
+                    </option>
+                    <option value="support">
+                        {t("forumThreadFormTypeSupport")}
+                    </option>
                 </select>
                 {formik.touched.thread_type && formik.errors.thread_type ? (
                     <div>{formik.errors.thread_type}</div>
@@ -90,7 +97,7 @@ function ThreadForm({
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : "POST"}
+                    {loading ? "Loading..." : t("forumThreadFormPostButton")}
                 </Button>
             </form>
         </div>

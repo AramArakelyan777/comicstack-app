@@ -15,9 +15,12 @@ import "../../../assets/texts.css"
 import Footer from "../../Footer/Footer"
 import { MdCancel } from "react-icons/md"
 import { FaSearch } from "react-icons/fa"
+import { useTranslation } from "react-i18next"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
 
     const [page, setPage] = useState(1)
     const [threads, setThreads] = useState([])
@@ -88,7 +91,7 @@ export const ThreadList = () => {
                 <div className="thread-list-search-div">
                     <Input
                         variant="search"
-                        placeholder="Enter other dimensions 🌌"
+                        placeholder={`${t("forumSearchPlaceholder")} 🌌`}
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                         style={{ borderRadius: "10px 0 0 10px" }}
@@ -109,9 +112,9 @@ export const ThreadList = () => {
                     <Button
                         variant="ordinary"
                         onClick={() => setShowThreadForm(true)}
-                        style={{ marginTop: 20, marginBottom:20 }}
+                        style={{ marginTop: 20, marginBottom: 20 }}
                     >
-                        ADD A THREAD
+                        {t("forumAddAThread")}
                     </Button>
                 ) : (
                     <React.Fragment>
@@ -125,7 +128,7 @@ export const ThreadList = () => {
                     </React.Fragment>
                 )}
                 {showThreadForm ? (
-                    <div style={{marginBottom:20}}>
+                    <div style={{ marginBottom: 20 }}>
                         <ThreadForm
                             loading={formLoading}
                             error={formError}
