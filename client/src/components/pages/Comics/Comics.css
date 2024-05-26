@@ -4,7 +4,8 @@
 }
 
 .comics-container-image {
-    width: 250px;
+    width: 275px;
+    max-width: 100%;
 }
 
 .comics-description {
@@ -92,7 +93,7 @@
 }
 
 .comics-item-header {
-    width: 650px;
+    width: 700px;
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -108,7 +109,18 @@
     align-items: center;
 }
 
-@media screen and (max-width: 700px) {
+.comics-status-buttons-container {
+    margin-top: 25px;
+}
+
+.comics-status-buttons-container button {
+    margin: auto;
+    width: 200px;
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 750px) {
     .comics-item-header {
         display: block;
         width: 100%;

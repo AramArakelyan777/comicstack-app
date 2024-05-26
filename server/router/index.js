@@ -144,7 +144,7 @@ router.post(
 router.get("/status/:comicId", statusController.getStatus)
 
 router.delete(
-    "/status/:comicId",
+    "/status/:userId/:comicId",
     roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
     statusController.deleteStatus
 )

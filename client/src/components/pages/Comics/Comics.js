@@ -6,9 +6,11 @@ import { useAsyncFn } from "../../../hooks/useAsync"
 import { createComment } from "../../../services/comicComments"
 import { rateAComics, getARating } from "../../../services/rating"
 import { STARS } from "./rate-stars"
+import { BUTTONS } from "./status-buttons"
 import moment from "moment"
 import "./Comics.css"
 import Button from "../../Button/Button"
+import { setAStatus, getAStatus } from "../../../services/status"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
@@ -25,7 +27,14 @@ function Comics() {
         execute: rateAComicsFn,
     } = useAsyncFn(rateAComics)
 
+    const {
+        loading: statusLoading,
+        error: statusError,
+        execute: setAStatusFn,
+    } = useAsyncFn(setAStatus)
+
     const [selectedRating, setSelectedRating] = useState(0)
+    const [selectedStatus, setSelectedStatus] = useState("")
     const [hoveredRating, setHoveredRating] = useState(0)
 
     useEffect(() => {
@@ -36,6 +45,19 @@ function Comics() {
                 })
                 .catch((error) => {
                     setSelectedRating(0)
+                    handleRequestError(error)
+                })
+        }
+    }, [comic])
+
+    useEffect(() => {
+        if (comic) {
+            getAStatus({ comic_id: comic.comic_id })
+                .then((status) => {
+                    setSelectedStatus(status ? status?.status : "")
+                })
+                .catch((error) => {
+                    setSelectedStatus("")
                     handleRequestError(error)
                 })
         }
@@ -54,6 +76,13 @@ function Comics() {
         )
     }
 
+    const handleStatusClick = (status) => {
+        setSelectedStatus(status)
+        return setAStatusFn({ status, comic_id: comic?.comic_id }).catch(
+            handleRequestError
+        )
+    }
+
     const handleRateHover = (rating) => {
         setHoveredRating(rating)
     }
@@ -65,11 +94,17 @@ function Comics() {
     return (
         <div className="comics-container">
             <div className="comics-item-header">
-                <img
-                    className="comics-container-image"
-                    src={comic?.cover_image_url}
-                    alt="comics_cover"
-                />
+                <div>
+                    <img
+                        className="comics-container-image"
+                        src={comic?.cover_image_url}
+                        alt="comics_cover"
+                    />
+                    <br />
+                    <Button variant="ordinary" style={{ marginTop: 10 }}>
+                        START READING
+                    </Button>
+                </div>
                 <div className="comics-item-info">
                     <p className="medium-heading">{comic?.title}</p>
                     <p>
@@ -95,9 +130,25 @@ function Comics() {
                                 (index < comic?.tags.length - 1 ? ", " : "")
                         )}
                     </p>
-                    <Button variant="ordinary" style={{ marginTop: 20 }}>
-                        START READING
-                    </Button>
+                    <p>
+                        <b>Status:</b> {selectedStatus || statusError}
+                    </p>
+                    <div className="comics-status-buttons-container">
+                        {statusLoading
+                            ? "Loading..."
+                            : BUTTONS.map((button) => (
+                                  <Button
+                                      key={button.id}
+                                      variant="ordinary"
+                                      value={button.value}
+                                      onClick={(e) =>
+                                          handleStatusClick(e.target.value)
+                                      }
+                                  >
+                                      {button.text}
+                                  </Button>
+                              ))}
+                    </div>
                 </div>
             </div>
             <p className="medium-heading" style={{ marginTop: 70 }}>

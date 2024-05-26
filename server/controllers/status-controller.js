@@ -52,7 +52,7 @@ class StatusController {
             const statusResult = await pool.query(statusQuery, [userId, comicId]);
 
             if (statusResult.rows.length === 0) {
-                return res.status(404).send({ error: "Status not found" });
+                return res.status(200).send({ status: "N/A" });
             }
 
             res.json(statusResult.rows[0]);
