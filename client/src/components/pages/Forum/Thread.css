@@ -46,3 +46,16 @@
     max-width: 80%;
     margin: auto;
 }
+
+.thread-list-main-div {
+    padding: 7px;
+    margin-bottom: 50px;
+}
+
+.thread-list-search-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}

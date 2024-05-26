@@ -1,8 +1,8 @@
 import { makeRequest } from "./makeRequest"
 
-export function getThreads(page = 1, limit = 10) {
+export function getThreads(page = 1, limit = 10, search = "") {
     return makeRequest("/threads", {
-        params: { page, limit },
+        params: { page, limit, search },
     })
 }
 

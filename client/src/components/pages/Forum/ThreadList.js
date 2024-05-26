@@ -9,10 +9,12 @@ import Suggestion from "../../../assets/forumIcons/Suggestion.png"
 import ThreadForm from "./ThreadForm"
 import { handleRequestError } from "../../../context/ThreadContext"
 import Button from "../../Button/Button"
+import Input from "../../Input/Input"
 import "./Thread.css"
 import "../../../assets/texts.css"
 import Footer from "../../Footer/Footer"
 import { MdCancel } from "react-icons/md"
+import { FaSearch } from "react-icons/fa"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -23,12 +25,14 @@ export const ThreadList = () => {
     const [error, setError] = useState(null)
     const [pageCount, setPageCount] = useState(0)
     const [showThreadForm, setShowThreadForm] = useState(false)
+    const [search, setSearch] = useState("")
+    const [searchInput, setSearchInput] = useState("")
 
     useEffect(() => {
         const fetchThreads = async () => {
             try {
                 setLoading(true)
-                const response = await getThreads(page)
+                const response = await getThreads(page, 10, search)
                 setThreads(response.threads)
                 setPageCount(response.totalPages)
                 setLoading(false)
@@ -38,7 +42,7 @@ export const ThreadList = () => {
             }
         }
         fetchThreads()
-    }, [page])
+    }, [page, search])
 
     const {
         loading: formLoading,
@@ -74,9 +78,33 @@ export const ThreadList = () => {
         }
     }
 
+    const handleSearch = () => {
+        setSearch(searchInput)
+    }
+
     return (
         <React.Fragment>
-            <div style={{ padding: "7px", marginBottom: "50px" }}>
+            <div className="thread-list-main-div">
+                <div className="thread-list-search-div">
+                    <Input
+                        variant="search"
+                        placeholder="Search threads..."
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        style={{ borderRadius: "10px 0 0 10px" }}
+                    />
+                    <Button
+                        variant="ordinary"
+                        onClick={handleSearch}
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            borderRadius: "0 10px 10px 0",
+                        }}
+                    >
+                        <FaSearch size={20} />
+                    </Button>
+                </div>
                 {threads.map((thread) => (
                     <div
                         className="thread-list-container"
