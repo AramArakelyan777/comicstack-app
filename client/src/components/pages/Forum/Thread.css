@@ -3,6 +3,10 @@
     padding: 10px;
 }
 
+.thread-container svg {
+    height: 3rem;
+}
+
 .thread-form-container {
     margin-top: 50px;
 }

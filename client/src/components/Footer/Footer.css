@@ -75,6 +75,10 @@
     margin-bottom: 150px;
 }
 
+.footer svg {
+    height: 3.5rem;
+}
+
 @media screen and (max-width: 700px) {
     .footer-content {
         display: block;

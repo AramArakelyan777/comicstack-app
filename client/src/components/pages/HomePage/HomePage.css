@@ -1,3 +1,7 @@
 .homepage-container {
     padding: 10px;
 }
+
+.comics-list-item-average-rating svg {
+    height: 2rem;
+}

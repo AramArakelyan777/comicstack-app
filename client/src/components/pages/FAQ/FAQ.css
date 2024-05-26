@@ -26,15 +26,15 @@ body {
     font-size: 16px;
 }
 
-code {
+.FAQ code {
     color: #DB4947;
 }
 
-span {
+.FAQ span {
     font-weight: 600;
 }
 
-svg {
+.FAQ svg {
     height: 3rem !important;
     font-size: 1.7rem !important;
 }
@@ -44,11 +44,11 @@ svg {
         max-width: 85%;
     }
 
-    span {
+    .FAQ span {
         font-size: 14px;
     }
 
-    svg {
+    .FAQ svg {
         font-size: 0rem !important;
     }
 }

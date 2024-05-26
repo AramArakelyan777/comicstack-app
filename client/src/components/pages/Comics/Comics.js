@@ -6,11 +6,16 @@ import { useAsyncFn } from "../../../hooks/useAsync"
 import { createComment } from "../../../services/comicComments"
 import { rateAComics, getARating } from "../../../services/rating"
 import { STARS } from "./rate-stars"
-import { BUTTONS } from "./status-buttons"
 import moment from "moment"
+import tippy from "tippy.js"
+import "tippy.js/dist/tippy.css"
 import "./Comics.css"
 import Button from "../../Button/Button"
 import { setAStatus, getAStatus } from "../../../services/status"
+import { MdFavorite } from "react-icons/md"
+import { LuCalendarClock } from "react-icons/lu"
+import { FaBookOpenReader } from "react-icons/fa6"
+import { LuBookOpenCheck } from "react-icons/lu"
 
 function Comics() {
     const { comic, rootComments, createLocalComment } = useComics()
@@ -62,6 +67,13 @@ function Comics() {
                 })
         }
     }, [comic])
+
+    useEffect(() => {
+        tippy(".icon", {
+            content: (reference) => reference.getAttribute("data-tooltip"),
+            arrow: false,
+        })
+    }, [statusLoading])
 
     function onCommentCreate(message) {
         return createCommentFn({ comic_id: comic.comic_id, message })
@@ -133,21 +145,41 @@ function Comics() {
                     <p>
                         <b>Status:</b> {comic?.current_status || ""}
                     </p>
-                    <div className="comics-status-buttons-container">
-                        {statusLoading
-                            ? "Loading..."
-                            : BUTTONS.map((button) => (
-                                  <Button
-                                      key={button.id}
-                                      variant="ordinary"
-                                      value={button.value}
-                                      onClick={(e) =>
-                                          handleStatusClick(e.target.value)
-                                      }
-                                  >
-                                      {button.text}
-                                  </Button>
-                              ))}
+                    <div className="comics-status-icons-container">
+                        {statusLoading ? (
+                            "Loading..."
+                        ) : (
+                            <React.Fragment>
+                                <MdFavorite
+                                    className={`icon ${selectedStatus === "favourite" ? "selected" : ""}`}
+                                    data-tooltip="Favourite"
+                                    size={30}
+                                    onClick={() =>
+                                        handleStatusClick("favourite")
+                                    }
+                                />
+                                <LuCalendarClock
+                                    className={`icon ${selectedStatus === "in plans" ? "selected" : ""}`}
+                                    data-tooltip="In Plans"
+                                    size={30}
+                                    onClick={() => {
+                                        handleStatusClick("in plans")
+                                    }}
+                                />
+                                <FaBookOpenReader
+                                    className={`icon ${selectedStatus === "reading" ? "selected" : ""}`}
+                                    data-tooltip="Reading"
+                                    size={30}
+                                    onClick={() => handleStatusClick("reading")}
+                                />
+                                <LuBookOpenCheck
+                                    className={`icon ${selectedStatus === "read" ? "selected" : ""}`}
+                                    data-tooltip="Read"
+                                    size={30}
+                                    onClick={() => handleStatusClick("read")}
+                                />
+                            </React.Fragment>
+                        )}
                         {statusError ? <div>{statusError}</div> : null}
                     </div>
                 </div>
