@@ -39,6 +39,10 @@ body {
     font-size: 1.7rem !important;
 }
 
+.FAQ {
+    word-wrap: break-word !important;
+}
+
 @media screen and (max-width: 800px) {
     .accordion {
         max-width: 85%;

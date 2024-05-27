@@ -10,6 +10,7 @@ import "../../assets/texts.css"
 import Button from "../Button/Button"
 import Input from "../Input/Input"
 import "./Footer.css"
+import { useTranslation } from "react-i18next"
 
 const onSubmit = (values, onSubmitProps) => {
     console.log("Form values", values)
@@ -25,6 +26,8 @@ const validationSchema = yup.object().shape({
 })
 
 function Footer() {
+const { t } = useTranslation()
+
     const formik = useFormik({
         initialValues: { subscribeEmail: "" },
         onSubmit,
@@ -38,7 +41,7 @@ function Footer() {
             <img className="darkLogo" src={logo} alt="logo" />
             <div className="footer-content">
                 <div className="subscibe">
-                    <p>Subscribe to get our newsletter!</p>
+                    <p>{t("footerSubText")}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div>
                             <Input
@@ -47,7 +50,7 @@ function Footer() {
                                 id="subscribeEmail"
                                 {...formik.getFieldProps("subscribeEmail")}
                                 variant="small"
-                                placeholder="Be Part of the Action! 📧"
+                                placeholder={`${t("footerSubPlaceholder")} 📧`}
                             />
                             {formik.touched.subscribeEmail &&
                             formik.errors.subscribeEmail ? (
@@ -62,23 +65,23 @@ function Footer() {
                             id="subscribeEmail"
                             disabled={!formik.isValid}
                         >
-                            Subscribe
+                            {t("footerSubButton")}
                         </Button>
                     </form>
-                    <p>Please help us keep ComicStack free!</p>
-                    <Button variant="donate">Buy us lots of coffee ☕</Button>
+                    <p>{t("footerDonateText")}</p>
+                    <Button variant="donate">{t("footerDonateButton")} ☕</Button>
                 </div>
                 <div className="info">
                     <div className="location">
                         <CiLocationOn size={25} />
-                        <span>Location</span>
+                        <span>{t("footerInfoLocationText")}</span>
                     </div>
                     <span className="coloredText">
-                        Azatutyan Avenue, Yerevan
+                    {t("footerInfoLocation")}
                     </span>
                     <div className="contact">
                         <IoIosMail size={25} />
-                        <span>Contact Us</span>
+                        <span>{t("footerInfoContactText")}</span>
                     </div>
                     <span className="coloredText">
                         info.comicstack@gmail.com
@@ -92,17 +95,13 @@ function Footer() {
                 </div>
             </div>
             <div className="policies">
-                <p>Privacy Policy</p>
-                <p>User Agreement</p>
-                <p>Cookie Statement</p>
-                <p>Terms of Use</p>
-                <p>Advertise With Us</p>
+                <p>{t("footerPagePrivacy")}</p>
+                <p>{t("footerPageAgreement")}</p>
+                <p>{t("footerPageCookie")}</p>
+                <p>{t("footerPageTerms")}</p>
             </div>
             <p className="footer-text">
-                {`${new Date().getFullYear()}`} ComicStack ©. All Rights
-                Reserved Disclaimer: This site does not store any files on its
-                server. All contents are provided by non-affiliated third
-                parties.
+                {`${new Date().getFullYear()}`} {t("footerDisclaimer")}
             </p>
         </footer>
     )
