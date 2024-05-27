@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { AuthorizationContext } from "../../../index"
 import Button from "../../Button/Button"
 import { useNavigate } from "react-router-dom"
@@ -7,14 +7,10 @@ function User() {
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (localStorage.getItem("bearer")) store.chechAuth()
-    }, [store])
-
     return (
         <div>
             {store.isAuth ? (
-                <p>{`Hello,  ${store.user.username}!`}</p>
+                <p>{`Hello, ${store.user.username}!`}</p>
             ) : (
                 <p>Please authorize</p>
             )}

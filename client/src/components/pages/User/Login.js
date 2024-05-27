@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import login from "../../../assets/images/authorization/Login.png"
@@ -49,6 +49,12 @@ const Login = () => {
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (store.isAuth) {
+            navigate("/user")
+        }
+    }, [store.isAuth, navigate])
+
     const onSubmit = async (values, onSubmitProps) => {
         await store.login(
             values.emailOrUsername,
@@ -57,8 +63,6 @@ const Login = () => {
         )
 
         onSubmitProps.resetForm()
-
-        navigate("/user")
     }
 
     const navigateToRegister = () => {

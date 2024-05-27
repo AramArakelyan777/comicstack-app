@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 import "./App.css"
 import FAQ from "./components/pages/FAQ/FAQ"
@@ -16,8 +16,22 @@ import { ThreadList } from "./components/pages/Forum/ThreadList"
 import ComicsContextProvider from "./context/ComicsContext"
 import ThreadContextProvider from "./context/ThreadContext"
 import { observer } from "mobx-react-lite"
+import { AuthorizationContext } from "./index"
+import PrivateRoute from "./components/pages/User/PrivateRoute"
 
 function App() {
+    const { store } = useContext(AuthorizationContext)
+
+    useEffect(() => {
+        if (localStorage.getItem("bearer")) {
+            store.checkAuth()
+        }
+    }, [store])
+
+    if (store.isLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <div className="App">
             <Routes>
@@ -27,7 +41,14 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/user" element={<User />} />
+                <Route
+                    path="/user"
+                    element={
+                        <PrivateRoute>
+                            <User />
+                        </PrivateRoute>
+                    }
+                />
                 <Route path="/comics" element={<ComicsList />} />
                 <Route
                     path="/comics/:comic_id"

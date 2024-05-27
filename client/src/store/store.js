@@ -29,6 +29,7 @@ export default class Store {
     }
 
     async login(username, email, password) {
+        this.setLoading(true)
         try {
             const response = await AuthService.login(username, email, password)
             localStorage.setItem("bearer", response.data.accessToken)
@@ -37,10 +38,13 @@ export default class Store {
             this.error = ""
         } catch (errorMessage) {
             this.error = errorMessage || "Error"
+        } finally {
+            this.setLoading(false)
         }
     }
 
     async registration(username, email, password) {
+        this.setLoading(true)
         try {
             const response = await AuthService.registration(
                 username,
@@ -53,10 +57,13 @@ export default class Store {
             this.error = ""
         } catch (errorMessage) {
             this.error = errorMessage || "Error"
+        } finally {
+            this.setLoading(false)
         }
     }
 
     async logout() {
+        this.setLoading(true)
         try {
             await AuthService.logout()
             localStorage.removeItem("bearer")
@@ -65,10 +72,12 @@ export default class Store {
             this.error = ""
         } catch (errorMessage) {
             this.error = errorMessage || "Error"
+        } finally {
+            this.setLoading(false)
         }
     }
 
-    async chechAuth() {
+    async checkAuth() {
         this.setLoading(true)
         try {
             const response = await axios.get(

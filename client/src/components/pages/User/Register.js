@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useFormik } from "formik"
 import * as yup from "yup"
 import register from "../../../assets/images/authorization/Register.png"
@@ -45,8 +45,8 @@ const validationSchema = yup.object().shape({
         .required("Required"),
     confirmPassword: yup
         .string()
-        .required("Required")
-        .oneOf([yup.ref("password"), null], "Passwords must match"),
+        .oneOf([yup.ref("password"), null], "Passwords must match")
+        .required("Required"),
 })
 
 const Register = () => {
@@ -55,12 +55,16 @@ const Register = () => {
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (store.isAuth) {
+            navigate("/user")
+        }
+    }, [store.isAuth, navigate])
+
     const onSubmit = async (values, onSubmitProps) => {
         await store.registration(values.username, values.email, values.password)
 
         onSubmitProps.resetForm()
-
-        navigate("/user")
     }
 
     const navigateToLogin = () => {
@@ -78,11 +82,11 @@ const Register = () => {
     return (
         <div className="register">
             <img className="registerImage" src={register} alt="register" />
-            <form onSubmit={formik.handleSubmit}>
-                {store.error ? (
-                    <div className="error small-text">{store.error}</div>
-                ) : null}
+            {store.error ? (
+                <div className="error small-text">{store.error}</div>
+            ) : null}
 
+            <form onSubmit={formik.handleSubmit}>
                 <div className="form-control">
                     <div>
                         <label htmlFor="email">{t("registerEmail")}</label>
@@ -171,14 +175,16 @@ const Register = () => {
                     disabled={!formik.isValid}
                     variant="ordinary"
                 >
-                    
                     {t("registerButton")}
                 </Button>
             </form>
             <div className="registerLinks">
                 <div className="mainLink" onClick={() => navigateToLogin()}>
                     <span>{t("registerLinkAlreadyHave")}</span>
-                    <span className="coloredLink"> {t("registerLinkAccount")}</span>
+                    <span className="coloredLink">
+                        {" "}
+                        {t("registerLinkAccount")}
+                    </span>
                 </div>
             </div>
         </div>

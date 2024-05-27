@@ -74,7 +74,7 @@ function Comics() {
     useEffect(() => {
         tippy(".icon", {
             content: (reference) => reference.getAttribute("data-tooltip"),
-            arrow: false,
+            arrow: true,
         })
     }, [statusLoading])
 
