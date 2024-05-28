@@ -227,7 +227,7 @@ class UserService {
 					Bucket: bucketName,
 					Key: user.avatar_url,
 				}),
-				{ expiresIn: 6 * 24 * 60 * 60 } // URL valid for 1 hour
+				{ expiresIn: 6 * 24 * 60 * 60 } // URL valid for 6 days
 			)
 		}
 
