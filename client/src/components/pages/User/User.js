@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AuthorizationContext } from "../../../index"
 import Button from "../../Button/Button"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, NavLink } from "react-router-dom"
 import { getAUser } from "../../../services/user-service"
 import { useAsyncFn } from "../../../hooks/useAsync"
+import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
+import { useTranslation } from "react-i18next"
 
 function User() {
+    const { t } = useTranslation()
+
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState(null)
@@ -37,19 +41,29 @@ function User() {
 
     if (userLoading) return <div>Loading...</div>
 
+    const groupedComics = userDetails?.statuses?.reduce((acc, status) => {
+        const { status: comicStatus, ...comicDetails } = status
+        if (!acc[comicStatus]) {
+            acc[comicStatus] = []
+        }
+        acc[comicStatus].push(comicDetails)
+        return acc
+    }, {})
+
     return (
         <div className="user-page-container">
             {store.isAuth && userDetails ? (
                 <React.Fragment>
-                    <h1 className="bigger-heading">{`Hello, ${userDetails.username}!`}</h1>
+                    <h1
+                        style={{ wordBreak: "break-all" }}
+                        className="bigger-heading"
+                    >{`Hello, ${userDetails.username}!`}</h1>
 
-                    {userDetails.avatar_url && (
-                        <img
-                            src={userDetails.avatar_url}
-                            alt="avatar"
-                            className="user-page-avatar"
-                        />
-                    )}
+                    <img
+                        src={userDetails.avatar_url || unknownAvatar}
+                        alt="avatar"
+                        className="user-page-avatar"
+                    />
 
                     <p>{userDetails.email}</p>
 
@@ -64,15 +78,38 @@ function User() {
                         {new Date(userDetails.created_at).toLocaleDateString()}
                     </p>
 
-                    <h2 className="bigger-heading user-page-statuses">
+                    <h2 className="bigger-heading user-page-statuses-heading">
                         READLIST
                     </h2>
 
-                    {userDetails.statuses.map((status) => (
-                        <div key={status.comic_id}>
-                            {`Comic ID: ${status.comic_id}, Status: ${status.status}`}
-                        </div>
-                    ))}
+                    {groupedComics ? (
+                        Object.entries(groupedComics).map(
+                            ([status, comics]) => (
+                                <div key={status}>
+                                    <h3 className="medium-heading">{status}</h3>
+                                    {comics.map((comic) => (
+                                        <div
+                                            className="user-page-status"
+                                            key={comic?.comic_id}
+                                        >
+                                            <NavLink
+                                                to={`/comics/${comic?.comic_id}`}
+                                            >
+                                                <img
+                                                    src={comic?.cover_image_url}
+                                                    alt={comic?.title}
+                                                    className="comics-link-image"
+                                                />
+                                                <p>{comic?.title}</p>
+                                            </NavLink>
+                                        </div>
+                                    ))}
+                                </div>
+                            )
+                        )
+                    ) : (
+                        <div>{t("comicsFilterNoResults")}</div>
+                    )}
                 </React.Fragment>
             ) : (
                 <div>{userError}</div>

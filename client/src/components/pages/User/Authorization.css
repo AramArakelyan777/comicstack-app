@@ -50,8 +50,18 @@
     max-width: 100%;
 }
 
-.user-page-statuses {
-    margin-top: 70px;
+.user-page-statuses-heading {
+    margin-top: 100px;
+}
+
+.user-page-status {
+    display: inline-block;
+    margin: 10px;
+}
+
+.user-page-status a {
+    color: white;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 540px) {
