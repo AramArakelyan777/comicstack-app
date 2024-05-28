@@ -23,14 +23,7 @@ class ComicService {
 				}
 				await s3Client.send(new PutObjectCommand(uploadParams))
 
-				const imageUrl = await getSignedUrl(
-					s3Client,
-					new GetObjectCommand({
-						Bucket: bucketName,
-						Key: `comic_pages/${fileName}`,
-					}),
-					{ expiresIn: 6 * 24 * 60 * 60 } // URL valid for 6 days
-				)
+                const imageUrl = "https://d3dnlr2v42ud5k.cloudfront.net/comic_pages/" + fileName
 
 				// Save to database
 				const query =

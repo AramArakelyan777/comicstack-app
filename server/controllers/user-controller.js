@@ -171,15 +171,8 @@ class UserController {
 
 			const data = await s3Client.send(new PutObjectCommand(uploadParams))
 			// console.log("S3 upload response:", data)
-
-			const imageUrl = await getSignedUrl(
-				s3Client,
-				new GetObjectCommand({
-					Bucket: bucketName,
-					Key: `profile_pictures/${fileName}`,
-				}),
-				{ expiresIn: 6 * 24 * 60 * 60 } // URL valid for 6 days
-			)
+			const imageUrl = "https://d3dnlr2v42ud5k.cloudfront.net/profile_pictures/" + fileName
+		
 
 			await userService.updateProfilePicture(userId, imageUrl)
 
