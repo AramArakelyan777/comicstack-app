@@ -6,7 +6,6 @@ import { useAsyncFn } from "../../../hooks/useAsync"
 import { createComment } from "../../../services/comicComments"
 import { rateAComics, getARating } from "../../../services/rating"
 import { STARS } from "./rate-stars"
-import moment from "moment"
 import tippy from "tippy.js"
 import "tippy.js/dist/tippy.css"
 import "./Comics.css"
@@ -127,7 +126,7 @@ function Comics() {
                     </p>
                     <p>
                         <b>{t("comicsDate")}:</b>{" "}
-                        {moment(comic?.date).format("DD-MM-YYYY")}
+                        {new Date(comic?.date).toLocaleDateString()}
                     </p>
                     <p>
                         <b>{t("comicsGenres")}:</b>{" "}

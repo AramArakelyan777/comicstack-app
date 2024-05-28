@@ -3,16 +3,23 @@ import { AuthorizationContext } from "../../../index"
 import Button from "../../Button/Button"
 import { useNavigate } from "react-router-dom"
 import { getAUser } from "../../../services/user-service"
+import { useAsyncFn } from "../../../hooks/useAsync"
 
 function User() {
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState(null)
 
+    const {
+        loading: userLoading,
+        error: userError,
+        execute: getAUserFn,
+    } = useAsyncFn(getAUser)
+
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const data = await getAUser()
+                const data = await getAUserFn()
                 setUserDetails(data)
             } catch (error) {
                 console.error("Error fetching user details", error)
@@ -22,20 +29,26 @@ function User() {
         if (store.isAuth) {
             fetchUserDetails()
         }
-    }, [store.isAuth])
+    }, [store.isAuth, getAUserFn])
 
-    if (!store.isAuth) {
+    if (!store.isAuth || store.isLoading) {
         return <p>Please authorize</p>
     }
 
+    if (userLoading) return <div>Loading...</div>
+
     return (
         <div className="user-page-container">
-            {store.isAuth && userDetails && (
+            {store.isAuth && userDetails ? (
                 <React.Fragment>
                     <h1 className="bigger-heading">{`Hello, ${userDetails.username}!`}</h1>
 
                     {userDetails.avatar_url && (
-                        <img src={userDetails.avatar_url} alt="avatar" className="user-page-avatar" />
+                        <img
+                            src={userDetails.avatar_url}
+                            alt="avatar"
+                            className="user-page-avatar"
+                        />
                     )}
 
                     <p>{userDetails.email}</p>
@@ -51,7 +64,9 @@ function User() {
                         {new Date(userDetails.created_at).toLocaleDateString()}
                     </p>
 
-                    <h2 className="medium-heading user-page-statuses">Your comics statuses</h2>
+                    <h2 className="bigger-heading user-page-statuses">
+                        READLIST
+                    </h2>
 
                     {userDetails.statuses.map((status) => (
                         <div key={status.comic_id}>
@@ -59,6 +74,8 @@ function User() {
                         </div>
                     ))}
                 </React.Fragment>
+            ) : (
+                <div>{userError}</div>
             )}
 
             <Button
