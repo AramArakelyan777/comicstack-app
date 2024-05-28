@@ -237,7 +237,7 @@ class UserService {
 	async getUserById(userId) {
         try {
             const userQuery = `
-                SELECT user_id, username, email, current_roles, avatar_url, is_activated, created_at
+                SELECT user_id, username, email, avatar_url, is_activated, created_at
                 FROM users
                 WHERE user_id = $1;
             `;

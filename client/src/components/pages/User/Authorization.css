@@ -39,6 +39,21 @@
     color: #db4947
 }
 
+.user-page-container {
+    padding: 10px;
+    margin-bottom: 200px;
+}
+
+.user-page-avatar {
+    width: 300px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+.user-page-statuses {
+    margin-top: 70px;
+}
+
 @media screen and (max-width: 540px) {
     .loginLinks {
         max-width: 90%;
