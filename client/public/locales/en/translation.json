@@ -48,6 +48,7 @@
     "loginLinkPassword": "password?",
     "loginLinkCreate": "Create",
     "loginLinkAccount": "an account!",
+    "logoutButton": "LOG OUT",
     "registerEmail": "Email",
     "registerUsername": "Username",
     "registerEmailPlaceholder": "Unleash your email heroically!",
@@ -88,5 +89,8 @@
     "footerPageAgreement": "User Agreement",
     "footerPageCookie": "Cookie Statement",
     "footerPageTerms": "Terms of Use",
-    "footerDisclaimer": "ComicStack ©. All Rights Reserved. Disclaimer: This site does not store any files on its server. All contents are provided by non-affiliated third parties."
+    "footerDisclaimer": "ComicStack ©. All Rights Reserved. Disclaimer: This site does not store any files on its server. All contents are provided by non-affiliated third parties.",
+    "userPageGreeting": "Hello, {{username}}!",
+    "userPageMemberSince": "Member since",
+    "userPageReadlist": "READLIST"
 }

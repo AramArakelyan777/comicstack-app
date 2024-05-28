@@ -48,6 +48,7 @@
     "loginLinkPassword": "գաղտնաբա՞ռը",
     "loginLinkCreate": "Ստեղծել",
     "loginLinkAccount": "հաշիվ",
+    "logoutButton": "ԴՈՒՐՍ ԳԱԼ",
     "registerEmail": "Էլ․ փոստ",
     "registerUsername": "Օգտանուն",
     "registerEmailPlaceholder": "Հերոսաբար բացահայտեք ձեր էլ. փոստը",
@@ -88,5 +89,8 @@
     "footerPageAgreement": "Օգտագործողի պայմանագիր",
     "footerPageCookie": "Cookie հայտարարություն",
     "footerPageTerms": "Օգտվելու կանոններ",
-    "footerDisclaimer": "ComicStack ©: Բոլոր իրավունքները պաշտպանված են: Հրաժարում. այս կայքը որևէ ֆայլ չի պահում իր սերվերում: Ամբողջ բովանդակությունը տրամադրվում է ոչ փոխկապակցված երրորդ անձանց կողմից:"
+    "footerDisclaimer": "ComicStack ©: Բոլոր իրավունքները պաշտպանված են: Հրաժարում. այս կայքը որևէ ֆայլ չի պահում իր սերվերում: Ամբողջ բովանդակությունը տրամադրվում է ոչ փոխկապակցված երրորդ անձանց կողմից:",
+    "userPageGreeting": "ԲԱՐԵ՛Վ, {{username}}",
+    "userPageMemberSince": "Անդամակցման ամսաթիվ",
+    "userPageReadlist": "ՊԱՀՎԱԾ ԿՈՄԻՔՆԵՐ"
 }

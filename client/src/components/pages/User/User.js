@@ -50,14 +50,33 @@ function User() {
         return acc
     }, {})
 
+    const localisedStatus = (status) => {
+        switch (status) {
+            case "in plans":
+                return t("comicsStatusInPlans")
+            case "reading":
+                return t("comicsStatusReading")
+            case "read":
+                return t("comicsStatusRead")
+            case "favourite":
+                return t("comicsStatusFavorite")
+            default:
+                return null
+        }
+    }
+
     return (
         <div className="user-page-container">
             {store.isAuth && userDetails ? (
                 <React.Fragment>
                     <h1
-                        style={{ wordBreak: "break-all" }}
+                        style={{ wordWrap: "break-word" }}
                         className="bigger-heading"
-                    >{`Hello, ${userDetails.username}!`}</h1>
+                    >
+                        {t("userPageGreeting", {
+                            username: userDetails?.username,
+                        })}
+                    </h1>
 
                     <img
                         src={userDetails.avatar_url || unknownAvatar}
@@ -74,19 +93,20 @@ function User() {
                     </p>
 
                     <p>
-                        Member since:{" "}
+                        {t("userPageMemberSince")}:{" "}
                         {new Date(userDetails.created_at).toLocaleDateString()}
                     </p>
 
                     <h2 className="bigger-heading user-page-statuses-heading">
-                        READLIST
+                        {t("userPageReadlist")}
                     </h2>
-
-                    {groupedComics ? (
+                    {Object.keys(groupedComics).length > 0 ? (
                         Object.entries(groupedComics).map(
                             ([status, comics]) => (
                                 <div key={status}>
-                                    <h3 className="medium-heading">{status}</h3>
+                                    <h3 className="medium-heading">
+                                        {localisedStatus(status)}
+                                    </h3>
                                     {comics.map((comic) => (
                                         <div
                                             className="user-page-status"
@@ -123,7 +143,7 @@ function User() {
                 }}
                 style={{ marginTop: 30 }}
             >
-                LOG OUT
+                {t("logoutButton")}
             </Button>
         </div>
     )

@@ -271,7 +271,7 @@ function Comics() {
             </div>
 
             <div>
-                <h3 className="medium-heading" style={{ marginTop: 70 }}>
+                <h3 className="medium-heading" style={{ marginTop: 70, wordBreak: "break-word" }}>
                     {t("comicsComments")}
                 </h3>
                 <div>

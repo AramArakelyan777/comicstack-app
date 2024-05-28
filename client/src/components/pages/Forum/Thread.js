@@ -148,7 +148,10 @@ function Thread() {
                 {deleteError ? <div>{deleteError}</div> : null}
             </IconContext.Provider>
             <div>
-                <h3 className="medium-heading" style={{ marginTop: 70 }}>
+                <h3
+                    className="medium-heading"
+                    style={{ marginTop: 70, wordBreak: "break-word" }}
+                >
                     {t("forumThreadCommentHeading")}
                 </h3>
                 <div>
