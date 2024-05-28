@@ -5,6 +5,7 @@ const threadController = require("../service/t_comment-service")
 const filterController = require("../controllers/filter-controller")
 const ratingController = require("../controllers/rating-controller")
 const statusController = require("../controllers/status-controller")
+const comicController = require("../controllers/comic-controller")
 const router = new Router()
 const { body } = require("express-validator")
 const roleMiddleware = require("../middlewares/role-middleware")
@@ -38,6 +39,10 @@ router.get("/comics", commentController.getAllComics)
 router.get("/comics/:comic_id", commentController.getComic)
 router.get("/top-comics", commentController.getTopComics)
 router.get("/popular-comics", commentController.getPopularComics)
+
+//Comics Page Routes
+router.post('/comics/:comicId/pages', uploadMiddleware.array("pages"), comicController.uploadComicPages);
+router.get('/comics/:comicId/pages', comicController.getComicPages);
 
 // Comments
 router.post(
@@ -148,13 +153,6 @@ router.delete(
     roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
     statusController.deleteStatus
 )
-
-// router.post(
-// 	"/comics/upload",
-// 	uploadMiddleware.single("file"),
-// 	comicController.uploadComicPage
-// )
-// router.get("/comics/:comicId/pages", comicController.getComicPages)
 
 // New filter routes
 router.get("/comics/genre/:genre_id", filterController.filterComicsByGenre)
