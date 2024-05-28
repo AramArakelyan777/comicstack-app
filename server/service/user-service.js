@@ -214,22 +214,15 @@ class UserService {
         }
     }
 
-    async updateProfilePicture(userId, imageUrl) {
-        const query = "UPDATE users SET avatar_url = $1 WHERE user_id = $2"
-        const values = [imageUrl, userId]
-        const { rows } = await pool.query(query, values)
-        const user = rows[0]
-
-        if (user && user.avatar_url) {
-            user.avatar_url = await getSignedUrl(
-                s3Client,
-                new GetObjectCommand({
-                    Bucket: bucketName,
-                    Key: user.avatar_url,
-                }),
-                { expiresIn: 6 * 24 * 60 * 60 } // URL valid for 6 days
-            )
-        }
+	async updateProfilePicture(userId, imageUrl) {
+		const query = "UPDATE users SET avatar_url = $1 WHERE user_id = $2"
+		const values = [imageUrl, userId]
+        const { rows } = await pool.query(query, values);
+        const user = rows[0];
+    
+		if (user && user.avatar_url) {
+			user.avatar_url = "https://d3dnlr2v42ud5k.cloudfront.net/profile_pictures/"
+		}
 
         return user
     }
