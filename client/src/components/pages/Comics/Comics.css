@@ -132,6 +132,16 @@
     color: white;
 }
 
+.comics-page-container {
+    margin-bottom: 150px;
+}
+
+.comics-page-image {
+    width: 1000px;
+    max-width: 90%;
+    margin-bottom: 30px;
+}
+
 @media screen and (max-width: 750px) {
     .comics-item-header {
         display: block;

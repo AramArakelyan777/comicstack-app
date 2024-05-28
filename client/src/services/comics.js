@@ -15,3 +15,7 @@ export function getTopComics() {
 export function getPopularComics() {
     return makeRequest("/popular-comics")
 }
+
+export function getComicPages(comic_id) {
+    return makeRequest(`/comics/${comic_id}/pages`)
+}

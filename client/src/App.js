@@ -18,6 +18,7 @@ import ThreadContextProvider from "./context/ThreadContext"
 import { observer } from "mobx-react-lite"
 import { AuthorizationContext } from "./index"
 import PrivateRoute from "./components/pages/User/PrivateRoute"
+import ComicsPages from "./components/pages/Comics/ComicsPages"
 
 function App() {
     const { store } = useContext(AuthorizationContext)
@@ -57,6 +58,10 @@ function App() {
                             <Comics />
                         </ComicsContextProvider>
                     }
+                />
+                <Route
+                    path="/comics/:comic_id/pages"
+                    element={<ComicsPages />}
                 />
                 <Route path="/threads" element={<ThreadList />} />
                 <Route

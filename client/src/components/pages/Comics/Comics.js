@@ -16,8 +16,10 @@ import { LuCalendarClock } from "react-icons/lu"
 import { FaBookOpenReader } from "react-icons/fa6"
 import { LuBookOpenCheck } from "react-icons/lu"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 function Comics() {
+    const navigate = useNavigate()
     const { t } = useTranslation()
 
     const { comic, rootComments, createLocalComment } = useComics()
@@ -115,7 +117,11 @@ function Comics() {
                         alt="comics_cover"
                     />
                     <br />
-                    <Button variant="ordinary" style={{ marginTop: 10 }}>
+                    <Button
+                        variant="ordinary"
+                        style={{ marginTop: 10 }}
+                        onClick={() => navigate("pages")}
+                    >
                         {t("comicsStartReadingButton")}
                     </Button>
                 </div>
@@ -271,7 +277,10 @@ function Comics() {
             </div>
 
             <div>
-                <h3 className="medium-heading" style={{ marginTop: 70, wordBreak: "break-word" }}>
+                <h3
+                    className="medium-heading"
+                    style={{ marginTop: 70, wordBreak: "break-word" }}
+                >
                     {t("comicsComments")}
                 </h3>
                 <div>
