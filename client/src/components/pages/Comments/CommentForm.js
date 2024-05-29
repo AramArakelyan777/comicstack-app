@@ -9,7 +9,7 @@ const validationSchema = yup.object().shape({
         .string()
         .required("Required")
         .min(3, "The comment is too short")
-        .max(250, "The comment is too long"),
+        .max(2500, "The comment is too long"),
 })
 
 function CommentForm({
