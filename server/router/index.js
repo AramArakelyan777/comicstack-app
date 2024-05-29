@@ -13,10 +13,10 @@ const authMiddleware = require("../middlewares/auth-middleware")
 const uploadMiddleware = require("../middlewares/upload-middleware")
 
 router.post(
-    "/registration",
-    body("email").isEmail(),
-    body("password").isLength({ min: 6, max: 20 }),
-    userController.registration
+	"/registration",
+	body("email").isEmail(),
+	body("password").isLength({ min: 6, max: 20 }),
+	userController.registration
 )
 
 router.post("/login", userController.login)
@@ -26,11 +26,26 @@ router.get("/refresh", userController.refresh)
 router.post("/block/:id", roleMiddleware(["ADMIN"]), userController.blockUser)
 router.get("/users", authMiddleware, userController.getUsers)
 router.get("/user", userController.getUser)
+router.post(
+	"/user/change-username",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	userController.changeUsername
+)
+router.post(
+	"/user/change-password",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	userController.changePassword
+)
+router.delete(
+	"/user/delete-account",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	userController.deleteAccount
+)
 
 router.post(
-    "/user/profile-picture",
-    uploadMiddleware.single("profilePicture"),
-    userController.uploadProfilePicture
+	"/user/profile-picture",
+	uploadMiddleware.single("profilePicture"),
+	userController.uploadProfilePicture
 )
 router.delete("/user/profile-picture", userController.deleteProfilePicture)
 
@@ -41,117 +56,121 @@ router.get("/top-comics", commentController.getTopComics)
 router.get("/popular-comics", commentController.getPopularComics)
 
 //Comics Page Routes
-router.post('/comics/:comicId/pages', uploadMiddleware.array("pages"), comicController.uploadComicPages);
-router.get('/comics/:comicId/pages', comicController.getComicPages);
+router.post(
+	"/comics/:comicId/pages",
+	uploadMiddleware.array("pages"),
+	comicController.uploadComicPages
+)
+router.get("/comics/:comicId/pages", comicController.getComicPages)
 
 // Comments
 router.post(
-    "/comics/:comic_id/comments",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    commentController.createComment
+	"/comics/:comic_id/comments",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	commentController.createComment
 )
 
 router.put(
-    "/comics/:comic_id/comments/:comment_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    commentController.updateComment
+	"/comics/:comic_id/comments/:comment_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	commentController.updateComment
 )
 
 router.delete(
-    "/comics/:comic_id/comments/:comment_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    commentController.deleteComment
+	"/comics/:comic_id/comments/:comment_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	commentController.deleteComment
 )
 
 router.post(
-    "/comics/:comic_id/comments/:comment_id/like",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    commentController.likeComment
+	"/comics/:comic_id/comments/:comment_id/like",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	commentController.likeComment
 )
 
 router.post(
-    "/comics/:comic_id/comments/:comment_id/unlike",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    commentController.unlikeComment
+	"/comics/:comic_id/comments/:comment_id/unlike",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	commentController.unlikeComment
 )
 
 router.post(
-    "/rating/:comicId",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    ratingController.addRating
+	"/rating/:comicId",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	ratingController.addRating
 )
 
 router.get("/rating/:comicId", ratingController.getRating)
 
 router.delete(
-    "/rating/:userId/:comicId",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    ratingController.deleteRating
+	"/rating/:userId/:comicId",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	ratingController.deleteRating
 )
 
 //Threads
 router.get("/threads", threadController.getAllThreadsWithComments)
 router.get("/threads/:thread_id", threadController.getThreadWithComments)
 router.post(
-    "/threads",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    threadController.createThread
+	"/threads",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	threadController.createThread
 )
 router.put(
-    "/threads/:thread_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    threadController.updateThread
+	"/threads/:thread_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	threadController.updateThread
 )
 router.delete(
-    "/threads/:thread_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    threadController.deleteThread
+	"/threads/:thread_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	threadController.deleteThread
 )
 
 //Thread Comments
 router.post(
-    "/threads/:thread_id/comments",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    threadController.createThreadComment
+	"/threads/:thread_id/comments",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	threadController.createThreadComment
 )
 
 router.put(
-    "/threads/:thread_id/comments/:comment_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    commentController.updateComment
+	"/threads/:thread_id/comments/:comment_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	commentController.updateComment
 )
 
 router.delete(
-    "/threads/:thread_id/comments/:comment_id",
-    roleMiddleware(["ADMIN", "MODERATOR"]),
-    commentController.deleteComment
+	"/threads/:thread_id/comments/:comment_id",
+	roleMiddleware(["ADMIN", "MODERATOR"]),
+	commentController.deleteComment
 )
 
 router.post(
-    "/threads/:thread_id/comments/:comment_id/like",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    commentController.likeComment
+	"/threads/:thread_id/comments/:comment_id/like",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	commentController.likeComment
 )
 
 router.post(
-    "/threads/:thread_id/comments/:comment_id/unlike",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    commentController.unlikeComment
+	"/threads/:thread_id/comments/:comment_id/unlike",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	commentController.unlikeComment
 )
 
 // Status
 router.post(
-    "/status/:comicId",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    statusController.addStatus
+	"/status/:comicId",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	statusController.addStatus
 )
 
 router.get("/status/:comicId", statusController.getStatus)
 
 router.delete(
-    "/status/:userId/:comicId",
-    roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
-    statusController.deleteStatus
+	"/status/:userId/:comicId",
+	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
+	statusController.deleteStatus
 )
 
 // New filter routes

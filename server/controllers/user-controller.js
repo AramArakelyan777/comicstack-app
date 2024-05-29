@@ -212,6 +212,50 @@ class UserController {
 			next(error)
 		}
 	}
+
+	async changeUsername(req, res, next) {
+        try {
+            const { userId } = req.cookies;
+            const { newUsername } = req.body;
+            if (!userId || !newUsername) {
+                return res.status(400).json({ message: "User ID and new username are required" });
+            }
+            const result = await userService.changeUsername(userId, newUsername);
+            return res.json(result);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    async changePassword(req, res, next) {
+        try {
+            const { userId } = req.cookies;
+            const { currentPassword, newPassword } = req.body;
+            if (!userId || !currentPassword || !newPassword) {
+                return res.status(400).json({ message: "User ID, current password, and new password are required" });
+            }
+            const result = await userService.changePassword(userId, currentPassword, newPassword);
+            return res.json(result);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    async deleteAccount(req, res, next) {
+        try {
+            const { userId } = req.cookies;
+            if (!userId) {
+                return res.status(401).json({ message: "Not authorized" });
+            }
+            const result = await userService.deleteAccount(userId);
+            res.clearCookie("refreshToken");
+            res.clearCookie("accessToken");
+            res.clearCookie("userId");
+            return res.json(result);
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 module.exports = new UserController()

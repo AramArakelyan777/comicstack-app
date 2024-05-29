@@ -262,6 +262,77 @@ class UserService {
         const { rows } = await pool.query(query)
         return rows[0]
     }
+	
+	async changeUsername(userId, newUsername) {
+        try {
+            // Check if new username is same as the current username
+            const currentUsernameQuery = "SELECT username FROM users WHERE user_id = $1";
+            const currentUsernameResult = await pool.query(currentUsernameQuery, [userId]);
+            if (!currentUsernameResult.rows.length) {
+                throw ApiError.NotFoundError("User not found");
+            }
+            const currentUsername = currentUsernameResult.rows[0].username;
+            if (currentUsername === newUsername) {
+                throw ApiError.BadRequest("New username cannot be the same as the current username");
+            }
+
+            // Check if new username already exists
+            const existingUsernameQuery = "SELECT * FROM users WHERE username = $1";
+            const existingUsernameResult = await pool.query(existingUsernameQuery, [newUsername]);
+            if (existingUsernameResult.rows.length > 0) {
+                throw ApiError.ConflictError("Username already exists");
+            }
+
+            // Check for inappropriate language
+            if (filter.isProfane(newUsername)) {
+                throw ApiError.BadRequest("Username contains inappropriate language.");
+            }
+
+            // Update username
+            const updateUsernameQuery = "UPDATE users SET username = $1 WHERE user_id = $2";
+            await pool.query(updateUsernameQuery, [newUsername, userId]);
+            return { message: "Username updated successfully" };
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
+    async changePassword(userId, currentPassword, newPassword) {
+        try {
+            // Fetch current password hash from the database
+            const userQuery = "SELECT password_hash FROM users WHERE user_id = $1";
+            const userResult = await pool.query(userQuery, [userId]);
+            if (!userResult.rows.length) {
+                throw ApiError.NotFoundError("User not found");
+            }
+            const currentPasswordHash = userResult.rows[0].password_hash;
+
+            // Check if current password matches
+            const isPasswordValid = await bcrypt.compare(currentPassword, currentPasswordHash);
+            if (!isPasswordValid) {
+                throw ApiError.BadRequest("Current password is incorrect");
+            }
+
+            // Hash new password and update it in the database
+            const newHashPassword = await bcrypt.hash(newPassword, 10);
+            const updatePasswordQuery = "UPDATE users SET password_hash = $1 WHERE user_id = $2";
+            await pool.query(updatePasswordQuery, [newHashPassword, userId]);
+            return { message: "Password updated successfully" };
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
+    async deleteAccount(userId) {
+        try {
+            // Delete user from the database
+            const deleteUserQuery = "DELETE FROM users WHERE user_id = $1";
+            await pool.query(deleteUserQuery, [userId]);
+            return { message: "User account deleted successfully" };
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
 }
 
 module.exports = new UserService()
