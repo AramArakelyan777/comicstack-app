@@ -92,5 +92,15 @@
     "footerDisclaimer": "ComicStack ©. All Rights Reserved. Disclaimer: This site does not store any files on its server. All contents are provided by non-affiliated third parties.",
     "userPageGreeting": "Hello, {{username}}!",
     "userPageMemberSince": "Member since",
-    "userPageReadlist": "READLIST"
+    "userPageReadlist": "READLIST",
+    "userPageChangeSettingButton": "APPLY",
+    "userPageChangeUsername": "Change username",
+    "userPageNewUsername": "Enter a new username",
+    "userPageChangePassword": "Change password",
+    "userPageCurrentPassword": "Enter your current password",
+    "userPageNewPassword": "Enter a new password",
+    "userPageChangeAvatar": "Change avatar",
+    "userPageDeleteAvatar": "Delete avatar",
+    "userPageDeleteAvatarButton": "DELETE",
+    "userPageChangeSettings": "Change profile settings"
 }

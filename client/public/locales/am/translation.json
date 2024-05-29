@@ -92,5 +92,15 @@
     "footerDisclaimer": "ComicStack ©: Բոլոր իրավունքները պաշտպանված են: Հրաժարում. այս կայքը որևէ ֆայլ չի պահում իր սերվերում: Ամբողջ բովանդակությունը տրամադրվում է ոչ փոխկապակցված երրորդ անձանց կողմից:",
     "userPageGreeting": "ԲԱՐԵ՛Վ, {{username}}",
     "userPageMemberSince": "Անդամակցման ամսաթիվ",
-    "userPageReadlist": "ՊԱՀՎԱԾ ԿՈՄԻՔՆԵՐ"
+    "userPageReadlist": "ՊԱՀՎԱԾ ԿՈՄԻՔՆԵՐ",
+    "userPageChangeSettingButton": "ՓՈԽԵԼ",
+    "userPageChangeUsername": "Փոխել օգտանունը",
+    "userPageNewUsername": "Մուտքագրեք նոր օգտանուն",
+    "userPageChangePassword": "Փոխել գաղտնաբառը",
+    "userPageCurrentPassword": "Մուտքագրեք ձեր ընթացիկ գաղտնաբառը",
+    "userPageNewPassword": "Մուտքագրեք նոր գաղտնաբառ",
+    "userPageChangeAvatar": "Փոխել նկարը",
+    "userPageDeleteAvatar": "Ջնջել նկարը",
+    "userPageDeleteAvatarButton": "ՋՆՋԵԼ",
+    "userPageChangeSettings": "ՓՈԽԵԼ ԷՋԻ ԿԱՐԳԱՎՈՐՈՒՄՆԵՐԸ"
 }

@@ -137,9 +137,9 @@
 }
 
 .comics-page-image {
-    width: 1000px;
+    width: 950px;
     max-width: 90%;
-    margin-bottom: 30px;
+    margin: 10px;
 }
 
 @media screen and (max-width: 750px) {
