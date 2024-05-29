@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
+import { useFormik } from "formik"
+import * as yup from "yup"
 import { AuthorizationContext } from "../../../index"
 import Button from "../../Button/Button"
 import Input from "../../Input/Input"
@@ -19,9 +21,6 @@ function User() {
     const { store } = useContext(AuthorizationContext)
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState(null)
-    const [newUsername, setNewUsername] = useState("")
-    const [currentPassword, setCurrentPassword] = useState("")
-    const [newPassword, setNewPassword] = useState("")
     const [avatarFile, setAvatarFile] = useState(null)
 
     const {
@@ -69,26 +68,64 @@ function User() {
         }
     }, [store.isAuth, getAUserFn])
 
-    const handleChangeUsername = async () => {
-        try {
-            await changeUsernameFn(newUsername)
-            setNewUsername("")
-            const data = await getAUserFn()
-            setUserDetails(data)
-        } catch (error) {
-            console.error("Error changing username", error)
-        }
-    }
+    const usernameValidationSchema = yup.object().shape({
+        newUsername: yup
+            .string()
+            .required("Username is required")
+            .min(3, "Username must be at least 3 characters")
+            .max(50, "Username must be 50 characters or less"),
+    })
 
-    const handleChangePassword = async () => {
-        try {
-            await changePasswordFn(currentPassword, newPassword)
-            setCurrentPassword("")
-            setNewPassword("")
-        } catch (error) {
-            console.error("Error changing password", error)
-        }
-    }
+    const passwordValidationSchema = yup.object().shape({
+        currentPassword: yup.string().required("Current password is required"),
+        newPassword: yup
+            .string()
+            .matches(
+                /(?=.*[A-Z])/,
+                "Password must contain at least one uppercase letter"
+            )
+            .matches(
+                /(?=.{6,20}$)/,
+                "Password must be between 6 and 20 characters"
+            )
+            .matches(
+                /[ -/:-@[-`{-~]/,
+                "Password must contain at least one special character"
+            )
+            .matches(/(?=.*[0-9])/, "Password must contain at least one digit")
+            .required("New password is required"),
+    })
+
+    const usernameFormik = useFormik({
+        initialValues: { newUsername: "" },
+        validationSchema: usernameValidationSchema,
+        onSubmit: async (values, { resetForm }) => {
+            try {
+                await changeUsernameFn(values.newUsername)
+                resetForm()
+                const data = await getAUserFn()
+                setUserDetails(data)
+            } catch (error) {
+                console.error("Error changing username", error)
+            }
+        },
+    })
+
+    const passwordFormik = useFormik({
+        initialValues: { currentPassword: "", newPassword: "" },
+        validationSchema: passwordValidationSchema,
+        onSubmit: async (values, { resetForm }) => {
+            try {
+                await changePasswordFn(
+                    values.currentPassword,
+                    values.newPassword
+                )
+                resetForm()
+            } catch (error) {
+                console.error("Error changing password", error)
+            }
+        },
+    })
 
     const handleUploadAvatar = async (e) => {
         e.preventDefault()
@@ -218,27 +255,41 @@ function User() {
                         {changeUsernameLoading ? (
                             "Loading..."
                         ) : (
-                            <div>
-                                <h2 className="medium-heading">
-                                    {t("userPageChangeUsername")}
-                                </h2>
-                                <Input
-                                    variant="regular"
-                                    type="text"
-                                    value={newUsername}
-                                    onChange={(e) =>
-                                        setNewUsername(e.target.value)
-                                    }
-                                    placeholder={t("userPageNewUsername")}
-                                />
-                                <br />
-                                <Button
-                                    variant="ordinary"
-                                    onClick={handleChangeUsername}
-                                >
-                                    {t("userPageChangeSettingButton")}
-                                </Button>
-                            </div>
+                            <form onSubmit={usernameFormik.handleSubmit}>
+                                <div>
+                                    <h2 className="medium-heading">
+                                        {t("userPageChangeUsername")}
+                                    </h2>
+                                    <Input
+                                        variant="regular"
+                                        type="text"
+                                        name="newUsername"
+                                        value={
+                                            usernameFormik.values.newUsername
+                                        }
+                                        onChange={usernameFormik.handleChange}
+                                        onBlur={usernameFormik.handleBlur}
+                                        placeholder={t("userPageNewUsername")}
+                                    />
+                                    {usernameFormik.touched.newUsername &&
+                                    usernameFormik.errors.newUsername ? (
+                                        <div className="error small-text">
+                                            {usernameFormik.errors.newUsername}
+                                        </div>
+                                    ) : null}
+                                    <br />
+                                    <Button
+                                        variant="ordinary"
+                                        type="submit"
+                                        disabled={
+                                            !usernameFormik.isValid ||
+                                            !usernameFormik.dirty
+                                        }
+                                    >
+                                        {t("userPageChangeSettingButton")}
+                                    </Button>
+                                </div>
+                            </form>
                         )}
                         {changeUsernameError ? (
                             <div className="error small-text">
@@ -249,37 +300,65 @@ function User() {
                         {changePasswordLoading ? (
                             "Loading..."
                         ) : (
-                            <div>
-                                <h2 className="medium-heading">
-                                    {t("userPageChangePassword")}
-                                </h2>
-                                <Input
-                                    variant="regular"
-                                    type="password"
-                                    value={currentPassword}
-                                    onChange={(e) =>
-                                        setCurrentPassword(e.target.value)
-                                    }
-                                    placeholder={t("userPageCurrentPassword")}
-                                />
-                                <br />
-                                <Input
-                                    variant="regular"
-                                    type="password"
-                                    value={newPassword}
-                                    onChange={(e) =>
-                                        setNewPassword(e.target.value)
-                                    }
-                                    placeholder={t("userPageNewPassword")}
-                                />
-                                <br />
-                                <Button
-                                    variant="ordinary"
-                                    onClick={handleChangePassword}
-                                >
-                                    {t("userPageChangeSettingButton")}
-                                </Button>
-                            </div>
+                            <form onSubmit={passwordFormik.handleSubmit}>
+                                <div>
+                                    <h2 className="medium-heading">
+                                        {t("userPageChangePassword")}
+                                    </h2>
+                                    <Input
+                                        variant="regular"
+                                        type="password"
+                                        name="currentPassword"
+                                        value={
+                                            passwordFormik.values
+                                                .currentPassword
+                                        }
+                                        onChange={passwordFormik.handleChange}
+                                        onBlur={passwordFormik.handleBlur}
+                                        placeholder={t(
+                                            "userPageCurrentPassword"
+                                        )}
+                                    />
+                                    {passwordFormik.touched.currentPassword &&
+                                    passwordFormik.errors.currentPassword ? (
+                                        <div className="error small-text">
+                                            {
+                                                passwordFormik.errors
+                                                    .currentPassword
+                                            }
+                                        </div>
+                                    ) : null}
+                                    <br />
+                                    <Input
+                                        variant="regular"
+                                        type="password"
+                                        name="newPassword"
+                                        value={
+                                            passwordFormik.values.newPassword
+                                        }
+                                        onChange={passwordFormik.handleChange}
+                                        onBlur={passwordFormik.handleBlur}
+                                        placeholder={t("userPageNewPassword")}
+                                    />
+                                    {passwordFormik.touched.newPassword &&
+                                    passwordFormik.errors.newPassword ? (
+                                        <div className="error small-text">
+                                            {passwordFormik.errors.newPassword}
+                                        </div>
+                                    ) : null}
+                                    <br />
+                                    <Button
+                                        variant="ordinary"
+                                        type="submit"
+                                        disabled={
+                                            !passwordFormik.isValid ||
+                                            !passwordFormik.dirty
+                                        }
+                                    >
+                                        {t("userPageChangeSettingButton")}
+                                    </Button>
+                                </div>
+                            </form>
                         )}
                         {changePasswordError ? (
                             <div className="error small-text">

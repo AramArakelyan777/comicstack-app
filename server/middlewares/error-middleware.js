@@ -21,6 +21,10 @@ module.exports = function (err, req, res, next) {
     }
 
     if (err.message.includes("password")) {
+        return res.status(400).send({ message: err.message })
+    }
+
+    if (err.message.includes("as the current username")) {
         return res.status(401).send({ message: err.message })
     }
 
