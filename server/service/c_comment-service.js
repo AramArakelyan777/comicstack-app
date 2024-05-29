@@ -3,6 +3,7 @@ const { updateThreadCommentCount } = require("./t_comment-service.js")
 const Filter = require("bad-words")
 
 const filter = new Filter()
+filter.removeWords('hell', 'hells');
 const words = require("../middlewares/extra-words.json")
 filter.addWords(...words)
 
