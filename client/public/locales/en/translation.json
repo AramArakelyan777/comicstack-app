@@ -102,5 +102,11 @@
     "userPageChangeAvatar": "Change avatar",
     "userPageDeleteAvatar": "Delete avatar",
     "userPageDeleteAvatarButton": "DELETE",
-    "userPageChangeSettings": "Change profile settings"
+    "userPageChangeSettings": "Change profile settings",
+    "userPageDeleteAccount": "Delete account",
+    "userPageDeleteAccountButton": "DELETE",
+    "userPageConfirmDelete": "Confirm deletion",
+    "userPageConfirmDeleteText": "Are you sure you want to delete your account? This action cannot be undone.",
+    "userPageDeleteAccountConfirmButton": "Yes, delete",
+    "userPageDeleteAccountCancelButton": "Cancel"
 }

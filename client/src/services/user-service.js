@@ -33,3 +33,9 @@ export const deleteAvatar = () => {
         method: "DELETE",
     })
 }
+
+export const deleteAccount = () => {
+    return makeRequest("/user/delete-account", {
+        method: "DELETE",
+    })
+}

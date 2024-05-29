@@ -102,5 +102,11 @@
     "userPageChangeAvatar": "Փոխել նկարը",
     "userPageDeleteAvatar": "Ջնջել նկարը",
     "userPageDeleteAvatarButton": "ՋՆՋԵԼ",
-    "userPageChangeSettings": "ԷՋԻ ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ"
+    "userPageChangeSettings": "ԷՋԻ ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ",
+    "userPageDeleteAccount": "Ջնջել հաշիվը",
+    "userPageDeleteAccountButton": "ՋՆՋԵԼ",
+    "userPageConfirmDelete": "Հաստատել",
+    "userPageConfirmDeleteText": "Վստա՞հ եք, որ ցանկանում եք ջնջել ձեր հաշիվը: Այս գործողությունը հնարավոր չէ չեղարկել:",
+    "userPageDeleteAccountConfirmButton": "Այո, ջնջել",
+    "userPageDeleteAccountCancelButton": "Չեղարկել"
 }

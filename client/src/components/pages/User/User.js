@@ -11,10 +11,12 @@ import {
     changePassword,
     uploadAvatar,
     deleteAvatar,
+    deleteAccount,
 } from "../../../services/user-service"
 import { useAsyncFn } from "../../../hooks/useAsync"
 import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
 import { useTranslation } from "react-i18next"
+import ConfirmationModal from "./ConfirmationModal"
 
 function User() {
     const { t } = useTranslation()
@@ -22,6 +24,7 @@ function User() {
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState(null)
     const [avatarFile, setAvatarFile] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const {
         loading: userLoading,
@@ -52,6 +55,12 @@ function User() {
         error: deleteAvatarError,
         execute: deleteAvatarFn,
     } = useAsyncFn(deleteAvatar)
+
+    const {
+        loading: deleteAccountLoading,
+        error: deleteAccountError,
+        execute: deleteAccountFn,
+    } = useAsyncFn(deleteAccount)
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -148,6 +157,16 @@ function User() {
             setUserDetails(data)
         } catch (error) {
             console.error("Error deleting avatar", error)
+        }
+    }
+
+    const handleDeleteAccount = async () => {
+        try {
+            await deleteAccountFn()
+            store.logout()
+            navigate("/")
+        } catch (error) {
+            console.error("Error deleting account", error)
         }
     }
 
@@ -415,6 +434,27 @@ function User() {
                                 {deleteAvatarError}
                             </div>
                         ) : null}
+
+                        {deleteAccountLoading ? (
+                            "Loading..."
+                        ) : (
+                            <div>
+                                <h2 className="medium-heading">
+                                    {t("userPageDeleteAccount")}
+                                </h2>
+                                <Button
+                                    variant="ordinary"
+                                    onClick={() => setIsModalOpen(true)}
+                                >
+                                    {t("userPageDeleteAccountButton")}
+                                </Button>
+                            </div>
+                        )}
+                        {deleteAccountError ? (
+                            <div className="error small-text">
+                                {deleteAccountError}
+                            </div>
+                        ) : null}
                     </div>
                 </React.Fragment>
             ) : (
@@ -430,6 +470,11 @@ function User() {
             >
                 {t("logoutButton")}
             </Button>
+            <ConfirmationModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleDeleteAccount}
+            />
         </div>
     )
 }
