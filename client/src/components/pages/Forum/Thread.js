@@ -145,7 +145,9 @@ function Thread() {
                         </div>
                     </div>
                 )}
-                {deleteError ? <div>{deleteError}</div> : null}
+                {deleteError ? (
+                    <div className="error small-text">{deleteError}</div>
+                ) : null}
             </IconContext.Provider>
             <div>
                 <h3

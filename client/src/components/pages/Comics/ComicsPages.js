@@ -29,7 +29,7 @@ function ComicPages() {
     }
 
     if (error) {
-        return <div>{error}</div>
+        return <div className="error small-text">{error}</div>
     }
 
     return (

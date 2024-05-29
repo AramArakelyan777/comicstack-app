@@ -241,7 +241,9 @@ function User() {
                             </div>
                         )}
                         {changeUsernameError ? (
-                            <div>{changeUsernameError}</div>
+                            <div className="error small-text">
+                                {changeUsernameError}
+                            </div>
                         ) : null}
 
                         {changePasswordLoading ? (
@@ -280,7 +282,9 @@ function User() {
                             </div>
                         )}
                         {changePasswordError ? (
-                            <div>{changePasswordError}</div>
+                            <div className="error small-text">
+                                {changePasswordError}
+                            </div>
                         ) : null}
 
                         {uploadAvatarLoading ? (
@@ -307,7 +311,9 @@ function User() {
                             </div>
                         )}
                         {uploadAvatarError ? (
-                            <div>{uploadAvatarError}</div>
+                            <div className="error small-text">
+                                {uploadAvatarError}
+                            </div>
                         ) : null}
 
                         {deleteAvatarLoading ? (
@@ -326,12 +332,14 @@ function User() {
                             </div>
                         ) : null}
                         {deleteAvatarError ? (
-                            <div className="error">{deleteAvatarError}</div>
+                            <div className="error small-text">
+                                {deleteAvatarError}
+                            </div>
                         ) : null}
                     </div>
                 </React.Fragment>
             ) : (
-                <div>{userError}</div>
+                <div className="error small-text">{userError}</div>
             )}
             <Button
                 variant="ordinary"

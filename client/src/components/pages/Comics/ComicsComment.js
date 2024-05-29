@@ -195,11 +195,15 @@ function Comment({
                         </div>
 
                         {likeCommentFn.error ? (
-                            <div>{likeCommentFn.error}</div>
+                            <div className="error small-text">
+                                {likeCommentFn.error}
+                            </div>
                         ) : null}
 
                         {unlikeCommentFn.error ? (
-                            <div>{unlikeCommentFn.error}</div>
+                            <div className="error small-text">
+                                {unlikeCommentFn.error}
+                            </div>
                         ) : null}
 
                         {isReplying ? (
@@ -237,7 +241,9 @@ function Comment({
                 </IconContext.Provider>
 
                 {deleteCommentFn.error ? (
-                    <div>{deleteCommentFn.error}</div>
+                    <div className="error small-text">
+                        {deleteCommentFn.error}
+                    </div>
                 ) : null}
             </div>
 

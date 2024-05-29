@@ -56,7 +56,9 @@ function ThreadForm({
                     placeholder={`${t("forumThreadFormTitle")} 🖋️`}
                 />
                 {formik.touched.title && formik.errors.title ? (
-                    <div>{formik.errors.title}</div>
+                    <div className="error small-text">
+                        {formik.errors.title}
+                    </div>
                 ) : null}
                 <br />
 
@@ -66,7 +68,9 @@ function ThreadForm({
                     placeholder={t("forumThreadFormDescription")}
                 />
                 {formik.touched.description && formik.errors.description ? (
-                    <div>{formik.errors.description}</div>
+                    <div className="error small-text">
+                        {formik.errors.description}
+                    </div>
                 ) : null}
                 <br />
 
@@ -85,11 +89,13 @@ function ThreadForm({
                     </option>
                 </select>
                 {formik.touched.thread_type && formik.errors.thread_type ? (
-                    <div>{formik.errors.thread_type}</div>
+                    <div className="error small-text">
+                        {formik.errors.thread_type}
+                    </div>
                 ) : null}
                 <br />
 
-                {error ? <div>{error}</div> : null}
+                {error ? <div className="error small-text">{error}</div> : null}
 
                 <Button
                     variant="ordinary"

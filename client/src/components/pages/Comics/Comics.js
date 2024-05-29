@@ -189,7 +189,11 @@ function Comics() {
                                 />
                             </React.Fragment>
                         )}
-                        {statusError ? <div>{statusError}</div> : null}
+                        {statusError ? (
+                            <div className="error small-text">
+                                {statusError}
+                            </div>
+                        ) : null}
                     </div>
                 </div>
             </div>
@@ -232,7 +236,9 @@ function Comics() {
                     ))}
                 </div>
             )}
-            {rateError ? <div>{rateError}</div> : null}
+            {rateError ? (
+                <div className="error small-text">{rateError}</div>
+            ) : null}
 
             <div className="rating-counts">
                 {STARS.map((star, index) => {

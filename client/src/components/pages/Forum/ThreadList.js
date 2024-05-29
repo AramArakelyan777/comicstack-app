@@ -54,7 +54,7 @@ export const ThreadList = () => {
     } = useAsyncFn(createThread)
 
     if (loading) return <h1>Loading...</h1>
-    if (error) return <h1>{error}</h1>
+    if (error) return <h1 className="error">{error}</h1>
     if (!threads) return null
 
     function onThreadCreate({ title, description, thread_type }) {

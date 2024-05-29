@@ -26,7 +26,7 @@ export const ComicsList = () => {
     }, [genreId, tagId])
 
     if (loading) return <h1>Loading...</h1>
-    if (error) return <h1>{error}</h1>
+    if (error) return <div className="error">{error}</div>
     if (!comics?.length) return <p>{t("comicsFilterNoResults")}</p>
     if (!comics) return null
 

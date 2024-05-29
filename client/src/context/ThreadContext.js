@@ -88,7 +88,7 @@ function ThreadContextProvider({ children }) {
             {loading ? (
                 <h1>Loading...</h1>
             ) : error ? (
-                <h1>{error}</h1>
+                <h1 className="error">{error}</h1>
             ) : (
                 children
             )}

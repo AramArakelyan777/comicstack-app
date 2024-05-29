@@ -48,7 +48,7 @@ function CommentForm({
                 {formik.touched.comment && formik.errors.comment ? (
                     <div>{formik.errors.comment}</div>
                 ) : error ? (
-                    <div>{error}</div>
+                    <div className="error small-text">{error}</div>
                 ) : null}
 
                 <br />

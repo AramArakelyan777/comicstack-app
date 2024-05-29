@@ -26,7 +26,7 @@ const validationSchema = yup.object().shape({
 })
 
 function Footer() {
-const { t } = useTranslation()
+    const { t } = useTranslation()
 
     const formik = useFormik({
         initialValues: { subscribeEmail: "" },
@@ -69,7 +69,9 @@ const { t } = useTranslation()
                         </Button>
                     </form>
                     <p>{t("footerDonateText")}</p>
-                    <Button variant="donate">{t("footerDonateButton")} ☕</Button>
+                    <Button variant="donate">
+                        {t("footerDonateButton")} ☕
+                    </Button>
                 </div>
                 <div className="info">
                     <div className="location">
@@ -77,7 +79,7 @@ const { t } = useTranslation()
                         <span>{t("footerInfoLocationText")}</span>
                     </div>
                     <span className="coloredText">
-                    {t("footerInfoLocation")}
+                        {t("footerInfoLocation")}
                     </span>
                     <div className="contact">
                         <IoIosMail size={25} />
