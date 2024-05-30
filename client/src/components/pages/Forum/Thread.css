@@ -1,6 +1,5 @@
 .thread-container {
     margin-bottom: 200px;
-    padding: 10px;
 }
 
 .thread-container svg {
@@ -12,13 +11,14 @@
 }
 
 .thread-list-container {
-    padding: 10px;
+    display: inline-block;
+    padding: 10px 0;
     box-sizing: border-box;
-    max-width: 400px;
+    width: 400px;
+    max-width: 100%;
     border: 1px solid white;
     border-radius: 10px;
-    margin: auto;
-    margin-bottom: 20px;
+    margin: 10px;
 }
 
 .thread-container-image {
@@ -52,7 +52,6 @@
 }
 
 .thread-list-main-div {
-    padding: 7px;
     margin-bottom: 50px;
 }
 
@@ -62,4 +61,11 @@
     align-items: center;
     margin-top: 20px;
     width: 100%;
+}
+
+.thread-container-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

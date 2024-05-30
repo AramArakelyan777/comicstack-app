@@ -136,6 +136,7 @@ export const ThreadList = () => {
                         />
                     </div>
                 ) : null}
+                <br />
                 {threads.map((thread) => (
                     <div
                         className="thread-list-container"
@@ -152,7 +153,7 @@ export const ThreadList = () => {
                         >
                             <br />
                             <span
-                                className="medium-heading"
+                                className="medium-heading thread-container-title"
                                 style={{ wordBreak: "break-word" }}
                             >
                                 {thread.title}
