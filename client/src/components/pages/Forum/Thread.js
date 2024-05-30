@@ -123,6 +123,7 @@ function Thread() {
                                 width: 70,
                                 borderRadius: "50%",
                                 maxWidth: "100%",
+                                marginTop: 20
                             }}
                             alt="user-avatar"
                         />
