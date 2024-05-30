@@ -69,3 +69,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media screen and (max-width: 300px) {
+    .thread-list-container {
+        width: 250px;
+    }
+}
