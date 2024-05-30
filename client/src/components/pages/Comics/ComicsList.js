@@ -4,6 +4,7 @@ import { getComicsByGenres, getComicsByTags } from "../../../services/filtering"
 import { getComics } from "../../../services/comics"
 import { useAsync } from "../../../hooks/useAsync"
 import { useTranslation } from "react-i18next"
+import MainLoading from "../../Loading/MainLoading"
 
 export const ComicsList = () => {
     const location = useLocation()
@@ -25,7 +26,7 @@ export const ComicsList = () => {
               : getComics()
     }, [genreId, tagId])
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <MainLoading />
     if (error) return <div className="error">{error}</div>
     if (!comics?.length) return <p>{t("comicsFilterNoResults")}</p>
     if (!comics) return null

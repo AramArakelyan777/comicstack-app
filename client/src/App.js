@@ -19,13 +19,15 @@ import { observer } from "mobx-react-lite"
 import { AuthorizationContext } from "./index"
 import PrivateRoute from "./components/pages/User/PrivateRoute"
 import ComicsPages from "./components/pages/Comics/ComicsPages"
+import MainLoading from "./components/Loading/MainLoading"
 
 function App() {
     const { store } = useContext(AuthorizationContext)
     useEffect(() => {
-        const savedLanguage = localStorage.getItem("i18nextLng");
+        const savedLanguage = localStorage.getItem("i18nextLng")
         if (savedLanguage) {
-            document.body.className = savedLanguage === "am" ? "font-armenian" : "";
+            document.body.className =
+                savedLanguage === "am" ? "font-armenian" : ""
         }
     })
 
@@ -36,7 +38,7 @@ function App() {
     }, [store])
 
     if (store.isLoading) {
-        return <div>Loading...</div>
+        return <MainLoading />
     }
 
     return (

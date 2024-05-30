@@ -8,6 +8,7 @@ import React, {
 import { useAsync } from "../hooks/useAsync"
 import { getAComics } from "../services/comics"
 import { useParams } from "react-router-dom"
+import MainLoading from "../components/Loading/MainLoading"
 
 const ComicsContext = createContext(null)
 
@@ -86,7 +87,7 @@ function ComicsContextProvider({ children }) {
             }}
         >
             {loading ? (
-                <h1>Loading...</h1>
+                <MainLoading />
             ) : error ? (
                 <h1 className="error">{error}</h1>
             ) : (

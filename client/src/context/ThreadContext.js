@@ -8,6 +8,7 @@ import React, {
 import { useParams } from "react-router-dom"
 import { useAsync } from "../hooks/useAsync"
 import { getAThread } from "../services/threads"
+import MainLoading from "../components/Loading/MainLoading"
 
 const ThreadContext = createContext(null)
 
@@ -86,7 +87,7 @@ function ThreadContextProvider({ children }) {
             }}
         >
             {loading ? (
-                <h1>Loading...</h1>
+                <MainLoading />
             ) : error ? (
                 <h1 className="error">{error}</h1>
             ) : (

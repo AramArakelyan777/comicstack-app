@@ -16,6 +16,7 @@ import Footer from "../../Footer/Footer"
 import { MdCancel } from "react-icons/md"
 import { FaSearch } from "react-icons/fa"
 import { useTranslation } from "react-i18next"
+import MainLoading from "../../Loading/MainLoading"
 
 export const ThreadList = () => {
     const navigate = useNavigate()
@@ -53,7 +54,7 @@ export const ThreadList = () => {
         execute: createThreadFn,
     } = useAsyncFn(createThread)
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <MainLoading />
     if (error) return <h1 className="error">{error}</h1>
     if (!threads) return null
 
