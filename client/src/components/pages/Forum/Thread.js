@@ -117,6 +117,16 @@ function Thread() {
                     </div>
                 ) : (
                     <div>
+                        <img
+                            src={thread?.user?.avatar_url}
+                            style={{
+                                width: 70,
+                                borderRadius: "50%",
+                                maxWidth: "100%",
+                            }}
+                            alt="user-avatar"
+                        />
+                        <p>{thread?.user?.username}</p>
                         <p className="bigger-heading thread-title">
                             {thread.title}
                         </p>
