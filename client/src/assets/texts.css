@@ -8,6 +8,16 @@
     src: url("./fonts/Comix_Loud.ttf");
 }
 
+@font-face {
+    font-family: Zaritap;
+    src: url("./fonts/ArmeniapediaZaritap.ttf");
+}
+
+@font-face {
+    font-family: Artsakh;
+    src: url("./fonts/Artsakh-Font.ttf");
+}
+
 .bigger-heading {
     font-family: Luckiest_Guy;
     font-size: 45px;
@@ -49,4 +59,19 @@
     .bigger-heading {
         font-size: 30px;
     }
+}
+
+/* Conditional classes for Armenian font */
+.font-armenian .bigger-heading {
+    font-family: Artsakh !important;
+}
+
+.font-armenian .medium-heading {
+    font-family: Artsakh !important;
+}
+
+.font-armenian .menu-text {
+    font-family: Zaritap !important;
+    font-size: 25px;
+    -webkit-text-stroke: 0px;
 }
