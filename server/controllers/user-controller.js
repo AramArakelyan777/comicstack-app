@@ -18,7 +18,7 @@ const generateFileName = (bytes = 32) =>
 
 const processImage = async (buffer) => {
 	const image = await Jimp.read(buffer)
-	image.cover(300, 300).quality(60) // Resize to 300x300 and set JPEG quality to 60%
+	image.cover(300, 300).quality(100) // Resize to 300x300 and set JPEG quality to 60%
 	return await image.getBufferAsync(Jimp.MIME_JPEG)
 }
 

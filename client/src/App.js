@@ -22,6 +22,12 @@ import ComicsPages from "./components/pages/Comics/ComicsPages"
 
 function App() {
     const { store } = useContext(AuthorizationContext)
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem("i18nextLng");
+        if (savedLanguage) {
+            document.body.className = savedLanguage === "am" ? "font-armenian" : "";
+        }
+    })
 
     useEffect(() => {
         if (localStorage.getItem("bearer")) {

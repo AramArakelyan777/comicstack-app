@@ -12,37 +12,41 @@ import "./HomePage.css"
 import { TAGS } from "./tags"
 
 const HomePage = () => {
-    const navigate = useNavigate()
-
-    const { t, i18n } = useTranslation()
+    const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
 
     const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng)
-    }
+        i18n.changeLanguage(lng);
+        document.body.className = lng === "am" ? "font-armenian" : "";
+    };
 
     const {
         loading: topLoading,
         error: topError,
         execute: getTopComicsFn,
-    } = useAsyncFn(getTopComics)
+    } = useAsyncFn(getTopComics);
 
     const {
         loading: popularLoading,
         error: popularError,
         execute: getPopularComicsFn,
-    } = useAsyncFn(getPopularComics)
+    } = useAsyncFn(getPopularComics);
 
-    const [topComics, setTopComics] = useState([])
-    const [popularComics, setPopularComics] = useState([])
+    const [topComics, setTopComics] = useState([]);
+    const [popularComics, setPopularComics] = useState([]);
 
     useEffect(() => {
-        getTopComicsFn().then(setTopComics).catch(handleRequestError)
-        getPopularComicsFn().then(setPopularComics).catch(handleRequestError)
-    }, [getTopComicsFn, getPopularComicsFn])
+        const savedLanguage = localStorage.getItem("i18nextLng");
+        if (savedLanguage) {
+            document.body.className = savedLanguage === "am" ? "font-armenian" : "";
+        }
+        getTopComicsFn().then(setTopComics).catch(handleRequestError);
+        getPopularComicsFn().then(setPopularComics).catch(handleRequestError);
+    }, [getTopComicsFn, getPopularComicsFn]);
 
     const handleTagClick = (tagId) => {
-        navigate(`/comics?tag=${tagId}`)
-    }
+        navigate(`/comics?tag=${tagId}`);
+    };
 
     return (
         <React.Fragment>
