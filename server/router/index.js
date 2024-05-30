@@ -12,6 +12,8 @@ const roleMiddleware = require("../middlewares/role-middleware")
 const authMiddleware = require("../middlewares/auth-middleware")
 const uploadMiddleware = require("../middlewares/upload-middleware")
 
+//user //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.post(
 	"/registration",
 	body("email").isEmail(),
@@ -49,13 +51,13 @@ router.post(
 )
 router.delete("/user/profile-picture", userController.deleteProfilePicture)
 
-//Comics
+//Comics //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/comics", commentController.getAllComics)
 router.get("/comics/:comic_id", commentController.getComic)
 router.get("/top-comics", commentController.getTopComics)
 router.get("/popular-comics", commentController.getPopularComics)
 
-//Comics Page Routes
+//Comics Page Routes //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.post(
 	"/comics/:comicId/pages",
 	uploadMiddleware.array("pages"),
@@ -63,7 +65,7 @@ router.post(
 )
 router.get("/comics/:comicId/pages", comicController.getComicPages)
 
-// Comments
+// Comments //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.post(
 	"/comics/:comic_id/comments",
 	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
@@ -108,7 +110,7 @@ router.delete(
 	ratingController.deleteRating
 )
 
-//Threads
+//Threads //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/threads", threadController.getAllThreadsWithComments)
 router.get("/threads/:thread_id", threadController.getThreadWithComments)
 router.post(
@@ -127,7 +129,7 @@ router.delete(
 	threadController.deleteThread
 )
 
-//Thread Comments
+//Thread Comments //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.post(
 	"/threads/:thread_id/comments",
 	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
@@ -158,7 +160,7 @@ router.post(
 	commentController.unlikeComment
 )
 
-// Status
+// Status //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.post(
 	"/status/:comicId",
 	roleMiddleware(["USER", "ADMIN", "MODERATOR"]),
@@ -173,7 +175,7 @@ router.delete(
 	statusController.deleteStatus
 )
 
-// New filter routes
+// New filter routes //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/comics/genre/:genre_id", filterController.filterComicsByGenre)
 router.get("/comics/tag/:tag_id", filterController.filterComicsByTag)
 
