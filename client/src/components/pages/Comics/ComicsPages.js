@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getComicPages } from "../../../services/comics"
 import "./Comics.css"
-import Loading from "../../Loading/Loading"
+import MainLoading from "../../Loading/MainLoading"
 
 function ComicPages() {
     const { comic_id } = useParams()
@@ -26,7 +26,7 @@ function ComicPages() {
     }, [comic_id])
 
     if (loading) {
-        return <Loading />
+        return <MainLoading />
     }
 
     if (error) {

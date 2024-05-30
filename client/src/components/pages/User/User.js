@@ -18,6 +18,7 @@ import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
 import { useTranslation } from "react-i18next"
 import ConfirmationModal from "./ConfirmationModal"
 import Loading from "../../Loading/Loading"
+import MainLoading from "../../Loading/MainLoading"
 
 function User() {
     const { t } = useTranslation()
@@ -175,7 +176,7 @@ function User() {
         return <p>Please authorize</p>
     }
 
-    if (userLoading) return <Loading />
+    if (userLoading) return <MainLoading />
 
     const groupedComics = userDetails?.statuses?.reduce((acc, status) => {
         const { status: comicStatus, ...comicDetails } = status
