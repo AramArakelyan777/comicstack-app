@@ -5,6 +5,7 @@ import Input from "../../Input/Input"
 import Button from "../../Button/Button"
 import "./Thread.css"
 import { useTranslation } from "react-i18next"
+import Loading from "../../Loading/Loading"
 
 const validationSchema = yup.object().shape({
     title: yup
@@ -103,7 +104,7 @@ function ThreadForm({
                     type="submit"
                     disabled={!formik.isValid && formik.isSubmitting}
                 >
-                    {loading ? "Loading..." : t("forumThreadFormPostButton")}
+                    {loading ? <Loading /> : t("forumThreadFormPostButton")}
                 </Button>
             </form>
         </div>

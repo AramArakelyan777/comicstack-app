@@ -3,6 +3,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import Button from "../../Button/Button"
 import { useTranslation } from "react-i18next"
+import Loading from "../../Loading/Loading"
 
 const validationSchema = yup.object().shape({
     comment: yup
@@ -59,7 +60,7 @@ function CommentForm({
                     disabled={!formik.isValid && formik.isSubmitting}
                     style={{ marginTop: 7 }}
                 >
-                    {loading ? "Loading..." : t("commentFormPostButton")}
+                    {loading ? <Loading /> : t("commentFormPostButton")}
                 </Button>
             </form>
         </div>

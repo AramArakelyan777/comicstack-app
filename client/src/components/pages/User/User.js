@@ -17,6 +17,7 @@ import { useAsyncFn } from "../../../hooks/useAsync"
 import unknownAvatar from "../../../assets/forumIcons/Avatar.png"
 import { useTranslation } from "react-i18next"
 import ConfirmationModal from "./ConfirmationModal"
+import Loading from "../../Loading/Loading"
 
 function User() {
     const { t } = useTranslation()
@@ -174,7 +175,7 @@ function User() {
         return <p>Please authorize</p>
     }
 
-    if (userLoading) return <div>Loading...</div>
+    if (userLoading) return <Loading />
 
     const groupedComics = userDetails?.statuses?.reduce((acc, status) => {
         const { status: comicStatus, ...comicDetails } = status
@@ -272,7 +273,7 @@ function User() {
                         </h1>
 
                         {changeUsernameLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : (
                             <form onSubmit={usernameFormik.handleSubmit}>
                                 <div>
@@ -317,7 +318,7 @@ function User() {
                         ) : null}
 
                         {changePasswordLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : (
                             <form onSubmit={passwordFormik.handleSubmit}>
                                 <div>
@@ -386,7 +387,7 @@ function User() {
                         ) : null}
 
                         {uploadAvatarLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : (
                             <div>
                                 <h2 className="medium-heading">
@@ -415,7 +416,7 @@ function User() {
                         ) : null}
 
                         {deleteAvatarLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : userDetails?.avatar_url ? (
                             <div>
                                 <h2 className="medium-heading">
@@ -436,7 +437,7 @@ function User() {
                         ) : null}
 
                         {deleteAccountLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : (
                             <div>
                                 <h2 className="medium-heading">

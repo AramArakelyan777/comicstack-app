@@ -17,6 +17,7 @@ import { FaBookOpenReader } from "react-icons/fa6"
 import { LuBookOpenCheck } from "react-icons/lu"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
+import Loading from "../../Loading/Loading"
 
 function Comics() {
     const navigate = useNavigate()
@@ -156,7 +157,7 @@ function Comics() {
                     </p>
                     <div className="comics-status-icons-container">
                         {statusLoading ? (
-                            "Loading..."
+                            <Loading />
                         ) : (
                             <React.Fragment>
                                 <MdFavorite
@@ -209,7 +210,7 @@ function Comics() {
                 {comic?.average_rating || 0} ({comic?.total_votes || 0})
             </p>
             {rateLoading ? (
-                "Loading..."
+                <Loading />
             ) : (
                 <div className="rating-stars">
                     {STARS.map((rate) => (
