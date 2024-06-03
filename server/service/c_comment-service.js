@@ -172,7 +172,6 @@ async function getTopComics(req, res) {
                COUNT(r.rating) AS rating_count
         FROM comics c
         JOIN ratings r ON c.comic_id = r.comic_id
-        WHERE date_trunc('month', r.created_at) = date_trunc('month', CURRENT_DATE)
         GROUP BY c.comic_id
         ORDER BY average_rating DESC, rating_count DESC
         LIMIT 6;
