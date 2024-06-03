@@ -13,41 +13,42 @@ import { TAGS } from "./tags"
 import Loading from "../../Loading/Loading"
 
 const HomePage = () => {
-    const navigate = useNavigate();
-    const { t, i18n } = useTranslation();
+    const navigate = useNavigate()
+    const { t, i18n } = useTranslation()
 
     const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-        document.body.className = lng === "am" ? "font-armenian" : "";
-    };
+        i18n.changeLanguage(lng)
+        document.body.className = lng === "am" ? "font-armenian" : ""
+    }
 
     const {
         loading: topLoading,
         error: topError,
         execute: getTopComicsFn,
-    } = useAsyncFn(getTopComics);
+    } = useAsyncFn(getTopComics)
 
     const {
         loading: popularLoading,
         error: popularError,
         execute: getPopularComicsFn,
-    } = useAsyncFn(getPopularComics);
+    } = useAsyncFn(getPopularComics)
 
-    const [topComics, setTopComics] = useState([]);
-    const [popularComics, setPopularComics] = useState([]);
+    const [topComics, setTopComics] = useState([])
+    const [popularComics, setPopularComics] = useState([])
 
     useEffect(() => {
-        const savedLanguage = localStorage.getItem("i18nextLng");
+        const savedLanguage = localStorage.getItem("i18nextLng")
         if (savedLanguage) {
-            document.body.className = savedLanguage === "am" ? "font-armenian" : "";
+            document.body.className =
+                savedLanguage === "am" ? "font-armenian" : ""
         }
-        getTopComicsFn().then(setTopComics).catch(handleRequestError);
-        getPopularComicsFn().then(setPopularComics).catch(handleRequestError);
-    }, [getTopComicsFn, getPopularComicsFn]);
+        getTopComicsFn().then(setTopComics).catch(handleRequestError)
+        getPopularComicsFn().then(setPopularComics).catch(handleRequestError)
+    }, [getTopComicsFn, getPopularComicsFn])
 
     const handleTagClick = (tagId) => {
-        navigate(`/comics?tag=${tagId}`);
-    };
+        navigate(`/comics?tag=${tagId}`)
+    }
 
     return (
         <React.Fragment>
@@ -99,7 +100,7 @@ const HomePage = () => {
                         {tagName.tag}
                     </Button>
                 ))}
-                <h2 className="medium-heading">{t("homePageTopThisMonth")}</h2>
+                <h2 className="medium-heading">{t("homePageTopOfAllTime")}</h2>
                 <div className="top-comics-container">
                     {topLoading ? (
                         <Loading />
