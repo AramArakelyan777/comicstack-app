@@ -11,6 +11,7 @@ import Register from "./components/pages/User/Register"
 import User from "./components/pages/User/User"
 import Comics from "./components/pages/Comics/Comics"
 import Thread from "./components/pages/Forum/Thread"
+import Policies from "./components/Policies/Policies"
 import { ComicsList } from "./components/pages/Comics/ComicsList"
 import { ThreadList } from "./components/pages/Forum/ThreadList"
 import ComicsContextProvider from "./context/ComicsContext"
@@ -45,6 +46,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="*" element={<NotFound />} />
+                <Route path="/website-policies" element={<Policies />} />
                 <Route path="/genres" element={<Genres />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/" element={<HomePage />} />

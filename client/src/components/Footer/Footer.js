@@ -11,6 +11,7 @@ import Button from "../Button/Button"
 import Input from "../Input/Input"
 import "./Footer.css"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 const onSubmit = (values, onSubmitProps) => {
     console.log("Form values", values)
@@ -27,6 +28,7 @@ const validationSchema = yup.object().shape({
 
 function Footer() {
     const { t } = useTranslation()
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: { subscribeEmail: "" },
@@ -97,10 +99,18 @@ function Footer() {
                 </div>
             </div>
             <div className="policies">
-                <p>{t("footerPagePrivacy")}</p>
-                <p>{t("footerPageAgreement")}</p>
-                <p>{t("footerPageCookie")}</p>
-                <p>{t("footerPageTerms")}</p>
+                <p onClick={() => navigate("/website-policies")}>
+                    {t("footerPagePrivacy")}
+                </p>
+                <p onClick={() => navigate("/website-policies")}>
+                    {t("footerPageAgreement")}
+                </p>
+                <p onClick={() => navigate("/website-policies")}>
+                    {t("footerPageCookie")}
+                </p>
+                <p onClick={() => navigate("/website-policies")}>
+                    {t("footerPageTerms")}
+                </p>
             </div>
             <p className="footer-text">
                 {`${new Date().getFullYear()}`} {t("footerDisclaimer")}
