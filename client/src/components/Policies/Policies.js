@@ -8,8 +8,10 @@ import {
     Box,
     ChakraProvider,
 } from "@chakra-ui/react"
+import { useTranslation } from "react-i18next"
 
 const Policies = () => {
+    const { t } = useTranslation()
     return (
         <ChakraProvider>
             <div>
@@ -21,12 +23,12 @@ const Policies = () => {
                                 _expanded={{ bg: "#DB4947", color: "white" }}
                             >
                                 <Box as="span" flex="1" textAlign="left">
-                                    Privacy Policy
+                                    {t("policy")}
                                 </Box>
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">text</AccordionPanel>
+                        <AccordionPanel textAlign="left">{t("privacyPolicyText")}</AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -35,12 +37,12 @@ const Policies = () => {
                                 _expanded={{ bg: "#DB4947", color: "white" }}
                             >
                                 <Box as="span" flex="1" textAlign="left">
-                                    User Agreement
+                                    {t("agreement")}
                                 </Box>
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">text</AccordionPanel>
+                        <AccordionPanel textAlign="left">{t("userAgreementText")}</AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -49,12 +51,12 @@ const Policies = () => {
                                 _expanded={{ bg: "#DB4947", color: "white" }}
                             >
                                 <Box as="span" flex="1" textAlign="left">
-                                    Cookie Statement
+                                    {t("cookies")}
                                 </Box>
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">text</AccordionPanel>
+                        <AccordionPanel textAlign="left">{t("cookiesText")}</AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -63,12 +65,12 @@ const Policies = () => {
                                 _expanded={{ bg: "#DB4947", color: "white" }}
                             >
                                 <Box as="span" flex="1" textAlign="left">
-                                    Terms of Use
+                                    {t("terms")}
                                 </Box>
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">text</AccordionPanel>
+                        <AccordionPanel textAlign="left">{t("termsText")}</AccordionPanel>
                     </AccordionItem>
                 </Accordion>
             </div>

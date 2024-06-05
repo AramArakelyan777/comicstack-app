@@ -26,7 +26,7 @@ router.post("/logout", userController.logout)
 router.get("/activate/:link", userController.activate)
 router.get("/refresh", userController.refresh)
 router.post("/block/:id", roleMiddleware(["ADMIN"]), userController.blockUser)
-router.get("/users", authMiddleware, userController.getUsers)
+router.get("/users", userController.getUsers)
 router.get("/user", userController.getUser)
 router.post(
 	"/user/change-username",
