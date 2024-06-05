@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import {
     Accordion,
     AccordionButton,
@@ -9,14 +9,44 @@ import {
     ChakraProvider,
 } from "@chakra-ui/react"
 import { useTranslation } from "react-i18next"
+import { useLocation } from "react-router-dom"
 
 const Policies = () => {
     const { t } = useTranslation()
+    const location = useLocation()
+    const [defaultIndex, setDefaultIndex] = useState(-1)
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search)
+        const section = params.get("section")
+        switch (section) {
+            case "policy":
+                setDefaultIndex(0)
+                break
+            case "agreement":
+                setDefaultIndex(1)
+                break
+            case "cookies":
+                setDefaultIndex(2)
+                break
+            case "terms":
+                setDefaultIndex(3)
+                break
+            default:
+                setDefaultIndex(-1)
+                break
+        }
+    }, [location.search])
+
     return (
         <ChakraProvider>
             <div>
                 <h1 className="bigger-heading">{t("policiesHeading")}</h1>
-                <Accordion allowToggle className="accordion">
+                <Accordion
+                    index={defaultIndex !== -1 ? [defaultIndex] : undefined}
+                    allowToggle
+                    className="accordion"
+                >
                     <AccordionItem className="accordion-item">
                         <h2>
                             <AccordionButton

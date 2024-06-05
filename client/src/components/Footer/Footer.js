@@ -38,6 +38,10 @@ function Footer() {
         validateOnBlur: true,
     })
 
+    const navigateToPolicy = (section) => {
+        navigate(`/website-policies?section=${section}`)
+    }
+
     return (
         <footer className="footer">
             <img className="darkLogo" src={logo} alt="logo" />
@@ -99,21 +103,21 @@ function Footer() {
                 </div>
             </div>
             <div className="policies">
-                <p onClick={() => navigate("/website-policies")}>
+                <p onClick={() => navigateToPolicy("policy")}>
                     {t("footerPagePrivacy")}
                 </p>
-                <p onClick={() => navigate("/website-policies")}>
+                <p onClick={() => navigateToPolicy("agreement")}>
                     {t("footerPageAgreement")}
                 </p>
-                <p onClick={() => navigate("/website-policies")}>
+                <p onClick={() => navigateToPolicy("cookies")}>
                     {t("footerPageCookie")}
                 </p>
-                <p onClick={() => navigate("/website-policies")}>
+                <p onClick={() => navigateToPolicy("terms")}>
                     {t("footerPageTerms")}
                 </p>
             </div>
             <p className="footer-text">
-                {`${new Date().getFullYear()}`} {t("footerDisclaimer")}
+                {`${new Date().getFullYear()} ${t("footerDisclaimer")}`}
             </p>
         </footer>
     )
