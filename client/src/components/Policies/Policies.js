@@ -15,7 +15,7 @@ const Policies = () => {
     return (
         <ChakraProvider>
             <div>
-                <h1 className="bigger-heading">Policies</h1>
+                <h1 className="bigger-heading">{t("policiesHeading")}</h1>
                 <Accordion allowToggle className="accordion">
                     <AccordionItem className="accordion-item">
                         <h2>
@@ -28,7 +28,9 @@ const Policies = () => {
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">{t("privacyPolicyText")}</AccordionPanel>
+                        <AccordionPanel textAlign="left">
+                            {t("privacyPolicyText")}
+                        </AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -42,7 +44,9 @@ const Policies = () => {
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">{t("userAgreementText")}</AccordionPanel>
+                        <AccordionPanel textAlign="left">
+                            {t("userAgreementText")}
+                        </AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -56,7 +60,9 @@ const Policies = () => {
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">{t("cookiesText")}</AccordionPanel>
+                        <AccordionPanel textAlign="left">
+                            {t("cookiesText")}
+                        </AccordionPanel>
                     </AccordionItem>
 
                     <AccordionItem className="accordion-item">
@@ -70,7 +76,9 @@ const Policies = () => {
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel textAlign="left">{t("termsText")}</AccordionPanel>
+                        <AccordionPanel textAlign="left">
+                            {t("termsText")}
+                        </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
             </div>
