@@ -55,6 +55,7 @@
         ]
     },
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "7.21.11",
         "@chromatic-com/storybook": "1.2.22",
         "@storybook/addon-essentials": "^8.0.0",
         "@storybook/addon-interactions": "^8.0.0",
