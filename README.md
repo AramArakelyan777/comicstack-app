@@ -1,8 +1,9 @@
 # ComicStack
 
-HOW IT WORKS: https://www.youtube.com/watch?v=37Bf35VhExs
-
 **ComicStack** is a web application for comic and manga enthusiasts to read, rate, and discuss their favorite titles in one place. It supports both English and Armenian languages, allowing users to browse content and interact with the community in their preferred language. Users can create an account to manage their profile and preferences. The platform emphasizes community engagement: readers can participate in discussion forums about comics and even take interactive comic quizzes, in addition to maintaining custom reading lists and rating each comic they read.
+
+## DEMO VIDEO
+https://www.youtube.com/watch?v=37Bf35VhExs
 
 ## Table of Contents
 - [Features](#features)
